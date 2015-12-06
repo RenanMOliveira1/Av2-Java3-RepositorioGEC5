@@ -44,23 +44,24 @@ public class InsertionSort<T extends Comparable<T>> extends Solucao implements I
 	}
 
 	public void run() {
-		
+
 		DatagramPacket receive = waitForPackets();
-		
+
 		//codigo maluco de converter
-		
+
 		ArrayList<T> ordenado = ordernarLista(new ArrayList<T>());
-		
+
 		try {
 			serializar(ordenado);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
+
 		try {
 			sendPacketToClient(receive);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+
 }
