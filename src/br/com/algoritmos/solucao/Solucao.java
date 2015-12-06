@@ -1,13 +1,35 @@
 package br.com.algoritmos.solucao;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Solucao {
+public abstract class Solucao {
 	protected String nomeSolucao;
 	protected Double mediaGeral;
 	protected boolean ocupado;
 	protected ArrayList<Long> listaTempos;
+	protected DatagramSocket socket;
+	
+	protected Solucao(String _nomeSolucao, int port) {
+		mediaGeral = 0.0;
+		ocupado = false;
+		nomeSolucao = _nomeSolucao;
+		listaTempos = new ArrayList<Long>();
+		try {
+			socket = new DatagramSocket(port);
+		} catch (SocketException e) {
+			e.printStackTrace();
+			System.exit( 1 );
+		}
+	}
 	
 	protected Solucao(String _nomeSolucao) {
 		mediaGeral = 0.0;
@@ -49,5 +71,42 @@ public class Solucao {
 		this.listaTempos = listaTempos;
 	}
 	
+	public DatagramPacket waitForPackets()
+    {
+		byte[] data = new byte[ 100 ];
+		DatagramPacket receivePacket = new DatagramPacket( data, data.length );
+		try
+		{
+			socket.receive( receivePacket );
+		}
+		catch ( IOException ioException )
+		{
+			ioException.printStackTrace();
+        	System.exit(1);
+     	}
+		return receivePacket;
+   }
 	
+	protected void sendPacketToClient( DatagramPacket receivePacket ) throws IOException
+	{
+		DatagramPacket sendPacket = new DatagramPacket( 
+		receivePacket.getData(), receivePacket.getLength(), 
+		receivePacket.getAddress(), receivePacket.getPort() );
+		socket.send( sendPacket );
+	}
+
+	private byte[] serializar(Object obj) throws IOException {
+		  ByteArrayOutputStream b = new ByteArrayOutputStream();
+		  ObjectOutputStream o = new ObjectOutputStream(b);
+		  o.writeObject(obj);
+		  o.close();
+		  return b.toByteArray();
+	}
+	
+	private Object deserialize(byte[] bytes) throws IOException, ClassNotFoundException {
+		  ByteArrayInputStream b = new ByteArrayInputStream(bytes);
+		  ObjectInputStream o = new ObjectInputStream(b);
+		  o.close();
+		  return o.readObject();
+	}
 }
