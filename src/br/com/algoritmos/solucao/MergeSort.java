@@ -33,11 +33,11 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
          
         if (lowerIndex < higherIndex) {
             int middle = lowerIndex + (higherIndex - lowerIndex) / 2;
-            // Below step sorts the left side of the array
+            
             doMergeSort(lowerIndex, middle);
-            // Below step sorts the right side of the array
+            
             doMergeSort(middle + 1, higherIndex);
-            // Now merge both sides
+            
             mergeParts(lowerIndex, middle, higherIndex);
         }
     }
@@ -45,22 +45,26 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
     private void mergeParts(int lowerIndex, int middle, int higherIndex) {
  
     	ArrayList<T> listaTemporaria = new ArrayList<T>();
+    	listaTemporaria = listaDesordenada;
     	
         int menorIndice = lowerIndex;
         int indiceMeio = middle + 1;
         int menorIndice2 = lowerIndex;
         while (menorIndice <= middle && indiceMeio <= higherIndex) {
             if (listaTemporaria.get(menorIndice).compareTo(listaTemporaria.get(indiceMeio)) <= 0) {
+            	listaDesordenada.remove(menorIndice2);
             	listaDesordenada.add(menorIndice2, listaTemporaria.get(menorIndice));
                 menorIndice++;
             } else {
+            	listaDesordenada.remove(menorIndice2);
             	listaDesordenada.add(menorIndice2, listaTemporaria.get(indiceMeio));
                 indiceMeio++;
             }
             menorIndice2++;
         }
         while (menorIndice <= middle) {
-            listaDesordenada.add(menorIndice2, listaTemporaria.get(menorIndice));
+        	listaDesordenada.remove(menorIndice2);
+        	listaDesordenada.add(menorIndice2, listaTemporaria.get(menorIndice));
             menorIndice2++;
             menorIndice++;
         }
