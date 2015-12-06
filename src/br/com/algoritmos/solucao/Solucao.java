@@ -103,10 +103,10 @@ public abstract class Solucao {
 		  return b.toByteArray();
 	}
 	
-	protected Object deserialize(byte[] bytes) throws IOException, ClassNotFoundException {
+	protected <T> ArrayList<T> deserialize(byte[] bytes) throws IOException, ClassNotFoundException {
 		  ByteArrayInputStream b = new ByteArrayInputStream(bytes);
 		  ObjectInputStream o = new ObjectInputStream(b);
 		  o.close();
-		  return o.readObject();
+		  return (ArrayList<T>) o.readObject();
 	}
 }
