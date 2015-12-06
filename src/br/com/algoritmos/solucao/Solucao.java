@@ -95,7 +95,7 @@ public abstract class Solucao {
 		socket.send( sendPacket );
 	}
 
-	private byte[] serializar(Object obj) throws IOException {
+	protected <T> byte[] serializar(ArrayList<T> obj) throws IOException {
 		  ByteArrayOutputStream b = new ByteArrayOutputStream();
 		  ObjectOutputStream o = new ObjectOutputStream(b);
 		  o.writeObject(obj);
@@ -103,7 +103,7 @@ public abstract class Solucao {
 		  return b.toByteArray();
 	}
 	
-	private Object deserialize(byte[] bytes) throws IOException, ClassNotFoundException {
+	protected Object deserialize(byte[] bytes) throws IOException, ClassNotFoundException {
 		  ByteArrayInputStream b = new ByteArrayInputStream(bytes);
 		  ObjectInputStream o = new ObjectInputStream(b);
 		  o.close();

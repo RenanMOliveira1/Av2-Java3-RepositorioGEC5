@@ -47,18 +47,22 @@ public class InsertionSort<T extends Number> extends Solucao implements IOrdenav
 
 	@Override
 	public void run() {
+		
 		DatagramPacket receive = waitForPackets();
 		
 		//codigo maluco de converter
 		
 		ArrayList<T> ordenado = ordernarLista(new ArrayList<T>());
 		
-		//converte para byte
+		try {
+			serializar(ordenado);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		
 		try {
 			sendPacketToClient(receive);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
