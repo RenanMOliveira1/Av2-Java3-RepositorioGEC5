@@ -7,15 +7,8 @@ import java.util.Date;
 
 import br.com.algoritmos.ordenacao.IOrdenavel;
 
-<<<<<<< HEAD
-public class InsertionSort<T extends Number> extends Solucao implements IOrdenavel<T>, Runnable {
-	
-	ArrayList<T> lista;
-	
-=======
 public class InsertionSort<T extends Comparable<T>> extends Solucao implements IOrdenavel<T> {
 
->>>>>>> 727ee08f501f902856ef6db0ff902a8ba0baca99
 	public InsertionSort(String _nomeSolucao) {
 		super(_nomeSolucao, 5000);
 	}
@@ -50,8 +43,6 @@ public class InsertionSort<T extends Comparable<T>> extends Solucao implements I
 		return lista;
 	}
 
-<<<<<<< HEAD
-	@Override
 	public void run() {
 		
 		DatagramPacket receive = waitForPackets();
@@ -72,6 +63,4 @@ public class InsertionSort<T extends Comparable<T>> extends Solucao implements I
 			e.printStackTrace();
 		}
 	}
-=======
->>>>>>> 727ee08f501f902856ef6db0ff902a8ba0baca99
 }
