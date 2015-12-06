@@ -1,5 +1,7 @@
 package br.com.algoritmos.solucao;
 
+import java.io.IOException;
+import java.net.DatagramPacket;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -8,7 +10,7 @@ import br.com.algoritmos.ordenacao.IOrdenavel;
 public class InsertionSort<T extends Comparable<T>> extends Solucao implements IOrdenavel<T> {
 
 	public InsertionSort(String _nomeSolucao) {
-		super(_nomeSolucao);
+		super(_nomeSolucao, 5000);
 	}
 
 	@Override
@@ -39,6 +41,27 @@ public class InsertionSort<T extends Comparable<T>> extends Solucao implements I
 		}
 
 		return lista;
+	}
+
+	public void run() {
+
+		DatagramPacket receive = waitForPackets();
+
+		//codigo maluco de converter
+
+		ArrayList<T> ordenado = ordernarLista(new ArrayList<T>());
+
+		try {
+			serializar(ordenado);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		try {
+			sendPacketToClient(receive);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
