@@ -1,9 +1,9 @@
 package br.com.algoritmos.requisicao;
 
 import java.io.Serializable;
-import java.net.DatagramPacket;
 import java.util.Collection;
-import java.util.Map;
+
+import br.com.algoritmos.solucao.Arvore;
 
 public class Requisicao <T> implements Serializable {
 	private static final long serialVersionUID = 1L;
