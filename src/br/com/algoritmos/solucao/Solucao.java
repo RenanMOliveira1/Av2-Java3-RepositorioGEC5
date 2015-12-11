@@ -10,6 +10,7 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Date;
+import br.com.algritmos.util.RedeUtil;
 
 public abstract class Solucao {
 	protected String nomeSolucao;

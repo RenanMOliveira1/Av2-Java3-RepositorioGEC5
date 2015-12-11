@@ -1,5 +1,7 @@
 package br.com.algoritmos.requisicao;
 
-public enum TipoRequisicao {
+import java.io.Serializable;
+
+public enum TipoRequisicao implements Serializable {
 	ORDENACAO, BUSCA;
 }
