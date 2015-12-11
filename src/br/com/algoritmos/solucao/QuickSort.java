@@ -2,13 +2,13 @@ package br.com.algoritmos.solucao;
 
 import java.util.ArrayList;
 import java.util.Date;
+
 import br.com.algoritmos.ordenacao.IOrdenavel;
 
-public class QuickSort<T extends Comparable<T>> extends Solucao implements IOrdenavel<T> {
+public class QuickSort<T> extends Solucao implements IOrdenavel<T> {
 
-	public QuickSort(String _nomeSolucao) {
-		super(_nomeSolucao);
-		// TODO Auto-generated constructor stub
+	public QuickSort() {
+		super("QuickSort", 5000);
 	}
 
 	@Override
@@ -34,8 +34,8 @@ public class QuickSort<T extends Comparable<T>> extends Solucao implements IOrde
 		ArrayList<T> maiores = new ArrayList<T>();
 
 		for (T numero : lista) {
-			if(numero.compareTo(pivot) <= 0){
-				if(numero.compareTo(lista.get(middle)) == 0){
+			if(((Comparable) numero).compareTo(pivot) <= 0){
+				if(((Comparable) numero).compareTo(lista.get(middle)) == 0){
 					continue;
 				}
 				menores.add(numero);
@@ -45,12 +45,12 @@ public class QuickSort<T extends Comparable<T>> extends Solucao implements IOrde
 			}
 		}
 
-	    return concatenar(quickSort(menores), pivot, quickSort(maiores));
+	    return concatenar(lista, quickSort(menores), pivot, quickSort(maiores));
 	}
 
-	private ArrayList<T> concatenar(ArrayList<T> menores, T pivot, ArrayList<T> maiores){
+	private ArrayList<T> concatenar(ArrayList<T>lista, ArrayList<T> menores, T pivot, ArrayList<T> maiores){
 
-		ArrayList<T> lista = new ArrayList<T>();
+		lista.clear();
 
 		for (T numero : menores) {
 			lista.add(numero);
