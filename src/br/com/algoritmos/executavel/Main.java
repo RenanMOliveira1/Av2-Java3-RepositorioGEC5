@@ -3,17 +3,17 @@ package br.com.algoritmos.executavel;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.sun.scenario.effect.Merge;
-
+import br.com.algoritmos.solucao.Arvore;
 import br.com.algoritmos.solucao.BuscaBinaria;
+import br.com.algoritmos.solucao.BuscaEmLargura;
 import br.com.algoritmos.solucao.InsertionSort;
-import br.com.algoritmos.solucao.MergeSort;
-import br.com.algoritmos.solucao.QuickSort;
+//import com.sun.scenario.effect.Merge;
+import br.com.algoritmos.solucao.No;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Random random = new Random();
+		/*Random random = new Random();
 		InsertionSort<Integer> insertionSort = new InsertionSort<Integer>("Insertion Sort");
 		QuickSort<Integer> quickSort = new QuickSort<Integer>("Quick Sort");
 		BuscaBinaria<Integer> buscaBinaria = new BuscaBinaria<Integer>();
@@ -57,7 +57,37 @@ public class Main {
 			}else{
 				System.out.println("Elemento encontrado na posição: "+posicao);
 			}
+		}*/
+		
+		Arvore arvore = new Arvore(5);
+		
+		arvore.inserir(2);
+		arvore.inserir(6);
+		arvore.inserir(3);
+		arvore.inserir(7);
+		
+		BuscaEmLargura buscador = new BuscaEmLargura();
+		
+		No no = (No)buscador.buscarElemento(arvore, 7);
+		
+		System.out.println(no.getValor());
+	
+		ArrayList<Comparable> lista = new ArrayList<Comparable>();
+		Random random = new Random();
+		for (long  index = 0; index < 5000; index++) {
+			lista.add(random.nextInt(50000));
 		}
+		InsertionSort<Comparable> ordenador = new InsertionSort<Comparable>();
+		
+		ordenador.ordernarLista(lista);
+		
+		BuscaBinaria buscador2 = new BuscaBinaria();
+		
+		System.out.println("eu" + lista.toString());
+		int index = (int)buscador2.buscarElemento(lista, 50);
+		
+		System.out.println(index);
+		
 	}
 
 }

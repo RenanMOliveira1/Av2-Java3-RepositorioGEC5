@@ -5,17 +5,20 @@ import java.util.Date;
 
 import br.com.algoritmos.busca.IBuscavel;
 
-public class BuscaBinaria<T extends Comparable<T>> extends Solucao implements IBuscavel<T> {
+public class BuscaBinaria<T> extends Solucao implements IBuscavel<T> {
 
 	public BuscaBinaria() {
 		super("Busca Binária");
 	}
 
 	@Override
-	public int buscarElemento(ArrayList<T> lista, T valor) {
+	public <T> T buscarElemento(T colecao, Comparable valor) {
+		
+		ArrayList<Comparable> lista = (ArrayList<Comparable>) colecao;
+		
 		Date dataInicial = new Date();
 		setOcupado(true);
-		int posicao = buscaBinaria(lista, valor);
+		T posicao = (T) buscaBinaria(lista, valor);
 		setOcupado(false);
 		Date dataFinal = new Date();
 		adicionarTempoDuracao(dataInicial, dataFinal);
@@ -23,15 +26,15 @@ public class BuscaBinaria<T extends Comparable<T>> extends Solucao implements IB
 		return posicao;
 	}
 
-	private int buscaBinaria(ArrayList<T> lista, T valor){
+	private Integer buscaBinaria(ArrayList<Comparable> lista, Comparable valor){
 		int inicio = 0;
 		int fim = lista.size()-1;
 
 		while(inicio <= fim){
 			int meio = (inicio+fim)/2;
-			T valorMeio = lista.get(meio);
+			Comparable valorMeio = lista.get(meio);
 
-			if(valorMeio.compareTo(valor) == 0){
+			if(valor.compareTo(valorMeio) == 0){
 				return meio;
 			}
 
@@ -42,6 +45,6 @@ public class BuscaBinaria<T extends Comparable<T>> extends Solucao implements IB
 			}
 		}
 
-		return -1;
+		return null;
 	}
 }

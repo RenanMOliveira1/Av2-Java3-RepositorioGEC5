@@ -9,22 +9,17 @@ import br.com.algoritmos.ordenacao.IOrdenavel;
 
 public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrdenavel<T> {
 
-	ArrayList<T> listaDesordenada;
-
 	public MergeSort(String _nomeSolucao) {
 		super(_nomeSolucao);
 	}
 
-	public ArrayList<T> ordernarLista(ArrayList<T> lista) {
+	public void ordernarLista(ArrayList<T> lista) {
 		Date dataInicial = new Date();
 		setOcupado(true);
-		listaDesordenada = lista;
-		listaDesordenada = mergeSort(listaDesordenada);
+		lista = mergeSort(lista);
 		setOcupado(false);
 		Date dataFinal = new Date();
 		adicionarTempoDuracao(dataInicial, dataFinal);
-
-		return listaDesordenada;
 	}
 
 	public static <T extends Comparable<T>> ArrayList<T> mergeSort(List<T> m) {

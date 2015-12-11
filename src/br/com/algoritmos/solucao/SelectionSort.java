@@ -11,15 +11,13 @@ public class SelectionSort<T extends Comparable<T>> extends Solucao implements I
 	}
 
 	@Override
-	public ArrayList<T> ordernarLista(ArrayList<T> lista) {
+	public void ordernarLista(ArrayList<T> lista) {
 		Date dataInicial = new Date();		
 		setOcupado(true);		
-		ArrayList<T> listaOrdenada = selectionSort(lista);			
+		lista = selectionSort(lista);			
 		setOcupado(false);
 		Date dataFinal = new Date();
 		adicionarTempoDuracao(dataInicial, dataFinal);
-		
-		return listaOrdenada;
 	}
 
 	private ArrayList<T> selectionSort(ArrayList<T> lista) {

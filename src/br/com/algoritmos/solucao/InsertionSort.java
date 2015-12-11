@@ -7,29 +7,28 @@ import java.util.Date;
 
 import br.com.algoritmos.ordenacao.IOrdenavel;
 
-public class InsertionSort<T extends Comparable<T>> extends Solucao implements IOrdenavel<T>, Runnable{
+public class InsertionSort<T> extends Solucao implements IOrdenavel<T>, Runnable{
 
-	public InsertionSort(String _nomeSolucao) {
-		super(_nomeSolucao, 5000);
+	public InsertionSort() {
+		super("Insertion Sort", 5000);
 	}
 
 	@Override
-	public ArrayList<T> ordernarLista(ArrayList<T> lista) {
+	public void ordernarLista(ArrayList<T> lista) {
 		Date dataInicial = new Date();
 		setOcupado(true);
-		ArrayList<T> listaOrdenada = insertionSort(lista);
+		lista = insertionSort(lista);
 		setOcupado(false);
 		Date dataFinal = new Date();
 		adicionarTempoDuracao(dataInicial, dataFinal);
 
-		return listaOrdenada;
 	}
 
 	public ArrayList<T> insertionSort(ArrayList<T> lista){
 		int tamanhoLista = lista.size();
 
 		for(int index = 1; index < tamanhoLista; index++){
-			T valor = lista.get(index);
+			Comparable valor = (Comparable) lista.get(index);
 			int indexAux;
 
 			for(indexAux = index - 1; indexAux >= 0 && valor.compareTo(lista.get(indexAux)) < 0; indexAux--){
@@ -37,7 +36,7 @@ public class InsertionSort<T extends Comparable<T>> extends Solucao implements I
 				lista.add(indexAux+1, lista.get(indexAux));
 			}
 			lista.remove(indexAux+1);
-			lista.add(indexAux+1, valor);
+			lista.add(indexAux+1, (T)valor);
 		}
 
 		return lista;
@@ -47,21 +46,21 @@ public class InsertionSort<T extends Comparable<T>> extends Solucao implements I
 
 		DatagramPacket receive = waitForPackets();
 		
-		ArrayList<T> listaDesordenada;
+		ArrayList<T> lista = new ArrayList<T>();
 
 		//codigo maluco de converter
 
-		ArrayList<T> ordenado = ordernarLista(new ArrayList<T>());
+		ordernarLista(lista);
 
 		try {
-			serializar(ordenado);
+			serializar(lista);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 		try {
-			listaDesordenada = deserialize(receive.getData());
-			ArrayList<T> ordenada = ordernarLista(listaDesordenada);
-			serializar(ordenada);		
+			ArrayList<T> listaDesordenada = deserialize(receive.getData());
+			ordernarLista(listaDesordenada);
+			serializar(lista);		
 			sendPacketToClient(receive);
 		} catch (IOException e) {
 			e.printStackTrace();
