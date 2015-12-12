@@ -2,7 +2,6 @@ package br.com.algoritmos.solucao;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 
 import br.com.algoritmos.busca.IBuscavel;
