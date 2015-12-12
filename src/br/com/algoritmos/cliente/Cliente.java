@@ -9,6 +9,11 @@ import br.com.algoritmos.cliente.requisicao.DadosClient;
 import br.com.algoritmos.cliente.requisicao.Requisicao;
 import br.com.algritmos.util.RedeUtil;
 
+/**
+ * @author Tiago
+ *
+ * 
+ */
 public class Cliente <T> {
 	private Requisicao<T> requisicao;
 	private DatagramSocket socket;
