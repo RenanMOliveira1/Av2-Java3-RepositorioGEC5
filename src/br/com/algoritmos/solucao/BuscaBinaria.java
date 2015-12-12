@@ -5,7 +5,7 @@ import java.util.Date;
 
 import br.com.algoritmos.busca.IBuscavel;
 
-public class BuscaBinaria<T> extends Solucao implements IBuscavel<T> {
+public class BuscaBinaria<T extends Comparable<T>> extends Solucao implements IBuscavel<T> {
 
 	public BuscaBinaria() {
 		super("Busca Binária");

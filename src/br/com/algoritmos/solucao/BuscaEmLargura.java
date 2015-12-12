@@ -12,7 +12,7 @@ import br.com.algoritmos.busca.IBuscavel;
 import br.com.algoritmos.requisicao.Requisicao;
 import br.com.algritmos.util.RedeUtil;
 
-public class BuscaEmLargura<T> extends Solucao implements Runnable, IBuscavel<T>{
+public class BuscaEmLargura<T extends Comparable<T>> extends Solucao implements Runnable, IBuscavel<T>{
 	private DatagramSocket socket;
 	private DatagramPacket sendPacket;
 
