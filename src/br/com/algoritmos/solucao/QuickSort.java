@@ -1,9 +1,17 @@
+
+/**
+ * @author Ramon
+ *
+ */
+
+
 package br.com.algoritmos.solucao;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 import br.com.algoritmos.ordenacao.IOrdenavel;
+import br.com.algoritmos.requisicao.Requisicao;
 
 public class QuickSort<T> extends Solucao implements IOrdenavel<T> {
 
@@ -63,6 +71,17 @@ public class QuickSort<T> extends Solucao implements IOrdenavel<T> {
 		}
 
 		return lista;
+	}
+
+	@Override
+	public void run() {
+
+		while(true) {
+			Requisicao<T> requisicao = receberRequisicao();
+			ordernarLista((ArrayList<T>) requisicao.getListaValores());
+			enviarRequisicao(requisicao);
+		}
+
 	}
 
 }

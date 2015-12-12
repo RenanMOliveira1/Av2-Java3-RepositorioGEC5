@@ -3,10 +3,12 @@ package br.com.algoritmos.solucao;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import br.com.algoritmos.executavel.Main;
 import br.com.algoritmos.requisicao.Requisicao;
 import br.com.algritmos.util.RedeUtil;
 
@@ -15,7 +17,6 @@ import br.com.algritmos.util.RedeUtil;
  *
  */
 public abstract class Solucao implements Runnable {
-
 	protected String nomeSolucao;
 	protected Double mediaGeral;
 	protected boolean ocupado;
@@ -27,6 +28,7 @@ public abstract class Solucao implements Runnable {
 		ocupado = false;
 		nomeSolucao = _nomeSolucao;
 		listaTempos = new ArrayList<Long>();
+		
 		try {
 			socket = new DatagramSocket(port);
 		} catch (SocketException e) {
@@ -49,9 +51,23 @@ public abstract class Solucao implements Runnable {
 		}
 		if (listaTempos.size() != 0)
 			mediaGeral = (double) (soma / listaTempos.size());
+		
+		try {
+			atualizarServidor(mediaGeral);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		return mediaGeral;
 	}
-
+	
+	private void atualizarServidor(Double mediaGeral) throws IOException {
+		byte[] data = RedeUtil.serializar(mediaGeral);
+		DatagramPacket packetAtualizacao = new DatagramPacket(data, data.length, InetAddress.getLocalHost(), Main.PORTA);
+		
+		socket.send(packetAtualizacao);
+	}
+	
 	public void adicionarTempoDuracao(Date dataInicial, Date dataFinal) {
 		// in milliseconds
 		long tempoDuracao = dataFinal.getTime() - dataInicial.getTime();
@@ -96,15 +112,15 @@ public abstract class Solucao implements Runnable {
 	public <T> void enviarRequisicao(Requisicao<T> requisicao) {
 		byte[] data = null;
 		DatagramPacket sendPacket = null;
-		
+
 		try {
 			data = RedeUtil.serializar(requisicao);
 			sendPacket = new DatagramPacket(data, data.length, requisicao.getDados().getIp(), requisicao.getDados().getPorta());
-			
+
 			socket.send(sendPacket);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 }

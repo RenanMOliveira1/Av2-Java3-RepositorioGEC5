@@ -11,7 +11,8 @@ import br.com.algoritmos.solucao.InsertionSort;
 import br.com.algoritmos.solucao.No;
 
 public class Main {
-
+	public static final int PORTA = 12345;
+	
 	public static void main(String[] args) {
 		/*Random random = new Random();
 		InsertionSort<Integer> insertionSort = new InsertionSort<Integer>("Insertion Sort");

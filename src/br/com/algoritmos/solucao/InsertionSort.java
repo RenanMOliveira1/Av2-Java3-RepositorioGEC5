@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import br.com.algoritmos.ordenacao.IOrdenavel;
+import br.com.algoritmos.requisicao.Requisicao;
 
 public class InsertionSort<T> extends Solucao implements IOrdenavel<T>, Runnable{
 
@@ -43,29 +44,10 @@ public class InsertionSort<T> extends Solucao implements IOrdenavel<T>, Runnable
 	}
 
 	public void run() {
-
-		DatagramPacket receive = waitForPackets();
-		
-		ArrayList<T> lista = new ArrayList<T>();
-
-		//codigo maluco de converter
-
-		ordernarLista(lista);
-
-		try {
-			serializar(lista);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		try {
-			ArrayList<T> listaDesordenada = deserialize(receive.getData());
-			ordernarLista(listaDesordenada);
-			serializar(lista);		
-			enviarRequisicao(receive);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
+		while(true) {
+			Requisicao<T> requisicao = receberRequisicao();
+			ordernarLista((ArrayList<T>) requisicao.getListaValores());
+			enviarRequisicao(requisicao);
 		}
 	}
 

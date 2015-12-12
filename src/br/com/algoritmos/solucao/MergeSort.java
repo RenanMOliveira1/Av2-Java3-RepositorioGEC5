@@ -23,7 +23,7 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 	}
 
 	public static <T extends Comparable<T>> ArrayList<T> mergeSort(List<T> m) {
-		
+
 		if (m.size() <= 1)
 			return new ArrayList<T>(m);
 
@@ -34,7 +34,7 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 		right = mergeSort(right);
 		left = mergeSort(left);
 		List<T> result = merge(left, right);
-		
+
 		return new ArrayList<T>(result);
 	}
 
@@ -73,6 +73,12 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+
 	}
 
 }
