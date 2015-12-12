@@ -12,11 +12,10 @@ import br.com.algoritmos.busca.IBuscavel;
 import br.com.algoritmos.requisicao.Requisicao;
 import br.com.algritmos.util.RedeUtil;
 
-public class BuscaEmLargura<T extends Comparable<T>> extends Solucao implements Runnable, IBuscavel<T>{
-	private DatagramSocket socket;
-	private DatagramPacket sendPacket;
+public class BuscaEmLargura<T extends Comparable<T>> extends Solucao implements Runnable, IBuscavel<T>{//tem que colocar extends Comparable<T> sem isso da erro
+	//private DatagramSocket socket;
+	//private DatagramPacket sendPacket;
 
-	private Dado dado = new Dado();
 
 	public BuscaEmLargura() {
 
@@ -26,18 +25,19 @@ public class BuscaEmLargura<T extends Comparable<T>> extends Solucao implements 
 	@Override
 	public void run() {
 		while (true) {
-			Requisicao<T> requisicao = receberRequisicao();
+			Requisicao<T> requisicao = receberRequisicao();//ja faz todo processo do recebimento
 //			
-//			buscarElemento(requisicao.getListaValores(), requisicao.getValor());
-			
-			enviarRequisicao(requisicao);
+			//buscarElemento(requisicao.getListaValores(), requisicao.getValor());
+			requisicao.setNo(buscarElemento(requisicao.getListaValores(), requisicao.getValor()));// adiciona o nó encontrado 
+			requisicao.setListaValores(null);                                                     // para enviar ao cliente
+			enviarRequisicao(requisicao);// ja faz todo processo de envio                         
 //			
 		}
 
 	}
 
 
-	private void ReceberDado() throws IOException, ClassNotFoundException {
+	/*private void ReceberDado() throws IOException, ClassNotFoundException {
 		byte[] data = new byte[252];
 		Requisicao<T> requisicao = receberRequisicao();
 //		DatagramPacket receivePacket = new DatagramPacket(data, data.length);
@@ -57,7 +57,7 @@ public class BuscaEmLargura<T extends Comparable<T>> extends Solucao implements 
 													// dados.getPorta());
 		socket.send(sendPacket);
 	}
-
+     */
 	@Override
 	public <T> T buscarElemento(T colecao, Comparable valor) {
 		
