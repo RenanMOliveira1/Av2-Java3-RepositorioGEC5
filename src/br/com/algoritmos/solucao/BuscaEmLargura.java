@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import br.com.algoritmos.busca.IBuscavel;
+import br.com.algoritmos.requisicao.Requisicao;
 import br.com.algritmos.util.RedeUtil;
 
 public class BuscaEmLargura<T> extends Solucao implements Runnable, IBuscavel<T>{
@@ -25,20 +26,12 @@ public class BuscaEmLargura<T> extends Solucao implements Runnable, IBuscavel<T>
 	@Override
 	public void run() {
 		while (true) {
-
-			try {
-				ReceberDado();
-			} catch (ClassNotFoundException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				MandarDado();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
+			Requisicao<T> requisicao = receberRequisicao();
+//			
+//			buscarElemento(requisicao.getListaValores(), requisicao.getValor());
+			
+			enviarRequisicao(requisicao);
+//			
 		}
 
 	}
@@ -46,9 +39,10 @@ public class BuscaEmLargura<T> extends Solucao implements Runnable, IBuscavel<T>
 
 	private void ReceberDado() throws IOException, ClassNotFoundException {
 		byte[] data = new byte[252];
-		DatagramPacket receivePacket = new DatagramPacket(data, data.length);
-		socket.receive(receivePacket);
-		dado = (Dado) RedeUtil.deserialize(receivePacket.getData());//
+		Requisicao<T> requisicao = receberRequisicao();
+//		DatagramPacket receivePacket = new DatagramPacket(data, data.length);
+//		socket.receive(receivePacket);
+//		dado = (Dado) RedeUtil.deserialize(receivePacket.getData());//
 		//this.buscarElemento(dado.getDado(), );
 
 	}

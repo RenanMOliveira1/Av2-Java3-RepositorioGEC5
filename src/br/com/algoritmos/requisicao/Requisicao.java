@@ -88,6 +88,34 @@ public class Requisicao <T> implements Serializable {
 	public DadosClient getDados() {
 		return dados;
 	}
+
+	public Arvore getArvore() {
+		return arvore;
+	}
+
+	public void setArvore(Arvore arvore) {
+		this.arvore = arvore;
+	}
+
+	public Integer getPosicao() {
+		return posicao;
+	}
+
+	public void setPosicao(Integer posicao) {
+		this.posicao = posicao;
+	}
+
+	public Object getNo() {
+		return no;
+	}
+
+	public void setNo(Object no) {
+		this.no = no;
+	}
+
+	public void setDados(DadosClient dados) {
+		this.dados = dados;
+	}
 	
 	
 }
