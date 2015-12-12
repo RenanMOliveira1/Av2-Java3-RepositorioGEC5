@@ -73,7 +73,7 @@ public class Main {
 		
 		System.out.println(no.getValor());
 	
-		ArrayList<Comparable> lista = new ArrayList<Comparable>();
+		/*ArrayList<Comparable> lista = new ArrayList<Comparable>();
 		Random random = new Random();
 		for (long  index = 0; index < 5000; index++) {
 			lista.add(random.nextInt(50000));
@@ -87,7 +87,7 @@ public class Main {
 		System.out.println("eu" + lista.toString());
 		int index = (int)buscador2.buscarElemento(lista, 50);
 		
-		System.out.println(index);
+		System.out.println(index);*/
 		
 	}
 

@@ -9,7 +9,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import br.com.algoritmos.busca.IArvoreBuscavel;
-import br.com.algoritmos.busca.IBuscavel;
 import br.com.algoritmos.requisicao.Requisicao;
 import br.com.algritmos.util.RedeUtil;
 
