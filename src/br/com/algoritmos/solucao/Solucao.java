@@ -10,6 +10,10 @@ import java.util.Date;
 import br.com.algoritmos.requisicao.Requisicao;
 import br.com.algritmos.util.RedeUtil;
 
+/**
+ * @author Tiago, Renan
+ *
+ */
 public abstract class Solucao implements Runnable {
 
 	protected String nomeSolucao;

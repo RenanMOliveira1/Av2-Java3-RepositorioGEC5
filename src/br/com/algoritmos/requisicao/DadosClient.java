@@ -2,7 +2,10 @@ package br.com.algoritmos.requisicao;
 
 import java.io.Serializable;
 import java.net.InetAddress;
-
+/**
+ * @author Tiago
+ *
+ */
 public class DadosClient implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

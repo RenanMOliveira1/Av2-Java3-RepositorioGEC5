@@ -7,7 +7,10 @@ import java.net.SocketException;
 import java.util.Hashtable;
 import br.com.algritmos.util.RedeUtil;
 import br.com.algoritmos.requisicao.TipoRequisicao;
-
+/**
+ * @author Renan
+ *
+ */
 public class ServidorCentral {
 	
 	private volatile static ServidorCentral servidor = null;
