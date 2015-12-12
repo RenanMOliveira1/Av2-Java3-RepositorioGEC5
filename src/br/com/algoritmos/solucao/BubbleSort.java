@@ -23,20 +23,17 @@ public class BubbleSort<T extends Number> extends Solucao implements IOrdenavel<
 	}
 
 	private void bubbleSort(ArrayList<T> lista) {
-		int tamanhoLista = lista.size();
-
+int tamanhoLista = lista.size();
+		
 		for (int contador = 0; contador < tamanhoLista; contador++) {
-			for (int contadorAuxiliar = 1; contadorAuxiliar <= tamanhoLista; contadorAuxiliar++) {
-				T currentValor = lista.get(contador);
-				T proximoValor = lista.get(contadorAuxiliar);
-
-				if (currentValor.intValue() < proximoValor.intValue()) {
-					lista.add(contador, proximoValor);
-					lista.add(contadorAuxiliar, currentValor);
+			for (int contadorAuxiliar = 0; contadorAuxiliar < tamanhoLista - contador - 1; contadorAuxiliar++) {								
+				if (lista.get(contadorAuxiliar).intValue() > lista.get(contadorAuxiliar + 1).intValue()) {
+					T temp = lista.get(contadorAuxiliar);
+					lista.set(contadorAuxiliar, lista.get(contadorAuxiliar + 1));
+					lista.set(contadorAuxiliar + 1, temp);
 				}
 			}
 		}
-
 	}
 
 	@Override
