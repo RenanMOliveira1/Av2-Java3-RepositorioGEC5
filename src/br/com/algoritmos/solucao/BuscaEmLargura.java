@@ -1,3 +1,7 @@
+/**
+ * @author Thaynara,Bruno,Gabriel
+ *
+ */
 package br.com.algoritmos.solucao;
 
 import java.io.IOException;
