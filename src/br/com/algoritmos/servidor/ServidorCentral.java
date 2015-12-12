@@ -5,14 +5,15 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.util.Hashtable;
-import br.com.algritmos.util.RedeUtil;
+
+import br.com.algoritmos.executavel.Main;
 import br.com.algoritmos.requisicao.TipoRequisicao;
+import br.com.algritmos.util.RedeUtil;
 /**
  * @author Renan
  *
  */
 public class ServidorCentral {
-	
 	private volatile static ServidorCentral servidor = null;
 	
 	private DatagramSocket socket;
@@ -20,21 +21,22 @@ public class ServidorCentral {
 	private Hashtable<Integer, Double> tabelaTempoOrdena;
 	private Hashtable<Integer, Double> tabelaTempoBuscaArvore;
 	
-	private ServidorCentral(int port) {	
+	private ServidorCentral() {	
 		tabelaTempoOrdena = new Hashtable<Integer, Double>();
 		tabelaTempoBusca = new Hashtable<Integer, Double>();
+		
 		try {
-			socket = new DatagramSocket(port);
+			socket = new DatagramSocket(Main.PORTA);
 		} catch (SocketException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public static ServidorCentral getInstancia(int port){
+	public static ServidorCentral getInstancia(){
 		if(servidor == null){
 			synchronized(ServidorCentral.class){
 				if(servidor == null)
-					return new ServidorCentral(port);
+					return new ServidorCentral();
 			}
 		}
 		
