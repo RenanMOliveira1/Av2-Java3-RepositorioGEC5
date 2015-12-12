@@ -51,12 +51,13 @@ public class Requisicao <T> implements Serializable {
 	}
 	
 	//Requisicão de Ordenação
-	public Requisicao(TipoRequisicao _tipoRequisicao, Collection<T> _listaValores, DadosClient _dados) {
-		this(_dados, null, _tipoRequisicao, _listaValores, null, null);
+	public Requisicao(TipoRequisicao _tipoRequisicao, Collection<T> _listaValores) {
+		this(null, null, _tipoRequisicao, _listaValores, null, null);
 	}
 	
-	public Requisicao(TipoRequisicao _tipoRequisicao, Collection<T> _listaValores, DadosClient _dados, T _valor) {
-		this(_dados, _valor, _tipoRequisicao, _listaValores, null, null);
+	//Requisicão de Busca
+	public Requisicao(TipoRequisicao _tipoRequisicao, Collection<T> _listaValores, T _valor) {
+		this(null, _valor, _tipoRequisicao, _listaValores, null, null);
 	}
 	
 	public T getValor() {
