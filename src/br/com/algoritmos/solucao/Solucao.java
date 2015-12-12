@@ -112,15 +112,15 @@ public abstract class Solucao implements Runnable {
 	public <T> void enviarRequisicao(Requisicao<T> requisicao) {
 		byte[] data = null;
 		DatagramPacket sendPacket = null;
-		
+
 		try {
 			data = RedeUtil.serializar(requisicao);
 			sendPacket = new DatagramPacket(data, data.length, requisicao.getDados().getIp(), requisicao.getDados().getPorta());
-			
+
 			socket.send(sendPacket);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 }

@@ -2,8 +2,6 @@ package br.com.algoritmos.requisicao;
 
 import java.io.Serializable;
 import java.util.Collection;
-
-import br.com.algoritmos.solucao.Arvore;
 /**
  * @author Tiago, Bruno
  *

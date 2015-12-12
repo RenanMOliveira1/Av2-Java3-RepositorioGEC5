@@ -1,6 +1,5 @@
 package br.com.algoritmos.busca;
 
-import java.util.ArrayList;
 /**
  * @author Tiago
  *
