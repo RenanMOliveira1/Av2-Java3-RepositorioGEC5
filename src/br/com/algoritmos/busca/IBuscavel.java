@@ -3,7 +3,7 @@ package br.com.algoritmos.busca;
 import java.util.Collection;
 
 /**
- * @author Tiago, Ramon
+ * @author Tiago, Ramon, Luis
  *
  */
 

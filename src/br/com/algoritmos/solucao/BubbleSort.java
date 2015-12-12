@@ -6,9 +6,17 @@ import java.util.Date;
 import br.com.algoritmos.ordenacao.IOrdenavel;
 import br.com.algoritmos.requisicao.Requisicao;
 
-public class BubbleSort<T extends Number> extends Solucao implements IOrdenavel<T> {
+/*
+ * @author Luis Carlos Gomes e Rafael Viana
+ * 
+ */
 
-	protected BubbleSort(String _nomeSolucao) {
+public class BubbleSort<T extends Number> extends Solucao implements IOrdenavel<T> {
+	public BubbleSort() {
+		super("Bubble sort");
+	}
+
+	public BubbleSort(String _nomeSolucao) {
 		super(_nomeSolucao);
 	}
 
@@ -23,7 +31,7 @@ public class BubbleSort<T extends Number> extends Solucao implements IOrdenavel<
 	}
 
 	private void bubbleSort(ArrayList<T> lista) {
-int tamanhoLista = lista.size();
+		int tamanhoLista = lista.size();
 		
 		for (int contador = 0; contador < tamanhoLista; contador++) {
 			for (int contadorAuxiliar = 0; contadorAuxiliar < tamanhoLista - contador - 1; contadorAuxiliar++) {								
@@ -38,10 +46,11 @@ int tamanhoLista = lista.size();
 
 	@Override
 	public void run() {
-		Requisicao<T> requisicao = receberRequisicao();
-		ordernarLista((ArrayList<T>) requisicao.getListaValores());
-		enviarRequisicao(requisicao);
-		
+		while (true) {
+			Requisicao<T> requisicao = receberRequisicao();
+			ordernarLista((ArrayList<T>) requisicao.getListaValores());
+			enviarRequisicao(requisicao);
+		}		
 	}
 
 }
