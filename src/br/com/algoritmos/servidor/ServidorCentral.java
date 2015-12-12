@@ -15,6 +15,7 @@ public class ServidorCentral {
 	private DatagramSocket socket;
 	private Hashtable<Integer, Double> tabelaTempoBusca;
 	private Hashtable<Integer, Double> tabelaTempoOrdena;
+	private Hashtable<Integer, Double> tabelaTempoBuscaArvore;
 	
 	private ServidorCentral(int port) {	
 		tabelaTempoOrdena = new Hashtable<Integer, Double>();
@@ -80,6 +81,8 @@ public class ServidorCentral {
 			   return retornaAlgoritmoRapido(tabelaTempoBusca);
 		   case ORDENACAO:
 			   return retornaAlgoritmoRapido(tabelaTempoOrdena);
+		   case BUSCA_ARVORE:
+			   return retornaAlgoritmoRapido(tabelaTempoBuscaArvore);
 		   default:
 			   throw new ArrayIndexOutOfBoundsException("Enum fora de Requisicao");
 		   }

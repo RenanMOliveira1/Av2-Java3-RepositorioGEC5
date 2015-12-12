@@ -79,6 +79,10 @@ public class Requisicao <T> implements Serializable {
 	public void setListaValores(Collection<T> listaValores) {
 		this.listaValores = listaValores;
 	}
+
+	public DadosClient getDados() {
+		return dados;
+	}
 	
 	
 }

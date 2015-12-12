@@ -1,13 +1,18 @@
 package br.com.algoritmos.solucao;
 
+import java.io.IOException;
+import java.net.DatagramPacket;
 import java.util.ArrayList;
 import java.util.Date;
+
 import br.com.algoritmos.ordenacao.IOrdenavel;
+import br.com.algoritmos.requisicao.Requisicao;
+import br.com.algritmos.util.RedeUtil;
 
-public class SelectionSort<T extends Comparable<T>> extends Solucao implements IOrdenavel<T>, Runnable {
+public class SelectionSort<T extends Comparable<T>> extends Solucao implements IOrdenavel<T> {
 
-	public SelectionSort(String _nomeSolucao) {
-		super(_nomeSolucao);
+	public SelectionSort(String _nomeSolucao, int port) {
+		super(_nomeSolucao, port);
 	}
 
 	@Override
@@ -40,7 +45,18 @@ public class SelectionSort<T extends Comparable<T>> extends Solucao implements I
 	@Override
 	public void run() {
 		while(true){
-			
+			DatagramPacket receivePacket = waitForPackets();
+			Requisicao<T> obj;
+			try {
+				obj = (Requisicao<T>) RedeUtil.deserialize(receivePacket.getData());
+				ordernarLista((ArrayList<T>) obj.getListaValores());
+				sendPacketToClient(obj);
+				
+			} catch (ClassNotFoundException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 }

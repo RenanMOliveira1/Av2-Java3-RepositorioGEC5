@@ -1,18 +1,16 @@
 package br.com.algoritmos.solucao;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Date;
+
+import br.com.algoritmos.requisicao.Requisicao;
 import br.com.algritmos.util.RedeUtil;
 
-public abstract class Solucao {
+public abstract class Solucao implements Runnable{
 	protected String nomeSolucao;
 	protected Double mediaGeral;
 	protected boolean ocupado;
@@ -88,26 +86,10 @@ public abstract class Solucao {
 		return receivePacket;
    }
 	
-	protected void sendPacketToClient( DatagramPacket receivePacket ) throws IOException
+	protected <T> void sendPacketToClient( Requisicao<T> obj ) throws IOException
 	{
-		DatagramPacket sendPacket = new DatagramPacket( 
-		receivePacket.getData(), receivePacket.getLength(), 
-		receivePacket.getAddress(), receivePacket.getPort() );
+		byte[] data = RedeUtil.serializar(obj);
+		DatagramPacket sendPacket = new DatagramPacket(data, data.length, obj.getDados().getIp(), obj.getDados().getPorta());
 		socket.send( sendPacket );
-	}
-
-	protected <T> byte[] serializar(T obj) throws IOException {
-		  ByteArrayOutputStream b = new ByteArrayOutputStream();
-		  ObjectOutputStream o = new ObjectOutputStream(b);
-		  o.writeObject(obj);
-		  o.close();
-		  return b.toByteArray();
-	}
-	
-	protected <T> T deserialize(byte[] bytes) throws IOException, ClassNotFoundException {
-		  ByteArrayInputStream b = new ByteArrayInputStream(bytes);
-		  ObjectInputStream o = new ObjectInputStream(b);
-		  o.close();
-		  return (T) o.readObject();
 	}
 }

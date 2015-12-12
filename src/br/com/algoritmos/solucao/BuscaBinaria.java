@@ -47,4 +47,9 @@ public class BuscaBinaria<T> extends Solucao implements IBuscavel<T> {
 
 		return null;
 	}
+
+	@Override
+	public void run() {
+		
+	}
 }
