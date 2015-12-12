@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import br.com.algoritmos.busca.IBuscavel;
+import br.com.algoritmos.requisicao.Requisicao;
 
 public class BuscaBinaria<T extends Comparable<T>> extends Solucao implements IBuscavel<T> {
 
@@ -50,6 +51,10 @@ public class BuscaBinaria<T extends Comparable<T>> extends Solucao implements IB
 
 	@Override
 	public void run() {
-		
+		while(true) {
+			Requisicao<T> requisicao = receberRequisicao();
+			buscarElemento((ArrayList<T>) requisicao.getListaValores(), requisicao.getValor());
+			enviarRequisicao(requisicao);
+		}
 	}
 }
