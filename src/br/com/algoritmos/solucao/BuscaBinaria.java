@@ -1,6 +1,6 @@
 
 /**
- * @author Thaynara, , Renan, Ramon, Vinicius, Bruno
+ * @author Thaynara, , Renan, Ramon, Vinicius, Bruno, Luis
  *
  */
 
