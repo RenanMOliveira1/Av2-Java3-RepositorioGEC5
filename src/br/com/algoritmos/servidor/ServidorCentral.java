@@ -61,7 +61,7 @@ public class ServidorCentral {
       }
    }
    
-   private int retornaAlgoritmoRapido(Hashtable<Integer, Double> tabelaTempo){
+   private int getMelhorAlgoritmo(Hashtable<Integer, Double> tabelaTempo){
 	   
 	   double menor = 0;
 	   int key = 0;
@@ -76,16 +76,17 @@ public class ServidorCentral {
    }
    
    private int getPort(TipoRequisicao requisicao){
+	   
 	   switch(requisicao){
 		   case BUSCA:
-			   return retornaAlgoritmoRapido(tabelaTempoBusca);
+			   return getMelhorAlgoritmo(tabelaTempoBusca);
 		   case ORDENACAO:
-			   return retornaAlgoritmoRapido(tabelaTempoOrdena);
+			   return getMelhorAlgoritmo(tabelaTempoOrdena);
 		   case BUSCA_ARVORE:
-			   return retornaAlgoritmoRapido(tabelaTempoBuscaArvore);
+			   return getMelhorAlgoritmo(tabelaTempoBuscaArvore);
 		   default:
 			   throw new ArrayIndexOutOfBoundsException("Enum fora de Requisicao");
-		   }
+	 }
    }
    
    private void sendPacketToClient( DatagramPacket sendPacket ) throws IOException

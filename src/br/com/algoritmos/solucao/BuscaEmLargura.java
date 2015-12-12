@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Queue;
 
 import br.com.algoritmos.busca.IBuscavel;
+import br.com.algritmos.util.RedeUtil;
 
 public class BuscaEmLargura<T> extends Solucao implements Runnable, IBuscavel<T>{
 	private DatagramSocket socket;
@@ -48,13 +48,13 @@ public class BuscaEmLargura<T> extends Solucao implements Runnable, IBuscavel<T>
 		byte[] data = new byte[252];
 		DatagramPacket receivePacket = new DatagramPacket(data, data.length);
 		socket.receive(receivePacket);
-		dado = (Dado) deserialize(receivePacket.getData());//
+		dado = (Dado) RedeUtil.deserialize(receivePacket.getData());//
 		//this.buscarElemento(dado.getDado(), );
 
 	}
 
 	private void MandarDado() throws IOException {
-		byte[] byteTopico = serializar(dado);//
+		byte[] byteTopico = RedeUtil.serializar(dado);//
 		sendPacket = new DatagramPacket(byteTopico, byteTopico.length,
 				InetAddress.getLocalHost(), 5000);// new
 													// DatagramPacket(byteTopico,
