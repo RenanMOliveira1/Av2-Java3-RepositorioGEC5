@@ -4,14 +4,15 @@
  *
  */
 
-package br.com.algoritmos.solucao;
+package br.com.algoritmos.busca;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-import br.com.algoritmos.busca.IBuscavel;
 import br.com.algoritmos.cliente.requisicao.Requisicao;
+import br.com.algoritmos.ordenacao.QuickSort;
+import br.com.algoritmos.solucao.Solucao;
 
 public class BuscaBinaria<T extends Comparable<T>> extends Solucao implements IBuscavel<T> {
 

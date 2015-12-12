@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import br.com.algoritmos.busca.BuscaBinaria;
 import br.com.algoritmos.cliente.requisicao.Requisicao;
 import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
-import br.com.algoritmos.solucao.BuscaBinaria;
 
 public class BuscaBinariaTest {
 

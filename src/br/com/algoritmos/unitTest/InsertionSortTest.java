@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import br.com.algoritmos.cliente.requisicao.Requisicao;
 import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
-import br.com.algoritmos.solucao.InsertionSort;
+import br.com.algoritmos.ordenacao.InsertionSort;
 
 public class InsertionSortTest {
 

@@ -3,10 +3,10 @@ package br.com.algoritmos.executavel;
 import java.util.ArrayList;
 import java.util.Random;
 
+import br.com.algoritmos.busca.BuscaBinaria;
+import br.com.algoritmos.busca.BuscaEmLargura;
+import br.com.algoritmos.ordenacao.InsertionSort;
 import br.com.algoritmos.solucao.Arvore;
-import br.com.algoritmos.solucao.BuscaBinaria;
-import br.com.algoritmos.solucao.BuscaEmLargura;
-import br.com.algoritmos.solucao.InsertionSort;
 //import com.sun.scenario.effect.Merge;
 import br.com.algoritmos.solucao.No;
 

@@ -1,4 +1,4 @@
-package br.com.algoritmos.solucao;
+package br.com.algoritmos.ordenacao;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import br.com.algoritmos.cliente.requisicao.Requisicao;
-import br.com.algoritmos.ordenacao.IOrdenavel;
+import br.com.algoritmos.solucao.Solucao;
 
 public class InsertionSort<T> extends Solucao implements IOrdenavel<T>, Runnable{
 

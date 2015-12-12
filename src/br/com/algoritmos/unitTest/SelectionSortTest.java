@@ -8,14 +8,14 @@ import org.junit.Test;
 
 import br.com.algoritmos.cliente.requisicao.Requisicao;
 import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
-import br.com.algoritmos.solucao.SelectionSort;
+import br.com.algoritmos.ordenacao.SelectionSort;
 
 public class SelectionSortTest {
 
 	@Test
 	public void test() {
 		
-		br.com.algoritmos.solucao.SelectionSort<Integer> solution = new SelectionSort<Integer>("Selection", 2000);
+		br.com.algoritmos.ordenacao.SelectionSort<Integer> solution = new SelectionSort<Integer>("Selection", 2000);
 		
 		Requisicao<Integer> requisicao = new Requisicao<>(TipoRequisicao.ORDENACAO, new ArrayList<Integer>());
 		

@@ -5,7 +5,7 @@ import java.util.Random;
 
 import org.junit.Test;
 
-import br.com.algoritmos.solucao.BubbleSort;
+import br.com.algoritmos.ordenacao.BubbleSort;
 
 public class BubbleSortTest {
 	@Test

@@ -5,8 +5,8 @@ import java.util.Random;
 
 import org.junit.Test;
 
-import br.com.algoritmos.solucao.BubbleSort;
-import br.com.algoritmos.solucao.BuscaSequencial;
+import br.com.algoritmos.busca.BuscaSequencial;
+import br.com.algoritmos.ordenacao.BubbleSort;
 
 public class BuscaSequencialTest {
 	@Test

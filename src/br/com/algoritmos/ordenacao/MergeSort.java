@@ -1,11 +1,11 @@
-package br.com.algoritmos.solucao;
+package br.com.algoritmos.ordenacao;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import br.com.algoritmos.ordenacao.IOrdenavel;
+import br.com.algoritmos.solucao.Solucao;
 
 public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrdenavel<T> {
 

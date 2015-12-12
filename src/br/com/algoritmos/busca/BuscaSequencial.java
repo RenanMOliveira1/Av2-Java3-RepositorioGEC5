@@ -1,20 +1,11 @@
-package br.com.algoritmos.solucao;
+package br.com.algoritmos.busca;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-/*
- * @author Luis Carlos Gomes e Rafael Viana
- * 
- */
-
-
-
-
-
-import br.com.algoritmos.busca.IBuscavel;
 import br.com.algoritmos.cliente.requisicao.Requisicao;
+import br.com.algoritmos.solucao.Solucao;
 
 public class BuscaSequencial<T> extends Solucao implements IBuscavel<T> {
 	public BuscaSequencial() {
