@@ -9,13 +9,13 @@ import br.com.algoritmos.requisicao.TipoRequisicao;
 import br.com.algoritmos.solucao.BuscaBinaria;
 
 public class BuscaBinariaTest {
-	
+
 	@Test
 	public void test() {
 		BuscaBinaria<Integer> buscaBinaria = new BuscaBinaria<Integer>();
-		
-		Requisicao<Integer> requisicao = new Requisicao<>(TipoRequisicao.BUSCA, new ArrayList<Integer>(), 9);
-		
+
+		Requisicao<Integer> requisicao = new Requisicao<>(TipoRequisicao.BUSCA, new ArrayList<Integer>(), 7);
+
 		requisicao.getListaValores().add(10);
 		requisicao.getListaValores().add(9);
 		requisicao.getListaValores().add(8);
@@ -27,7 +27,14 @@ public class BuscaBinariaTest {
 		requisicao.getListaValores().add(2);
 		requisicao.getListaValores().add(1);
 		requisicao.getListaValores().add(0);
-		
-		System.out.println(buscaBinaria.buscarElemento(requisicao.getListaValores(), requisicao.getValor()));
+
+		Integer numero = buscaBinaria.buscarElemento(requisicao.getListaValores(), requisicao.getValor());
+
+		if(numero == null){
+			System.out.println("nao encontrado");
+		}else{
+			System.out.println(numero);
+		}
+
 	}
 }
