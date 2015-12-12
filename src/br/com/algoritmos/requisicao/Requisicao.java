@@ -17,7 +17,7 @@ public class Requisicao <T> implements Serializable {
 	//Dados De Recebimento
 	private Integer posicao;
 	private Object no;
-	
+
 	public Requisicao(DadosClient dados, T valor, TipoRequisicao tipoRequisicao, Collection<T> listaValores,
 			Arvore arvore, Integer posicao, Object no) {
 		this.dados = dados;
@@ -29,19 +29,24 @@ public class Requisicao <T> implements Serializable {
 		this.no = no;
 	}
 	
+	public Requisicao() {
+		this(null, null, null, null, null, null, null);
+	}
+	
+	
 	//Construtor de Resposta de Ordenação
-	public Requisicao(Collection<T> _listaValores) {
-		this(null, _listaValores, null);
+	public Requisicao(DadosClient _dados, Collection<T> _listaValores) {
+		this(_dados, null, null, _listaValores, null, null, null);
 	}
 	
 	//Construtor de Resposta de Busca
-	public Requisicao(Integer _posicao) {
-		this(null, null, null, null, null, _posicao, null);
+	public Requisicao(DadosClient _dados, Integer _posicao) {
+		this(_dados, null, null, null, null, _posicao, null);
 	}
 	
 	//Construtor de Resposta de Arvore ou Grafos
-	public Requisicao(Object _no) {
-		this(null, null, null, null, null, null, _no);
+	public Requisicao(DadosClient _dados, Object _no) {
+		this(_dados, null, null, null, null, null, _no);
 	}
 	
 	public Requisicao(TipoRequisicao _tipoRequisicao, Arvore _arvore, DadosClient _dados) {

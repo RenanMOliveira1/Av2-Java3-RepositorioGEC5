@@ -10,13 +10,14 @@ import java.util.Date;
 import br.com.algoritmos.requisicao.Requisicao;
 import br.com.algritmos.util.RedeUtil;
 
-public abstract class Solucao implements Runnable{
+public abstract class Solucao implements Runnable {
+
 	protected String nomeSolucao;
 	protected Double mediaGeral;
 	protected boolean ocupado;
 	protected ArrayList<Long> listaTempos;
 	protected DatagramSocket socket;
-	
+
 	protected Solucao(String _nomeSolucao, int port) {
 		mediaGeral = 0.0;
 		ocupado = false;
@@ -26,10 +27,10 @@ public abstract class Solucao implements Runnable{
 			socket = new DatagramSocket(port);
 		} catch (SocketException e) {
 			e.printStackTrace();
-			System.exit( 1 );
+			System.exit(1);
 		}
 	}
-	
+
 	protected Solucao(String _nomeSolucao) {
 		mediaGeral = 0.0;
 		ocupado = false;
@@ -39,19 +40,19 @@ public abstract class Solucao implements Runnable{
 
 	public Double getMediaGeral() {
 		long soma = 0;
-		for(long tempo : listaTempos){
+		for (long tempo : listaTempos) {
 			soma += tempo;
 		}
-		if(listaTempos.size() != 0)
+		if (listaTempos.size() != 0)
 			mediaGeral = (double) (soma / listaTempos.size());
 		return mediaGeral;
 	}
-	
-	public void adicionarTempoDuracao(Date dataInicial, Date dataFinal){
-		//in milliseconds
+
+	public void adicionarTempoDuracao(Date dataInicial, Date dataFinal) {
+		// in milliseconds
 		long tempoDuracao = dataFinal.getTime() - dataInicial.getTime();
-		
-		listaTempos.add(tempoDuracao);	
+
+		listaTempos.add(tempoDuracao);
 	}
 
 	public boolean isOcupado() {
@@ -69,27 +70,37 @@ public abstract class Solucao implements Runnable{
 	public void setListaTempos(ArrayList<Long> listaTempos) {
 		this.listaTempos = listaTempos;
 	}
-	
-	public DatagramPacket waitForPackets()
-    {
-		byte[] data = new byte[ 100 ];
-		DatagramPacket receivePacket = new DatagramPacket( data, data.length );
-		try
-		{
-			socket.receive( receivePacket );
-		}
-		catch ( IOException ioException )
-		{
+
+	public <T> Requisicao<T> receberRequisicao() {
+		byte[] data = new byte[100];
+		Requisicao<T> requisicao = null;
+		DatagramPacket receivePacket = new DatagramPacket(data, data.length);
+
+		try {
+			socket.receive(receivePacket);
+			requisicao = (Requisicao) RedeUtil.deserialize(receivePacket.getData());
+		} catch (IOException ioException) {
 			ioException.printStackTrace();
-        	System.exit(1);
-     	}
-		return receivePacket;
-   }
-	
-	protected <T> void sendPacketToClient( Requisicao<T> obj ) throws IOException
-	{
-		byte[] data = RedeUtil.serializar(obj);
-		DatagramPacket sendPacket = new DatagramPacket(data, data.length, obj.getDados().getIp(), obj.getDados().getPorta());
-		socket.send( sendPacket );
+			System.exit(1);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return requisicao;
+	}
+
+	public <T> void enviarRequisicao(Requisicao<T> requisicao) {
+		byte[] data = null;
+		DatagramPacket sendPacket = null;
+		
+		try {
+			data = RedeUtil.serializar(requisicao);
+			sendPacket = new DatagramPacket(data, data.length, requisicao.getDados().getIp(), requisicao.getDados().getPorta());
+			
+			socket.send(sendPacket);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

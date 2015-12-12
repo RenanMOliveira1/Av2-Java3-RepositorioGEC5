@@ -61,7 +61,7 @@ public class InsertionSort<T> extends Solucao implements IOrdenavel<T>, Runnable
 			ArrayList<T> listaDesordenada = deserialize(receive.getData());
 			ordernarLista(listaDesordenada);
 			serializar(lista);		
-			sendPacketToClient(receive);
+			enviarRequisicao(receive);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e1) {
