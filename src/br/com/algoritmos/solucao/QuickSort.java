@@ -10,8 +10,8 @@ package br.com.algoritmos.solucao;
 import java.util.ArrayList;
 import java.util.Date;
 
+import br.com.algoritmos.cliente.requisicao.Requisicao;
 import br.com.algoritmos.ordenacao.IOrdenavel;
-import br.com.algoritmos.requisicao.Requisicao;
 
 public class QuickSort<T> extends Solucao implements IOrdenavel<T> {
 

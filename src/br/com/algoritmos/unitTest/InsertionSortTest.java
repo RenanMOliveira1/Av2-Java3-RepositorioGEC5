@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import br.com.algoritmos.requisicao.Requisicao;
-import br.com.algoritmos.requisicao.TipoRequisicao;
+import br.com.algoritmos.cliente.requisicao.Requisicao;
+import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.solucao.InsertionSort;
 
 public class InsertionSortTest {

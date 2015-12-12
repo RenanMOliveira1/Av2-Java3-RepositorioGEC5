@@ -14,7 +14,7 @@ import java.util.Date;
 
 
 import br.com.algoritmos.busca.IBuscavel;
-import br.com.algoritmos.requisicao.Requisicao;
+import br.com.algoritmos.cliente.requisicao.Requisicao;
 
 public class BuscaSequencial<T> extends Solucao implements IBuscavel<T> {
 	public BuscaSequencial() {

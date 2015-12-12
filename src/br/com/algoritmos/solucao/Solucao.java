@@ -8,8 +8,8 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import br.com.algoritmos.cliente.requisicao.Requisicao;
 import br.com.algoritmos.executavel.Main;
-import br.com.algoritmos.requisicao.Requisicao;
 import br.com.algritmos.util.RedeUtil;
 
 /**

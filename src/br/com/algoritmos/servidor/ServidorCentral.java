@@ -6,8 +6,8 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.util.Hashtable;
 
+import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.executavel.Main;
-import br.com.algoritmos.requisicao.TipoRequisicao;
 import br.com.algritmos.util.RedeUtil;
 /**
  * @author Renan

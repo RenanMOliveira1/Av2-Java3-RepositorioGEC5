@@ -1,4 +1,4 @@
-package br.com.algoritmos.requisicao;
+package br.com.algoritmos.cliente.requisicao;
 
 import java.io.Serializable;
 /**
