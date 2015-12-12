@@ -1,25 +1,31 @@
 package br.com.algoritmos.solucao;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 
 import br.com.algoritmos.busca.IBuscavel;
 import br.com.algoritmos.requisicao.Requisicao;
 
-public class BuscaBinaria<T> extends Solucao implements IBuscavel<T> {
+public class BuscaBinaria<T extends Comparable<T>> extends Solucao implements IBuscavel<T> {
 
 	public BuscaBinaria() {
 		super("Busca Binária");
 	}
 
 	@Override
-	public <T> T buscarElemento(T colecao, Comparable valor) {
-		
-		ArrayList<Comparable> lista = (ArrayList<Comparable>) colecao;
-		
+	public <T> T buscarElemento(Collection<T> colecao, Comparable valor) {
+
+		ArrayList<T> lista = (ArrayList<T>) colecao;
+
+		QuickSort<T> ordenador = new QuickSort<T>();
+
+		ordenador.ordernarLista(lista);
+
 		Date dataInicial = new Date();
 		setOcupado(true);
-		T posicao = (T) buscaBinaria(lista, valor);
+		T posicao = buscaBinaria(lista, valor);
 		setOcupado(false);
 		Date dataFinal = new Date();
 		adicionarTempoDuracao(dataInicial, dataFinal);
@@ -27,16 +33,16 @@ public class BuscaBinaria<T> extends Solucao implements IBuscavel<T> {
 		return posicao;
 	}
 
-	private Integer buscaBinaria(ArrayList<Comparable> lista, Comparable valor){
+	private <T> T buscaBinaria(ArrayList<T> lista, Comparable valor){
 		int inicio = 0;
 		int fim = lista.size()-1;
 
 		while(inicio <= fim){
-			int meio = (inicio+fim)/2;
-			Comparable valorMeio = lista.get(meio);
+			Integer meio = (inicio+fim)/2;
+			T valorMeio = lista.get(meio);
 
 			if(valor.compareTo(valorMeio) == 0){
-				return meio;
+				return (T) meio;
 			}
 
 			if(valor.compareTo(valorMeio) > 0){
@@ -53,7 +59,8 @@ public class BuscaBinaria<T> extends Solucao implements IBuscavel<T> {
 	public void run() {
 		while(true) {
 			Requisicao<T> requisicao = receberRequisicao();
-			buscarElemento(requisicao.getListaValores(), (Comparable<T>) requisicao.getValor());
+			buscarElemento(requisicao.getListaValores(), (T) requisicao.getValor());
+			requisicao.setPosicao((Integer)buscarElemento(requisicao.getListaValores(), (T) requisicao.getValor()));
 			enviarRequisicao(requisicao);
 		}
 	}
