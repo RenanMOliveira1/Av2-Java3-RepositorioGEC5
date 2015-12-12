@@ -1,24 +1,58 @@
 package br.com.algoritmos.busca;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+
+import br.com.algoritmos.cliente.requisicao.Requisicao;
+import br.com.algoritmos.ordenacao.QuickSort;
+import br.com.algoritmos.solucao.Solucao;
 
 /**
- ** Programa que Implementa o Algoritmo de Busca Ternaria
- *	Interface <code>BuscaTernaria</code>
+ ** Programa que chama o Algoritmo de Busca Ternaria
+ *	Classe <code>BuscaTernaria</code>
  *
  *  @author Yasmin Farias
  *  @author Tiago Henrique
  *  @version 1.0 (12/12/2015)
  **/
-public class BuscaTernaria<T extends Comparable<T>> {
+public class BuscaTernaria<T extends Comparable<T>> extends Solucao implements IBuscavel<T> {
 	
-    /** chama a função **/
+	/**
+	 * Instancia uma nova Busca Ternaria
+	 */
+	public BuscaTernaria() {
+		super("Busca Ternária");
+	}
+	
+	/**
+	 * chama a função que faz a busca tarnaria
+	 * 
+	 * @param problema
+	 * 			problema
+	 * @param valor
+	 * 			valor
+	 * @return resultado
+	 */
     public static <T> T busca(ArrayList<T> problema, Comparable valor) {
         return busca(problema, valor, 0, problema.size() - 1);
     }
     
-    /** função de busca ternaria **/
-    public static <T> T busca(ArrayList<T> problema, Comparable valor, int comeco, int fim) {
+    /**
+     * Função que faz a busca ternaria
+     * 
+     * @param problema
+     * 			problema
+     * @param valor
+     * 			valor
+     * @param comeco
+     * 			comeco
+     * @param fim
+     * 			fim
+     * 
+     * @return resultado
+     */
+	private static <T> T busca(ArrayList<T> problema, Comparable valor, int comeco, int fim) {
         if (comeco > fim) 
             return (T) null;       
  
@@ -43,4 +77,45 @@ public class BuscaTernaria<T extends Comparable<T>> {
         else 
             return busca (problema, valor, metade1, metade2);        
     }
+    
+    /*
+	 * (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
+	@Override
+	public void run() {
+		
+		while(true) {
+			Requisicao<T> requisicao = receberRequisicao(); 
+ 			buscarElemento(requisicao.getListaValores(), (T) requisicao.getValor()); 
+ 			requisicao.setPosicao((Integer)buscarElemento(requisicao.getListaValores(), (T) requisicao.getValor())); 
+ 			enviarRequisicao(requisicao); 
+			
+		}
+	}
+
+    /*
+     * (non-Javadoc)
+     * @see br.com.algoritmos.busca.IBuscavel#buscarElemento(java.util.Collection, java.lang.Comparable)
+     */
+	@Override
+	public <T> T buscarElemento(Collection<T> colecao, Comparable valor) {
+		
+		ArrayList<T> lista = (ArrayList<T>) colecao;
+		
+		QuickSort<T> ordenador = new QuickSort<T>();
+		
+		ordenador.ordernarLista(lista); 
+		
+		Date dataInicio = new Date();
+		setOcupado(true);
+		T resultado = busca(lista, valor);
+		setOcupado(false);
+		Date dataFim = new Date();
+		
+		adicionarTempoDuracao(dataInicio, dataFim);
+		
+		return resultado;
+	}
+	
 }

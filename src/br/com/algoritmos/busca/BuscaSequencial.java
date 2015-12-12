@@ -6,12 +6,33 @@ import java.util.Date;
 
 import br.com.algoritmos.cliente.requisicao.Requisicao;
 import br.com.algoritmos.solucao.Solucao;
-
-public class BuscaSequencial<T> extends Solucao implements IBuscavel<T> {
+/**
+ * 
+ * Esta Classe representa o algoritmo Busca Sequencial,
+ * Tipo de pesquisa em vetores ou listas de modo 
+ * sequencial, elemento por elemento,
+ * 
+ * Classe<code>BuscaSequencial</code>
+ * 
+ * @author Luis Gomes
+ * @author Vitor Gomes
+ * @author Rafael Viana
+ * @version 1.0 (12/12/2015)
+ *
+ */
+public class BuscaSequencial<T extends Comparable<T>> extends Solucao implements IBuscavel<T> {
+	
+	/**
+	 * Instancia uma nova busca sequencial.
+	 */
 	public BuscaSequencial() {
 		super("Busca sequêncial");
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
 	@Override
 	public void run() {
 		while (true) {
@@ -25,6 +46,15 @@ public class BuscaSequencial<T> extends Solucao implements IBuscavel<T> {
 		
 	}	
 	
+	/**
+	 * Implementa a busca sequencial a partir de uma lista.
+	 * 
+	 * @param lista
+	 * 			lista
+	 * @param valor
+	 * 			valor
+	 * @return resultado
+	 */
 	private Integer buscaSequencial(ArrayList<Comparable> lista, Comparable valor) {
 		for (Comparable item : lista) {
 			if (item.compareTo(valor) == 0) {
@@ -35,6 +65,10 @@ public class BuscaSequencial<T> extends Solucao implements IBuscavel<T> {
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see br.com.algoritmos.busca.IBuscavel#buscarElemento(java.util.Collection, java.lang.Comparable)
+	 */
 	@Override
 	public <T> T buscarElemento(Collection<T> colecao, Comparable valor) {
 		ArrayList<Comparable> lista = (ArrayList<Comparable>) colecao;
