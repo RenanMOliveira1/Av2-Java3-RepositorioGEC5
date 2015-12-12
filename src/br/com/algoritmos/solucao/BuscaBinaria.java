@@ -1,3 +1,9 @@
+
+/**
+ * @author Thaynara, , Renan, Ramon, Vinicius, Bruno
+ *
+ */
+
 package br.com.algoritmos.solucao;
 
 import java.util.ArrayList;
