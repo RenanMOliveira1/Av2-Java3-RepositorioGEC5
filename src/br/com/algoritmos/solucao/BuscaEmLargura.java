@@ -4,17 +4,12 @@
  */
 package br.com.algoritmos.solucao;
 
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Queue;
 
 import br.com.algoritmos.busca.IArvoreBuscavel;
 import br.com.algoritmos.cliente.requisicao.Requisicao;
-import br.com.algritmos.util.RedeUtil;
 
 public class BuscaEmLargura<T extends Comparable<T>> extends Solucao implements Runnable, IArvoreBuscavel<T>{//tem que colocar extends Comparable<T> sem isso da erro
 	//private DatagramSocket socket;
