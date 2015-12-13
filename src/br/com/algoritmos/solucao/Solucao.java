@@ -8,15 +8,17 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import br.com.algoritmos.cliente.requisicao.Requisicao;
-import br.com.algoritmos.executavel.Main;
-import br.com.algritmos.util.RedeUtil;
+import br.com.cliente.requisicao.Requisicao;
+import br.com.cliente.requisicao.TipoRequisicao;
+import br.com.executavel.MainServidor;
+import br.com.servidor.DadosAtualizacao;
+import br.com.util.RedeUtil;
 
 /**
  * Classe que representa um algoritmo de solução,
  * seja ordenação ou busca.
  * 
- * Classe<code>Solucao</code>
+ * Classe <code>Solucao</code>
  * 
  * @author Tiago
  * @author Renan
@@ -25,9 +27,13 @@ import br.com.algritmos.util.RedeUtil;
  * @version 1.0 (12/12/2015)
  */
 public abstract class Solucao implements Runnable {
+	public static final int PORTA = 12345;
 	
 	/** nome solucao */
 	protected String nomeSolucao;
+	
+	/** Tipo de Solição */
+	protected TipoRequisicao tipoSolucao;
 	
 	/** media geral */
 	protected Double mediaGeral;
@@ -49,14 +55,15 @@ public abstract class Solucao implements Runnable {
 	 * @param port
 	 * 			porta
 	 */
-	protected Solucao(String _nomeSolucao, int port) {
+	protected Solucao(String _nomeSolucao, TipoRequisicao _tipoSolucao, int porta) {
 		mediaGeral = 0.0;
 		ocupado = false;
 		nomeSolucao = _nomeSolucao;
 		listaTempos = new ArrayList<Long>();
+		tipoSolucao = _tipoSolucao;
 		
 		try {
-			socket = new DatagramSocket(port);
+			socket = new DatagramSocket(porta);
 		} catch (SocketException e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -69,11 +76,12 @@ public abstract class Solucao implements Runnable {
 	 * @param _nomeSolucao
 	 * 			nome solucao
 	 */
-	protected Solucao(String _nomeSolucao) {
+	protected Solucao(String _nomeSolucao, TipoRequisicao _tipoSolucao) {
 		mediaGeral = 0.0;
 		ocupado = false;
 		nomeSolucao = _nomeSolucao;
 		listaTempos = new ArrayList<Long>();
+		tipoSolucao = _tipoSolucao;
 	}
 	
 	/**
@@ -84,8 +92,9 @@ public abstract class Solucao implements Runnable {
 	 * @throws IOException
 	 */
 	private void atualizarServidor(Double mediaGeral) throws IOException {
-		byte[] data = RedeUtil.serializar(mediaGeral);
-		DatagramPacket packetAtualizacao = new DatagramPacket(data, data.length, InetAddress.getLocalHost(), Main.PORTA);
+
+		byte[] data = RedeUtil.serializar(new DadosAtualizacao(getTipoSolucao(), mediaGeral));
+		DatagramPacket packetAtualizacao = new DatagramPacket(data, data.length, InetAddress.getLocalHost(), PORTA);
 		
 		socket.send(packetAtualizacao);
 	}
@@ -177,6 +186,7 @@ public abstract class Solucao implements Runnable {
 		DatagramPacket receivePacket = new DatagramPacket(data, data.length);
 
 		try {
+			System.out.println("Algoritmo " + getNomeSolucao() + " Esperando.");
 			socket.receive(receivePacket);
 			requisicao = (Requisicao) RedeUtil.deserialize(receivePacket.getData());
 		} catch (IOException ioException) {
@@ -208,5 +218,37 @@ public abstract class Solucao implements Runnable {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public abstract void run();
+	
+	@Override
+	public boolean equals(Object obj) {
+		
+		if (obj instanceof Solucao) {
+			Solucao solucao = (Solucao) obj;
+			return (getNomeSolucao().equals(solucao.getNomeSolucao()));
+		}
+		return false;
+	}
+	
+	public String getNomeSolucao() {
+		return nomeSolucao;
+	}
+
+	public void setNomeSolucao(String nomeSolucao) {
+		this.nomeSolucao = nomeSolucao;
+	}
+
+	public TipoRequisicao getTipoSolucao() {
+		return tipoSolucao;
+	}
+
+	public void setTipoSolucao(TipoRequisicao tipoSolucao) {
+		this.tipoSolucao = tipoSolucao;
+	}
+
+	public void setMediaGeral(Double mediaGeral) {
+		this.mediaGeral = mediaGeral;
 	}
 }

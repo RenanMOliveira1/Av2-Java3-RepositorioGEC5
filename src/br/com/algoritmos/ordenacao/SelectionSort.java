@@ -3,8 +3,9 @@ package br.com.algoritmos.ordenacao;
 import java.util.ArrayList;
 import java.util.Date;
 
-import br.com.algoritmos.cliente.requisicao.Requisicao;
 import br.com.algoritmos.solucao.Solucao;
+import br.com.cliente.requisicao.Requisicao;
+import br.com.cliente.requisicao.TipoRequisicao;
 /**
  * Classe que implementa o Algoritmo de Ordenação Selection.
  * 
@@ -30,8 +31,8 @@ public class SelectionSort<T extends Comparable<T>> extends Solucao implements I
 	 * @param port
 	 * 			port
 	 */
-	public SelectionSort(String _nomeSolucao, int port) {
-		super(_nomeSolucao, port);
+	public SelectionSort() {
+		super("Selection Sort", TipoRequisicao.ORDENACAO, 50010);
 	}
 
 	/*

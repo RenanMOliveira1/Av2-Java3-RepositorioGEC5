@@ -8,10 +8,11 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import br.com.algoritmos.cliente.requisicao.Requisicao;
 import br.com.algoritmos.solucao.Arvore;
 import br.com.algoritmos.solucao.No;
 import br.com.algoritmos.solucao.Solucao;
+import br.com.cliente.requisicao.Requisicao;
+import br.com.cliente.requisicao.TipoRequisicao;
 
 public class BuscaEmLargura<T extends Comparable<T>> extends Solucao implements Runnable, IArvoreBuscavel<T>{//tem que colocar extends Comparable<T> sem isso da erro
 	//private DatagramSocket socket;
@@ -20,7 +21,7 @@ public class BuscaEmLargura<T extends Comparable<T>> extends Solucao implements 
 
 	public BuscaEmLargura() {
 
-		super("Busca em largura");
+		super("Busca em largura", TipoRequisicao.BUSCA_ARVORE, 50007);
 	}
 
 	@Override
