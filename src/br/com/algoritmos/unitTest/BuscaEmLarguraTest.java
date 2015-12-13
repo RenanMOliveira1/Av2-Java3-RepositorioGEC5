@@ -1,13 +1,28 @@
 package br.com.algoritmos.unitTest;
 
+import org.junit.Test;
+
 import br.com.algoritmos.busca.BuscaEmLargura;
-import br.com.algoritmos.busca.BuscaEmProfundidade;
 import br.com.algoritmos.solucao.Arvore;
 import br.com.algoritmos.solucao.No;
-
-public class BuscaArvoreTest {
+/**
+ * Classe que representa o tesste unitario da clase BuscaEmLargura
+ * 
+ * Classe<code>BuscaEmLarguraTest</code>
+ * 
+ * @author Bruno
+ * @author Gabriel
+ * @author Yasmin Farias
+ * 
+ * @version 1.0 (12/12/2015)
+ */
+public class BuscaEmLarguraTest {
 	
-	public static void main(String[] args) {
+	/**
+	 * método que testa a busca em largura
+	 */
+	@Test
+	public void test() {
 		
 		Arvore arvore = new Arvore(5);
 		
@@ -22,9 +37,6 @@ public class BuscaArvoreTest {
 		No no = (No)buscador.buscarElemento(arvore, 7);
 		
 		System.out.println(no.getValor());
-		
-	
-		
 	}
 
 }

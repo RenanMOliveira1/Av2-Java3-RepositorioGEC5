@@ -18,7 +18,7 @@ import br.com.algoritmos.solucao.Solucao;
  *  @author Yasmin Farias
  *  @author Tiago Henrique
  *  @version 1.0 (12/12/2015)
- **/
+ */
 public class BuscaTernaria<T extends Comparable<T>> extends Solucao implements IBuscavel<T> {
 	
 	/**

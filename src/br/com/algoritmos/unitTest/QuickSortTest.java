@@ -9,9 +9,20 @@ import org.junit.Test;
 import br.com.algoritmos.cliente.requisicao.Requisicao;
 import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.ordenacao.QuickSort;
-
+/**
+ * Classe que representa o teste unitario da clase QuickSort
+ * 
+ * Classe<code>QuickSortTest</code>
+ * @author Ramon
+ * @author Nyelson
+ * @version 1.0 (12/12/2015)
+ *
+ */
 public class QuickSortTest {
 
+	/**
+	 * Metodo que testa a ordenação da classe QuickSort
+	 */
 	@Test
 	public void test() {
 

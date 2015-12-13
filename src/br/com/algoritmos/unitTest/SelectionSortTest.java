@@ -9,9 +9,21 @@ import org.junit.Test;
 import br.com.algoritmos.cliente.requisicao.Requisicao;
 import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.ordenacao.SelectionSort;
-
+/**
+ * Classe que representa o teste unitario da clase InsertionSort
+ * 
+ * Classe<code>InsertionSortTest</code>
+ * 
+ * @author Tiago Bastos
+ * @author Marcus Hildebrandt
+ * @version 1.0 (12/12/2015)
+ *
+ */
 public class SelectionSortTest {
 
+	/**
+	 * Metodo que testa a ordenação da classe SelectionSort
+	 */
 	@Test
 	public void test() {
 		

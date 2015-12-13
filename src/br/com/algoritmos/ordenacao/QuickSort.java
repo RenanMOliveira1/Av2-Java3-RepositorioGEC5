@@ -115,7 +115,6 @@ public class QuickSort<T> extends Solucao implements IOrdenavel<T> {
 	 */
 	@Override
 	public void run() {
-
 		while(true) {
 			Requisicao<T> requisicao = receberRequisicao();
 			ordernarLista((ArrayList<T>) requisicao.getListaValores());

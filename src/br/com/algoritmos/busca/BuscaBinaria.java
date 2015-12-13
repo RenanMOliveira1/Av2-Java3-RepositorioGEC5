@@ -17,10 +17,6 @@ import br.com.algoritmos.solucao.Solucao;
  * 
  * @author Thaynara Santos
  * @author Renan Oliveira
- * @author Ramon Portela
- * @author Vinicius Viana
- * @author Bruno Roberto
- * @author Luis Gomes
  * 
  * @version 1.0(12/12/2015)
  *

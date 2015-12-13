@@ -1,20 +1,18 @@
-/**
- * @author Bruno,Gabriel
- *
- */
-
 package br.com.algoritmos.solucao;
+
+import java.util.Collection;
+
 /**
  * Esta classe representa uma Arvore(Estrutura de dados).
  * 
  * Classe<code>Arvore</code>
  * 
  * @author Gabriel 
- * @author Tiago Henrique
+ * @author Bruno
  * @version 1.0(12/12/2015)
- *
  */
-public class Arvore{
+public class Arvore<T extends Collection<T>> {
+	
 	/** raiz */
 	private No raiz;
 	

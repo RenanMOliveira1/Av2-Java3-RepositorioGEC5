@@ -1,8 +1,3 @@
-/**
- * @author Bruno,Gabriel
- *
- */
-
 package br.com.algoritmos.solucao;
 
 /**
@@ -11,7 +6,7 @@ package br.com.algoritmos.solucao;
  * Classe<code>No</code>
  * 
  * @author Gabriel
- * @author Tiago Henrique
+ * @author Bruno
  * @version 1.0 (12/12/2015)
  *
  */
