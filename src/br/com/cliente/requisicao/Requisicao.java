@@ -8,6 +8,7 @@ import java.util.Collection;
  * 
  * @author Tiago
  * @author Bruno
+ * @author Luis Carlos
  * 
  * @version 1.0 (12/12/2015)
  *
@@ -36,6 +37,12 @@ public class Requisicao <T> implements Serializable {
 	
 	/** no */
 	private Object no;
+	
+	/** erro */
+	private boolean erro;
+	
+	/** mensagem erro */
+	private String mensagemErro;
 
 	/**
 	 * Instancia uma nova requisicao
@@ -130,6 +137,18 @@ public class Requisicao <T> implements Serializable {
 	 */
 	public Requisicao(TipoRequisicao _tipoRequisicao, Collection<T> _listaValores, T _valor) {
 		this(null, _valor, _tipoRequisicao, _listaValores, null, null);
+	}
+	
+	/**
+	 * Requisição de Erro
+	 * 
+	 * @param _erro
+	 * @param _mensagemErro
+	 */
+	public Requisicao(TipoRequisicao _tipoRequisicao, String _mensagemErro) {
+		setErro(true);
+		setTipoRequisicao(_tipoRequisicao);
+		setMensagemErro(_mensagemErro);
 	}
 	
 	/**
@@ -247,4 +266,39 @@ public class Requisicao <T> implements Serializable {
 	}
 	
 	
+	/**
+	 * Houve erro
+	 * 
+	 * @return erro
+	 */
+	public boolean isErro() {
+		return erro;
+	}
+
+	/**
+	 * Define se houve erro
+	 * 
+	 * @param erro
+	 */
+	public void setErro(boolean erro) {
+		this.erro = erro;
+	}
+
+	/**
+	 * Obtem mensagem de erro
+	 * 
+	 * @return mensagem de erro
+	 */
+	public String getMensagemErro() {
+		return mensagemErro;
+	}
+
+	/**
+	 * Define a mensagem de erro
+	 * 
+	 * @param mensagemErro
+	 */
+	public void setMensagemErro(String mensagemErro) {
+		this.mensagemErro = mensagemErro;
+	}
 }

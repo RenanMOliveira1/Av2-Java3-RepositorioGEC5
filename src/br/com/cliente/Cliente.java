@@ -11,12 +11,13 @@ import br.com.util.RedeUtil;
 
 /**
  * @author Tiago
- *
+ * @author Luis Carlos
  * 
  */
 public class Cliente <T> {
 	private Requisicao<T> requisicao;
 	private DatagramSocket socket;
+	private int PORTA_SERVIDOR = 12345;
 	
 	public Cliente() {
 		
@@ -45,7 +46,7 @@ public class Cliente <T> {
 	private void enviarParaServidor() throws IOException, ClassNotFoundException {
 		
 		byte[] data = RedeUtil.serializar(requisicao.getTipoRequisicao());
-		enviarDados(new DatagramPacket(data, data.length, InetAddress.getLocalHost(), 5000));
+		enviarDados(new DatagramPacket(data, data.length, InetAddress.getLocalHost(), PORTA_SERVIDOR));
 	}
 	
 	private void receberRespostaServidor() throws IOException, ClassNotFoundException {

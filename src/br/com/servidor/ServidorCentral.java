@@ -6,6 +6,9 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.util.Hashtable;
 
+import javax.sound.midi.Receiver;
+
+import br.com.cliente.requisicao.Requisicao;
 import br.com.cliente.requisicao.TipoRequisicao;
 import br.com.execultavel.MainServidor;
 import br.com.util.RedeUtil;
@@ -13,6 +16,7 @@ import br.com.util.RedeUtil;
 /**
  * @author Renan
  * @author Tiago
+ * @author Luis Carlos
  *
  */
 public class ServidorCentral implements Runnable {
@@ -76,6 +80,8 @@ public class ServidorCentral implements Runnable {
 				responderCliente(receivePacket, (TipoRequisicao) object);
 			} else if (object instanceof DadosAtualizacao) {
 				atualizarTabela(receivePacket.getPort(), (DadosAtualizacao) object);
+			} else {				
+				gerenciaProximoAlgoritmo(receivePacket, ((Requisicao) object).getTipoRequisicao());
 			}
 		}
 	}
@@ -143,5 +149,34 @@ public class ServidorCentral implements Runnable {
 	
 	private void sendPacketToClient(DatagramPacket sendPacket) throws IOException {
 		socket.send(sendPacket);
+	}
+	
+	private void gerenciaProximoAlgoritmo(DatagramPacket receivePacket, TipoRequisicao tipoRequisicao) {
+		int port = receivePacket.getPort();
+		switch (tipoRequisicao) {
+		case BUSCA:
+			enviaProximoAlgoritmo(receivePacket, tabelaTempoBusca, port);
+		case ORDENACAO:
+			enviaProximoAlgoritmo(receivePacket, tabelaTempoOrdena, port);
+		case BUSCA_ARVORE:
+			enviaProximoAlgoritmo(receivePacket, tabelaTempoBuscaArvore, port);
+		default:
+			throw new ArrayIndexOutOfBoundsException("Enum fora de Requisicao");
+		}
+	}
+	
+	private void enviaProximoAlgoritmo(DatagramPacket receivePacket, Hashtable<Integer, Double> tabelaTempo, int portaAlgoritmo) {
+		sendPacketToClient(new DatagramPacket(receivePacket.getData(), receivePacket.getLength(),
+				receivePacket.getAddress(), getProximoAlgoritmo(tabelaTempo, portaAlgoritmo);		
+	}
+	
+	private int getProximoAlgoritmo(Hashtable<Integer, Double> tabelaTempo, int ultimoAlgoritmo) {
+		int port = tabelaTempo.entrySet().iterator().next().getKey();
+		
+		if (port == ultimoAlgoritmo) {
+			return tabelaTempo.entrySet().iterator().next().getKey();
+		}
+		
+		return port;		
 	}
 }
