@@ -5,49 +5,124 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import br.com.algoritmos.cliente.requisicao.Requisicao;
 import br.com.algoritmos.solucao.Solucao;
-
+/**
+ * Classe que implementa o Algoritmo de Ordenação Merge.
+ * 
+ * Sua ideia básica consiste em Dividir(o problema em vários 
+ * sub-problemas e resolve-los através da recursividade) e 
+ * Conquistar(após todos os sub-problemas terem sido resolvidos 
+ * ocorre a conquista que é a união das resoluções dos sub-problemas).
+ * 
+ * Classe<code>MergeSort</code>
+ * 
+ * @author Ramon
+ * @author Nyelson
+ * @author Yasmin Farias
+ * @version 1.0 (12/12/2015)
+ */
 public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrdenavel<T> {
 
-	public MergeSort(String _nomeSolucao) {
-		super(_nomeSolucao);
+	/**
+	 * Instancia um novo Merge Sort
+	 * 
+	 */
+	public MergeSort() {
+		super("Merge Sort");
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see br.com.algoritmos.ordenacao.IOrdenavel#ordernarLista(java.util.ArrayList)
+	 */
+	@Override
 	public void ordernarLista(ArrayList<T> lista) {
 		Date dataInicial = new Date();
 		setOcupado(true);
-		lista = mergeSort(lista);
+		ArrayList<T>listou = mergeSort(lista);
+		
+		// testando a ordenaçao
+		for(T valor : listou) {
+			System.out.println(valor);
+		}
+		System.out.println();
+		//tentando se ordenou a lista passada
+		for(T valor : lista) {
+			System.out.println(valor);
+		}
+		
 		setOcupado(false);
 		Date dataFinal = new Date();
 		adicionarTempoDuracao(dataInicial, dataFinal);
+
 	}
+	
+	/**
+	 * função que faz a ordenação Merge.
+	 * 
+	 * @param lista
+	 * 			lista
+	 * @return resultado
+	 */
+	public ArrayList<T> mergeSort(ArrayList<T> lista) {
 
-	public static <T extends Comparable<T>> ArrayList<T> mergeSort(List<T> m) {
+		if (lista.size() <= 1)
+			return lista;
 
-		if (m.size() <= 1)
-			return new ArrayList<T>(m);
+		int middle = (int) Math.ceil((double)lista.size() / 2);
+		ArrayList<T> noEsquerdo = pedacoDoArray(lista, 0, middle);
+		ArrayList<T> noDireito = pedacoDoArray(lista, middle, lista.size());
 
-		int middle = m.size() / 2;
-		List<T> left = m.subList(0, middle);
-		List<T> right = m.subList(middle, m.size());
+		noDireito = mergeSort(noDireito);
+		noEsquerdo = mergeSort(noEsquerdo);
+		
+		lista = mergeSort(noEsquerdo, noDireito);
 
-		right = mergeSort(right);
-		left = mergeSort(left);
-		List<T> result = merge(left, right);
-
-		return new ArrayList<T>(result);
+		return lista;
 	}
-
-	public static <T extends Comparable<T>> ArrayList<T> merge(List<T> left, List<T> right) {
+	
+	/**
+	 * Retorna o pedaço de uma lista
+	 * 
+	 * @param lista
+	 * 			lista
+	 * @param indexInicio
+	 * 			indexInicio
+	 * @param indexFim
+	 * 			indexFim
+	 * @return ArrayList
+	 */
+	public ArrayList<T> pedacoDoArray(ArrayList<T> lista, int indexInicio, int indexFim) {
+		List<T> listaAux = lista.subList(indexInicio, indexFim);
+		ArrayList<T> novaLista = new ArrayList<T>();
+		
+		for(T valor : listaAux) {
+			novaLista.add(valor);
+		}
+		return novaLista;
+	}
+	
+	/**
+	 * Função que faz a ordenação Merge
+	 * 
+	 * @param noEsquerdo
+	 * 			no esquerdo
+	 * @param noDireito
+	 * 			no direito
+	 * 
+	 * @return resultado
+	 */
+	public ArrayList<T> mergeSort(ArrayList<T> noEsquerdo, ArrayList<T> noDireito) {
+		
 		ArrayList<T> result = new ArrayList<T>();
-		Iterator<T> it1 = left.iterator();
-		Iterator<T> it2 = right.iterator();
+		Iterator<T> it1 = noEsquerdo.iterator();
+		Iterator<T> it2 = noDireito.iterator();
 
 		T x = it1.next();
 		T y = it2.next();
 		while (true) {
-			// change the direction of this comparison to change the direction
-			// of the sort
+			// muda a direção da comparação da ordenação
 			if (x.compareTo(y) <= 0) {
 				result.add(x);
 				if (it1.hasNext()) {
@@ -75,10 +150,17 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 		return result;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-
+		while(true) {
+			Requisicao<T> requisicao = receberRequisicao();
+			ordernarLista((ArrayList<T>) requisicao.getListaValores());
+			enviarRequisicao(requisicao);
+		}
 	}
 
 }

@@ -1,19 +1,37 @@
 package br.com.algoritmos.ordenacao;
 
-import java.io.IOException;
-import java.net.DatagramPacket;
 import java.util.ArrayList;
 import java.util.Date;
 
 import br.com.algoritmos.cliente.requisicao.Requisicao;
 import br.com.algoritmos.solucao.Solucao;
-
+/**
+ * Classe que implementa o Algoritmo de Ordenação Insertion.
+ * 
+ * Em termos gerais, ele percorre um vetor de elementos da 
+ * esquerda para a direita e à medida que avança vai deixando 
+ * os elementos mais à esquerda ordenados.
+ * 
+ * Classe<code>InsertionSort</code>
+ * 
+ * @author Thaynara Santos
+ * @author Renan Oliveira
+ * @version 1.0(12/12/2015)
+ *
+ */
 public class InsertionSort<T> extends Solucao implements IOrdenavel<T>, Runnable{
 
+	/**
+	 * Instancia um novo Insertion Sort.
+	 */
 	public InsertionSort() {
 		super("Insertion Sort", 5000);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see br.com.algoritmos.ordenacao.IOrdenavel#ordernarLista(java.util.ArrayList)
+	 */
 	@Override
 	public void ordernarLista(ArrayList<T> lista) {
 		Date dataInicial = new Date();
@@ -25,6 +43,13 @@ public class InsertionSort<T> extends Solucao implements IOrdenavel<T>, Runnable
 
 	}
 
+	/**
+	 * função que faz a ordenação Insertion
+	 * 
+	 * @param lista
+	 * 			lista
+	 * @return resultado
+	 */
 	public ArrayList<T> insertionSort(ArrayList<T> lista){
 		int tamanhoLista = lista.size();
 
@@ -43,6 +68,11 @@ public class InsertionSort<T> extends Solucao implements IOrdenavel<T>, Runnable
 		return lista;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
+	@Override
 	public void run() {
 		while(true) {
 			Requisicao<T> requisicao = receberRequisicao();

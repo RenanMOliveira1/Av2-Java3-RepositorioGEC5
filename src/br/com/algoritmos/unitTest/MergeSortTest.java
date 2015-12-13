@@ -6,31 +6,29 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import br.com.algoritmos.busca.BuscaBinaria;
 import br.com.algoritmos.cliente.requisicao.Requisicao;
 import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
+import br.com.algoritmos.ordenacao.MergeSort;
 /**
- * Classe que representa o tesste unitario da clase BuscaBinaria
+ * Classe que representa o teste unitario da clase MergeSort
  * 
- * Classe<code>BuscaBinariaTest</code>
+ * Classe<code>MergeSortTest</code>
  * 
- * @author Thaynara Santos
- * @author Renan Oliveira
  * @author Yasmin Farias
- * 
  * @version 1.0 (12/12/2015)
+ *
  */
-public class BuscaBinariaTest {
-
+public class MergeSortTest {
 	/**
-	 * metodo que testa a busca binaria
+	 * Metodo que testa a ordenação da classe MergeSort
 	 */
 	@Test
 	public void test() {
-		BuscaBinaria<Integer> buscaBinaria = new BuscaBinaria<Integer>();
 
-		Requisicao<Integer> requisicao = new Requisicao<>(TipoRequisicao.BUSCA, new ArrayList<Integer>(), 7);
+		MergeSort<Integer> solution = new MergeSort<Integer>();
 
+		Requisicao<Integer> requisicao = new Requisicao<Integer>(TipoRequisicao.ORDENACAO, new ArrayList<Integer>());
+		
 		requisicao.getListaValores().add(10);
 		requisicao.getListaValores().add(9);
 		requisicao.getListaValores().add(8);
@@ -43,13 +41,17 @@ public class BuscaBinariaTest {
 		requisicao.getListaValores().add(1);
 		requisicao.getListaValores().add(0);
 
-		Integer numero = buscaBinaria.buscarElemento(requisicao.getListaValores(), requisicao.getValor());
 
-		if(numero == null){
-			fail("Nao encontrado.");
-		}else{
-			System.out.println(numero);
+		solution.ordernarLista((ArrayList<Integer>) requisicao.getListaValores());
+
+		ArrayList<Integer> lista = (ArrayList<Integer>) requisicao.getListaValores();
+		
+		for(int i = 0; i < (requisicao.getListaValores().size() - 1); i++){
+			if(lista.get(i) > lista.get(i + 1)){
+				fail("Lista nao foi ordenada");
+			}
 		}
 
 	}
+
 }

@@ -8,15 +8,30 @@ import br.com.algoritmos.solucao.Arvore;
 import br.com.algoritmos.solucao.No;
 import br.com.algoritmos.solucao.Solucao;
 /**
+ * Esta Classe representa o algoritmo Busca em Profundidade.
+ * Ela é um algoritmo usado para buscar numa árvore, estrutura 
+ * de árvore ou grafo. O algoritmo começa num nó raiz e explora
+ *  tanto quanto possível cada um dos seus ramos, antes de retroceder.
  * 
- * @author Vinicius Viana (O cara da Samantha)
+ * Classe<code>BuscaEmProfundidade</code>
+ * 
+ * @author Vinicius Viana(O cara da Samantha)
+ * @version(12/12/2015)
  *
  */
 public class BuscaEmProfundidade<T extends Comparable<T>> extends Solucao implements Runnable, IArvoreBuscavel<T> {
+	
+	/**
+	 * Instancia uma nome busca em profundidade
+	 */
 	public BuscaEmProfundidade() {
 		super("Busca em profundidade");
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
 	@Override
 	public void run() {		
 		while(true){
@@ -27,6 +42,10 @@ public class BuscaEmProfundidade<T extends Comparable<T>> extends Solucao implem
 		}	
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see br.com.algoritmos.busca.IArvoreBuscavel#buscarElemento(java.lang.Object, java.lang.Comparable)
+	 */
 	@Override
 	public <T> T buscarElemento(T colecao, Comparable valor) {
 		Date dataInicial = new Date();
@@ -42,19 +61,30 @@ public class BuscaEmProfundidade<T extends Comparable<T>> extends Solucao implem
 		return resultado;
 	}
 
+	/**
+	 * 
+	 * @param no
+	 * 			no
+	 * @param valor
+	 * 			valor
+	 * @return resultado
+	 */
 	private <T> T buscaEmProfundidade(No no, Comparable valor) {
-		/* 
-		 * Uma árvore é um grafo não direcionado em que quaisquer 
-		 * dois vértices são conectados por exatamente um caminho.
-		 * Em outras palavras, qualquer gráfico ligado sem ciclos simples é uma árvore.
-		 * Com isso uma árvore, não existe qualquer loop, de modo que a verificação de no já visitados é redundante.
-		 * */
+	/* 
+	 * Uma árvore é um grafo não direcionado em que quaisquer 
+	 * dois vértices são conectados por exatamente um caminho.
+	 * Em outras palavras, qualquer gráfico ligado sem ciclos simples é uma árvore.
+	 * Com isso uma árvore, não existe qualquer loop, de modo que a verificação de no já visitados é redundante.
+	 */
 
 		if(no == null){
 			return null;
 		}
+		
 		Stack<No> stack = new Stack<No>();
+		
 		stack.push(no);
+
 		while(!stack.isEmpty()){
 			No novoNo = stack.pop();
 			if(valor.compareTo(novoNo.getValor()) == 0 ){

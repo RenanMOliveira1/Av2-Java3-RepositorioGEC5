@@ -13,16 +13,42 @@ import br.com.algoritmos.executavel.Main;
 import br.com.algritmos.util.RedeUtil;
 
 /**
- * @author Tiago, Renan
- *
+ * Classe que representa um algoritmo de solução,
+ * seja ordenação ou busca.
+ * 
+ * Classe<code>Solucao</code>
+ * 
+ * @author Tiago
+ * @author Renan
+ * @author Gabriel
+ * @author Thaynara
+ * @version 1.0 (12/12/2015)
  */
 public abstract class Solucao implements Runnable {
+	
+	/** nome solucao */
 	protected String nomeSolucao;
+	
+	/** media geral */
 	protected Double mediaGeral;
+	
+	/** ocupado */
 	protected boolean ocupado;
+	
+	/** list tempos */
 	protected ArrayList<Long> listaTempos;
+	
+	/** socket */
 	protected DatagramSocket socket;
 
+	/**
+	 * Instancia uma nova solução a partir de um nome e uma porta
+	 * 
+	 * @param _nomeSolucao
+	 * 			nome solucao
+	 * @param port
+	 * 			porta
+	 */
 	protected Solucao(String _nomeSolucao, int port) {
 		mediaGeral = 0.0;
 		ocupado = false;
@@ -37,13 +63,54 @@ public abstract class Solucao implements Runnable {
 		}
 	}
 
+	/**
+	 * Instancia uma nova solução a partir de um nome
+	 * 
+	 * @param _nomeSolucao
+	 * 			nome solucao
+	 */
 	protected Solucao(String _nomeSolucao) {
 		mediaGeral = 0.0;
 		ocupado = false;
 		nomeSolucao = _nomeSolucao;
 		listaTempos = new ArrayList<Long>();
 	}
+	
+	/**
+	 * Envia por datagrama a atualização da media de tempo
+	 * 
+	 * @param mediaGeral
+	 * 			media geral
+	 * @throws IOException
+	 */
+	private void atualizarServidor(Double mediaGeral) throws IOException {
+		byte[] data = RedeUtil.serializar(mediaGeral);
+		DatagramPacket packetAtualizacao = new DatagramPacket(data, data.length, InetAddress.getLocalHost(), Main.PORTA);
+		
+		socket.send(packetAtualizacao);
+	}
+	
+	/**
+	 * Adiciona um tempo decorrido a partir
+	 * de um tempo inicial e um tempo final
+	 * 
+	 * @param dataInicial
+	 * 				tempo inicial
+	 * @param dataFinal
+	 * 				tempo final
+	 */
+	public void adicionarTempoDuracao(Date dataInicial, Date dataFinal) {
+		// em millisegundos
+		long tempoDuracao = dataFinal.getTime() - dataInicial.getTime();
 
+		listaTempos.add(tempoDuracao);
+	}
+	
+	/**
+	 * Obtem media geral
+	 * 
+	 * @return media geral
+	 */
 	public Double getMediaGeral() {
 		long soma = 0;
 		for (long tempo : listaTempos) {
@@ -60,37 +127,50 @@ public abstract class Solucao implements Runnable {
 		
 		return mediaGeral;
 	}
-	
-	private void atualizarServidor(Double mediaGeral) throws IOException {
-		byte[] data = RedeUtil.serializar(mediaGeral);
-		DatagramPacket packetAtualizacao = new DatagramPacket(data, data.length, InetAddress.getLocalHost(), Main.PORTA);
-		
-		socket.send(packetAtualizacao);
-	}
-	
-	public void adicionarTempoDuracao(Date dataInicial, Date dataFinal) {
-		// in milliseconds
-		long tempoDuracao = dataFinal.getTime() - dataInicial.getTime();
 
-		listaTempos.add(tempoDuracao);
-	}
-
+	/**
+	 * Obtem ocupado
+	 * 
+	 * @return ocupado
+	 */
 	public boolean isOcupado() {
 		return ocupado;
 	}
 
+	/**
+	 * Define ocupado
+	 * 
+	 * @param ocupado
+	 * 			ocupado
+	 */
 	protected void setOcupado(boolean ocupado) {
 		this.ocupado = ocupado;
 	}
 
+	/**
+	 * Obtem lista tempos
+	 * 
+	 * @return lista tempos
+	 */
 	public ArrayList<Long> getListaTempos() {
 		return listaTempos;
 	}
 
+	/**
+	 * Define lista tempos
+	 * 
+	 * @param listaTempos
+	 * 			lista tempos
+	 */
 	public void setListaTempos(ArrayList<Long> listaTempos) {
 		this.listaTempos = listaTempos;
 	}
 
+	/**
+	 * Recebe uma requisição por datagrama
+	 * 
+	 * @return requisicao
+	 */
 	public <T> Requisicao<T> receberRequisicao() {
 		byte[] data = new byte[100];
 		Requisicao<T> requisicao = null;
@@ -109,6 +189,12 @@ public abstract class Solucao implements Runnable {
 		return requisicao;
 	}
 
+	/**
+	 * Envia uma requisicao passada por parammetro por datagrama
+	 * 
+	 * @param requisicao
+	 * 			requisicao
+	 */
 	public <T> void enviarRequisicao(Requisicao<T> requisicao) {
 		byte[] data = null;
 		DatagramPacket sendPacket = null;
