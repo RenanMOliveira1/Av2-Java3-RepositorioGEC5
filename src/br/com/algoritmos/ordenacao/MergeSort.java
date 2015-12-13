@@ -40,12 +40,24 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 	public void ordernarLista(ArrayList<T> lista) {
 		Date dataInicial = new Date();
 		setOcupado(true);
-		lista = mergeSort(lista);
+		ArrayList<T>listou = mergeSort(lista);
+		
+		// testando a ordenaçao
+		for(T valor : listou) {
+			System.out.println(valor);
+		}
+		System.out.println();
+		//tentando se ordenou a lista passada
+		for(T valor : lista) {
+			System.out.println(valor);
+		}
+		
 		setOcupado(false);
 		Date dataFinal = new Date();
 		adicionarTempoDuracao(dataInicial, dataFinal);
-	}
 
+	}
+	
 	/**
 	 * função que faz a ordenação Merge.
 	 * 
@@ -53,22 +65,44 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 	 * 			lista
 	 * @return resultado
 	 */
-	public ArrayList<T> mergeSort(List<T> lista) {
+	public ArrayList<T> mergeSort(ArrayList<T> lista) {
 
 		if (lista.size() <= 1)
-			return new ArrayList<T>(lista);
+			return lista;
 
-		int middle = lista.size() / 2;
-		List<T> noEsquerdo = lista.subList(0, middle);
-		List<T> noDireito = lista.subList(middle, lista.size());
+		int middle = (int) Math.ceil((double)lista.size() / 2);
+		ArrayList<T> noEsquerdo = pedacoDoArray(lista, 0, middle);
+		ArrayList<T> noDireito = pedacoDoArray(lista, middle, lista.size());
 
 		noDireito = mergeSort(noDireito);
 		noEsquerdo = mergeSort(noEsquerdo);
-		ArrayList<T> result = mergeSort(noEsquerdo, noDireito);
+		
+		lista = mergeSort(noEsquerdo, noDireito);
 
-		return result;
+		return lista;
 	}
-
+	
+	/**
+	 * Retorna o pedaço de uma lista
+	 * 
+	 * @param lista
+	 * 			lista
+	 * @param indexInicio
+	 * 			indexInicio
+	 * @param indexFim
+	 * 			indexFim
+	 * @return ArrayList
+	 */
+	public ArrayList<T> pedacoDoArray(ArrayList<T> lista, int indexInicio, int indexFim) {
+		List<T> listaAux = lista.subList(indexInicio, indexFim);
+		ArrayList<T> novaLista = new ArrayList<T>();
+		
+		for(T valor : listaAux) {
+			novaLista.add(valor);
+		}
+		return novaLista;
+	}
+	
 	/**
 	 * Função que faz a ordenação Merge
 	 * 
@@ -79,7 +113,7 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 	 * 
 	 * @return resultado
 	 */
-	public ArrayList<T> mergeSort(List<T> noEsquerdo, List<T> noDireito) {
+	public ArrayList<T> mergeSort(ArrayList<T> noEsquerdo, ArrayList<T> noDireito) {
 		
 		ArrayList<T> result = new ArrayList<T>();
 		Iterator<T> it1 = noEsquerdo.iterator();
@@ -122,9 +156,11 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 	 */
 	@Override
 	public void run() {
-		Requisicao<T> requisicao = receberRequisicao();
-		ordernarLista((ArrayList<T>) requisicao.getListaValores());
-		enviarRequisicao(requisicao);
+		while(true) {
+			Requisicao<T> requisicao = receberRequisicao();
+			ordernarLista((ArrayList<T>) requisicao.getListaValores());
+			enviarRequisicao(requisicao);
+		}
 	}
 
 }
