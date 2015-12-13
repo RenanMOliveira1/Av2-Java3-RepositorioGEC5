@@ -1,4 +1,4 @@
-package br.com.algoritmos.servidor;
+package br.com.servidor;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -6,9 +6,9 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.util.Hashtable;
 
-import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
-import br.com.algoritmos.executavel.Main;
-import br.com.algritmos.util.RedeUtil;
+import br.com.cliente.requisicao.TipoRequisicao;
+import br.com.execultavel.Main;
+import br.com.util.RedeUtil;
 
 /**
  * @author Renan
@@ -95,7 +95,7 @@ public class ServidorCentral {
 	private void atualizarTabela(Hashtable<Integer, Double> tabelaTempo, Integer portaAlgoritmo, Double novaMediaTempo) {
 	   
 	   if (tabelaTempo.containsKey(portaAlgoritmo)) {
-		   tabelaTempo.remove(portaAlgoritmo, novaMediaTempo);
+		   tabelaTempo.replace(portaAlgoritmo, novaMediaTempo);
 	   } else {
 		   tabelaTempo.put(portaAlgoritmo, novaMediaTempo);
 	   }

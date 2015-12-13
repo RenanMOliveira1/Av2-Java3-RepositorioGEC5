@@ -1,37 +1,36 @@
-package br.com.algoritmos.unitTest;
+package br.com.unitTest;
+
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import org.junit.Test;
 
 import br.com.algoritmos.busca.BuscaBinaria;
-import br.com.algoritmos.busca.BuscaSequencial;
-import br.com.algoritmos.cliente.requisicao.Requisicao;
-import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
-import br.com.algoritmos.ordenacao.BubbleSort;
+import br.com.cliente.requisicao.Requisicao;
+import br.com.cliente.requisicao.TipoRequisicao;
 /**
- * Classe que representa o tesste unitario da clase BuscaSequencial
+ * Classe que representa o tesste unitario da clase BuscaBinaria
  * 
- * Classe<code>BuscaSequencialTest</code>
+ * Classe<code>BuscaBinariaTest</code>
  * 
- * @author Luis Gomes
- * @author Vitor Gomes
- * @author Rafael Viana
+ * @author Thaynara Santos
+ * @author Renan Oliveira
  * @author Yasmin Farias
  * 
  * @version 1.0 (12/12/2015)
  */
-public class BuscaSequencialTest {
+public class BuscaBinariaTest {
+
 	/**
-	 * método que testa a busca sequencial
+	 * metodo que testa a busca binaria
 	 */
 	@Test
 	public void test() {
 		BuscaBinaria<Integer> buscaBinaria = new BuscaBinaria<Integer>();
-		
+
 		Requisicao<Integer> requisicao = new Requisicao<>(TipoRequisicao.BUSCA, new ArrayList<Integer>(), 7);
-		
+
 		requisicao.getListaValores().add(10);
 		requisicao.getListaValores().add(9);
 		requisicao.getListaValores().add(8);
@@ -43,13 +42,14 @@ public class BuscaSequencialTest {
 		requisicao.getListaValores().add(2);
 		requisicao.getListaValores().add(1);
 		requisicao.getListaValores().add(0);
-		
+
 		Integer numero = buscaBinaria.buscarElemento(requisicao.getListaValores(), requisicao.getValor());
-		
+
 		if(numero == null){
-			System.out.println("nao encontrado");
-		} else{
+			fail("Nao encontrado.");
+		}else{
 			System.out.println(numero);
 		}
+
 	}
 }

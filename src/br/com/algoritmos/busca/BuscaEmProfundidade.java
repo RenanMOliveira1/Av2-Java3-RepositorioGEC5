@@ -3,11 +3,11 @@ package br.com.algoritmos.busca;
 import java.util.Date;
 import java.util.Stack;
 
-import br.com.algoritmos.cliente.requisicao.Requisicao;
-import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.solucao.Arvore;
 import br.com.algoritmos.solucao.No;
 import br.com.algoritmos.solucao.Solucao;
+import br.com.cliente.requisicao.Requisicao;
+import br.com.cliente.requisicao.TipoRequisicao;
 /**
  * Esta Classe representa o algoritmo Busca em Profundidade.
  * Ela é um algoritmo usado para buscar numa árvore, estrutura 

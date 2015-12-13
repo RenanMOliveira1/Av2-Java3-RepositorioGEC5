@@ -1,4 +1,4 @@
-package br.com.algoritmos.unitTest;
+package br.com.unitTest;
 
 import org.junit.Test;
 

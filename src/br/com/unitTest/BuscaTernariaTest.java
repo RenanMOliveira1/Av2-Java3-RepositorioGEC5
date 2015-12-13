@@ -1,4 +1,4 @@
-package br.com.algoritmos.unitTest;
+package br.com.unitTest;
 
 import static org.junit.Assert.fail;
 
@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import br.com.algoritmos.busca.BuscaTernaria;
-import br.com.algoritmos.cliente.requisicao.Requisicao;
-import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
+import br.com.cliente.requisicao.Requisicao;
+import br.com.cliente.requisicao.TipoRequisicao;
 /**
  * Classe que representa o tesste unitario da clase BuscaTernaria
  * 

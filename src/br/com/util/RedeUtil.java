@@ -1,4 +1,4 @@
-package br.com.algritmos.util;
+package br.com.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
