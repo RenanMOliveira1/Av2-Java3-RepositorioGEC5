@@ -10,14 +10,14 @@ import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.solucao.Solucao;
 /**
  * Classe que implementa o Algoritmo de Ordenação Merge.
- * 
- * Sua ideia básica consiste em Dividir(o problema em vários 
- * sub-problemas e resolve-los através da recursividade) e 
- * Conquistar(após todos os sub-problemas terem sido resolvidos 
+ *
+ * Sua ideia básica consiste em Dividir(o problema em vários
+ * sub-problemas e resolve-los através da recursividade) e
+ * Conquistar(após todos os sub-problemas terem sido resolvidos
  * ocorre a conquista que é a união das resoluções dos sub-problemas).
- * 
+ *
  * Classe<code>MergeSort</code>
- * 
+ *
  * @author Ramon
  * @author Nyelson
  * @author Yasmin Farias
@@ -27,7 +27,7 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 
 	/**
 	 * Instancia um novo Merge Sort
-	 * 
+	 *
 	 */
 	public MergeSort() {
 		super("Merge Sort", TipoRequisicao.ORDENACAO);
@@ -41,16 +41,16 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 	public void ordernarLista(ArrayList<T> lista) {
 		Date dataInicial = new Date();
 		setOcupado(true);
-		mergeSort(lista);
+		lista = mergeSort(lista);
 		setOcupado(false);
 		Date dataFinal = new Date();
 		adicionarTempoDuracao(dataInicial, dataFinal);
 
 	}
-	
+
 	/**
 	 * função que faz a ordenação Merge.
-	 * 
+	 *
 	 * @param lista
 	 * 			lista
 	 * @return resultado
@@ -66,15 +66,15 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 
 		noDireito = mergeSort(noDireito);
 		noEsquerdo = mergeSort(noEsquerdo);
-		
+
 		lista = mergeSort(lista, noEsquerdo, noDireito);
 
 		return lista;
 	}
-	
+
 	/**
 	 * Retorna o pedaço de uma lista
-	 * 
+	 *
 	 * @param lista
 	 * 			lista
 	 * @param indexInicio
@@ -86,58 +86,59 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 	public ArrayList<T> pedacoDoArray(ArrayList<T> lista, int indexInicio, int indexFim) {
 		List<T> listaAux = lista.subList(indexInicio, indexFim);
 		ArrayList<T> novaLista = new ArrayList<T>();
-		
+
 		for(T valor : listaAux) {
 			novaLista.add(valor);
 		}
 		return novaLista;
 	}
-	
+
 	/**
 	 * Função que faz a ordenação Merge
-	 * 
+	 *
 	 * @param noEsquerdo
 	 * 			no esquerdo
 	 * @param noDireito
 	 * 			no direito
-	 * 
+	 *
 	 * @return resultado
 	 */
-	public ArrayList<T> mergeSort(ArrayList<T> result, ArrayList<T> noEsquerdo, ArrayList<T> noDireito) {
-		
-		result.removeAll(result);
+	public ArrayList<T> mergeSort(ArrayList<T> lista, ArrayList<T> noEsquerdo, ArrayList<T> noDireito) {
+
 		Iterator<T> it1 = noEsquerdo.iterator();
 		Iterator<T> it2 = noDireito.iterator();
+
+		lista.clear();
 
 		T x = it1.next();
 		T y = it2.next();
 		while (true) {
 			// muda a direção da comparação da ordenação
 			if (x.compareTo(y) <= 0) {
-				result.add(x);
+				lista.add(x);
 				if (it1.hasNext()) {
 					x = it1.next();
 				} else {
-					result.add(y);
+					lista.add(y);
 					while (it2.hasNext()) {
-						result.add(it2.next());
+						lista.add(it2.next());
 					}
 					break;
 				}
 			} else {
-				result.add(y);
+				lista.add(y);
 				if (it2.hasNext()) {
 					y = it2.next();
 				} else {
-					result.add(x);
+					lista.add(x);
 					while (it1.hasNext()) {
-						result.add(it1.next());
+						lista.add(it1.next());
 					}
 					break;
 				}
 			}
 		}
-		return result;
+		return lista;
 	}
 
 	/*
