@@ -1,8 +1,12 @@
 package br.com.algoritmos.servidor;
 
+import java.io.Serializable;
+
 import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 
-public class DadosAtualizacao {
+public class DadosAtualizacao implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private TipoRequisicao tipoSolucao;
 	private Double novaMedia;
 	
