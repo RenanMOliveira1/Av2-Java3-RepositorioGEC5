@@ -27,11 +27,9 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 	/**
 	 * Instancia um novo Merge Sort
 	 * 
-	 * @param _nomeSolucao
-	 * 			nome solucao
 	 */
-	public MergeSort(String _nomeSolucao) {
-		super(_nomeSolucao);
+	public MergeSort() {
+		super("Merge Sort");
 	}
 
 	/*
@@ -55,7 +53,7 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 	 * 			lista
 	 * @return resultado
 	 */
-	public static <T extends Comparable<T>> ArrayList<T> mergeSort(List<T> lista) {
+	public ArrayList<T> mergeSort(List<T> lista) {
 
 		if (lista.size() <= 1)
 			return new ArrayList<T>(lista);
@@ -66,9 +64,9 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 
 		noDireito = mergeSort(noDireito);
 		noEsquerdo = mergeSort(noEsquerdo);
-		List<T> result = mergeSort(noEsquerdo, noDireito);
+		ArrayList<T> result = mergeSort(noEsquerdo, noDireito);
 
-		return new ArrayList<T>(result);
+		return result;
 	}
 
 	/**
@@ -81,7 +79,8 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 	 * 
 	 * @return resultado
 	 */
-	public static <T extends Comparable<T>> ArrayList<T> mergeSort(List<T> noEsquerdo, List<T> noDireito) {
+	public ArrayList<T> mergeSort(List<T> noEsquerdo, List<T> noDireito) {
+		
 		ArrayList<T> result = new ArrayList<T>();
 		Iterator<T> it1 = noEsquerdo.iterator();
 		Iterator<T> it2 = noDireito.iterator();
