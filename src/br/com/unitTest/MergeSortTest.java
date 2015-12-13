@@ -1,4 +1,4 @@
-package br.com.algoritmos.unitTest;
+package br.com.unitTest;
 
 import static org.junit.Assert.fail;
 
@@ -6,30 +6,28 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import br.com.algoritmos.cliente.requisicao.Requisicao;
-import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
-import br.com.algoritmos.ordenacao.QuickSort;
+import br.com.algoritmos.ordenacao.MergeSort;
+import br.com.cliente.requisicao.Requisicao;
+import br.com.cliente.requisicao.TipoRequisicao;
 /**
- * Classe que representa o teste unitario da clase QuickSort
- * 
- * Classe<code>QuickSortTest</code>
- * @author Ramon
- * @author Nyelson
+ * Classe que representa o teste unitario da clase MergeSort
+ *
+ * Classe<code>MergeSortTest</code>
+ *
+ * @author Yasmin Farias
  * @version 1.0 (12/12/2015)
  *
  */
-public class QuickSortTest {
-
+public class MergeSortTest {
 	/**
-	 * Metodo que testa a ordenação da classe QuickSort
+	 * Metodo que testa a ordenação da classe MergeSort
 	 */
 	@Test
 	public void test() {
 
-		QuickSort<Integer> solution = new QuickSort<Integer>();
+		MergeSort<Integer> solution = new MergeSort<Integer>();
 
-		Requisicao<Integer> requisicao = new Requisicao<>(TipoRequisicao.ORDENACAO, new ArrayList<Integer>());
-
+		Requisicao<Integer> requisicao = new Requisicao<Integer>(TipoRequisicao.ORDENACAO, new ArrayList<Integer>());
 
 		requisicao.getListaValores().add(10);
 		requisicao.getListaValores().add(9);
@@ -53,7 +51,6 @@ public class QuickSortTest {
 				fail("Lista nao foi ordenada");
 			}
 		}
-
 	}
 
 }

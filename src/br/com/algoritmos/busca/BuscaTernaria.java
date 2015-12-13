@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-import br.com.algoritmos.cliente.requisicao.Requisicao;
-import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.ordenacao.QuickSort;
 import br.com.algoritmos.solucao.Solucao;
+import br.com.cliente.requisicao.Requisicao;
+import br.com.cliente.requisicao.TipoRequisicao;
 
 /**
  *  Classe que implementa o Algoritmo de Busca Ternaria.
@@ -26,7 +26,7 @@ public class BuscaTernaria<T extends Comparable<T>> extends Solucao implements I
 	 * Instancia uma nova Busca Ternaria
 	 */
 	public BuscaTernaria() {
-		super("Busca Ternária", TipoRequisicao.BUSCA);
+		super("Busca Ternária", TipoRequisicao.BUSCA, 50002);
 	}
 	
 	/**

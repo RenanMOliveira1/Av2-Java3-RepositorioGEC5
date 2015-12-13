@@ -3,9 +3,9 @@ package br.com.algoritmos.ordenacao;
 import java.util.ArrayList;
 import java.util.Date;
 
-import br.com.algoritmos.cliente.requisicao.Requisicao;
-import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.solucao.Solucao;
+import br.com.cliente.requisicao.Requisicao;
+import br.com.cliente.requisicao.TipoRequisicao;
 
 /**
  * Classe que implementa o Algoritmo de Ordenação Bubble.
@@ -27,7 +27,7 @@ public class BubbleSort<T extends Number> extends Solucao implements IOrdenavel<
 	 * Instancia um novo Bubble sort
 	 */
 	public BubbleSort() {
-		super("Bubble sort", TipoRequisicao.ORDENACAO);
+		super("Bubble sort", TipoRequisicao.ORDENACAO, 50001);
 	}
 
 	/*

@@ -1,13 +1,13 @@
-package br.com.algoritmos.cliente;
+package br.com.cliente;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 
-import br.com.algoritmos.cliente.requisicao.DadosClient;
-import br.com.algoritmos.cliente.requisicao.Requisicao;
-import br.com.algritmos.util.RedeUtil;
+import br.com.cliente.requisicao.DadosClient;
+import br.com.cliente.requisicao.Requisicao;
+import br.com.util.RedeUtil;
 
 /**
  * @author Tiago

@@ -1,4 +1,4 @@
-package br.com.algoritmos.unitTest;
+package br.com.unitTest;
 
 import static org.junit.Assert.fail;
 
@@ -6,28 +6,28 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import br.com.algoritmos.cliente.requisicao.Requisicao;
-import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
-import br.com.algoritmos.ordenacao.InsertionSort;
+import br.com.algoritmos.ordenacao.SelectionSort;
+import br.com.cliente.requisicao.Requisicao;
+import br.com.cliente.requisicao.TipoRequisicao;
 /**
  * Classe que representa o teste unitario da clase InsertionSort
  * 
  * Classe<code>InsertionSortTest</code>
  * 
- * @author Thaynara Santos
- * @author Renan Oliveira
+ * @author Tiago Bastos
+ * @author Marcus Hildebrandt
  * @version 1.0 (12/12/2015)
  *
  */
-public class InsertionSortTest {
+public class SelectionSortTest {
 
 	/**
-	 * Metodo que testa a ordenação da classe InsertionSort
+	 * Metodo que testa a ordenação da classe SelectionSort
 	 */
 	@Test
 	public void test() {
 		
-		InsertionSort<Integer> solution = new InsertionSort<Integer>();
+		br.com.algoritmos.ordenacao.SelectionSort<Integer> solution = new SelectionSort<Integer>();
 		
 		Requisicao<Integer> requisicao = new Requisicao<>(TipoRequisicao.ORDENACAO, new ArrayList<Integer>());
 		

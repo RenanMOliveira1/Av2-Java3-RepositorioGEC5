@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-import br.com.algoritmos.cliente.requisicao.Requisicao;
-import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.ordenacao.QuickSort;
 import br.com.algoritmos.solucao.Solucao;
+import br.com.cliente.requisicao.Requisicao;
+import br.com.cliente.requisicao.TipoRequisicao;
 /**
  * Esta Classe representa o algoritmo Busca Binária.
  * Ela parte do pressuposto de que o vetor está ordenado
@@ -32,7 +32,7 @@ public class BuscaBinaria<T extends Comparable<T>> extends Solucao implements IB
 	 * Instancia uma nova Busca Binária
 	 */
 	public BuscaBinaria() {
-		super("Busca Binária", TipoRequisicao.BUSCA);
+		super("Busca Binária", TipoRequisicao.BUSCA, 50006);
 	}
 
 	/*

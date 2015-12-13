@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-import br.com.algoritmos.cliente.requisicao.Requisicao;
-import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.solucao.Solucao;
+import br.com.cliente.requisicao.Requisicao;
+import br.com.cliente.requisicao.TipoRequisicao;
 /**
  * 
  * Esta Classe representa o algoritmo Busca Sequencial,
@@ -27,7 +27,7 @@ public class BuscaSequencial<T extends Comparable<T>> extends Solucao implements
 	 * Instancia uma nova busca sequencial.
 	 */
 	public BuscaSequencial() {
-		super("Busca sequêncial", TipoRequisicao.BUSCA);
+		super("Busca sequêncial", TipoRequisicao.BUSCA, 50003);
 	}
 
 	/*
