@@ -11,9 +11,9 @@ import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.ordenacao.MergeSort;
 /**
  * Classe que representa o teste unitario da clase MergeSort
- * 
+ *
  * Classe<code>MergeSortTest</code>
- * 
+ *
  * @author Yasmin Farias
  * @version 1.0 (12/12/2015)
  *
@@ -28,7 +28,7 @@ public class MergeSortTest {
 		MergeSort<Integer> solution = new MergeSort<Integer>();
 
 		Requisicao<Integer> requisicao = new Requisicao<Integer>(TipoRequisicao.ORDENACAO, new ArrayList<Integer>());
-		
+
 		requisicao.getListaValores().add(10);
 		requisicao.getListaValores().add(9);
 		requisicao.getListaValores().add(8);
@@ -45,7 +45,7 @@ public class MergeSortTest {
 		solution.ordernarLista((ArrayList<Integer>) requisicao.getListaValores());
 
 		ArrayList<Integer> lista = (ArrayList<Integer>) requisicao.getListaValores();
-		
+
 		for(int i = 0; i < (requisicao.getListaValores().size() - 1); i++){
 			if(lista.get(i) > lista.get(i + 1)){
 				fail("Lista nao foi ordenada");
