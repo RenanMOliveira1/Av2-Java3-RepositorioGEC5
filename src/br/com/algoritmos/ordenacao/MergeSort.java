@@ -41,18 +41,7 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 	public void ordernarLista(ArrayList<T> lista) {
 		Date dataInicial = new Date();
 		setOcupado(true);
-		ArrayList<T>listou = mergeSort(lista);
-		
-		// testando a ordenaçao
-		for(T valor : listou) {
-			System.out.println(valor);
-		}
-		System.out.println();
-		//tentando se ordenou a lista passada
-		for(T valor : lista) {
-			System.out.println(valor);
-		}
-		
+		mergeSort(lista);
 		setOcupado(false);
 		Date dataFinal = new Date();
 		adicionarTempoDuracao(dataInicial, dataFinal);
@@ -78,7 +67,7 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 		noDireito = mergeSort(noDireito);
 		noEsquerdo = mergeSort(noEsquerdo);
 		
-		lista = mergeSort(noEsquerdo, noDireito);
+		lista = mergeSort(lista, noEsquerdo, noDireito);
 
 		return lista;
 	}
@@ -114,9 +103,9 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 	 * 
 	 * @return resultado
 	 */
-	public ArrayList<T> mergeSort(ArrayList<T> noEsquerdo, ArrayList<T> noDireito) {
+	public ArrayList<T> mergeSort(ArrayList<T> result, ArrayList<T> noEsquerdo, ArrayList<T> noDireito) {
 		
-		ArrayList<T> result = new ArrayList<T>();
+		result.removeAll(result);
 		Iterator<T> it1 = noEsquerdo.iterator();
 		Iterator<T> it2 = noDireito.iterator();
 

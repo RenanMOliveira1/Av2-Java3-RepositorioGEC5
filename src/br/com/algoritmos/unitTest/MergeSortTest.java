@@ -46,12 +46,13 @@ public class MergeSortTest {
 
 		ArrayList<Integer> lista = (ArrayList<Integer>) requisicao.getListaValores();
 		
+		
+		
 		for(int i = 0; i < (requisicao.getListaValores().size() - 1); i++){
 			if(lista.get(i) > lista.get(i + 1)){
 				fail("Lista nao foi ordenada");
 			}
 		}
-
 	}
 
 }
