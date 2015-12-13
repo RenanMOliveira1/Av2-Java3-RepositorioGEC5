@@ -9,7 +9,10 @@ import br.com.algoritmos.ordenacao.QuickSort;
 import br.com.algoritmos.solucao.Solucao;
 
 /**
- ** Programa que chama o Algoritmo de Busca Ternaria
+ *  Classe que implementa o Algoritmo de Busca Ternaria.
+ *  Ele utiliza a mesma lógica da busca binária, só que
+ *  dividindo o array em três partes.
+ *  
  *	Classe <code>BuscaTernaria</code>
  *
  *  @author Yasmin Farias
@@ -34,8 +37,8 @@ public class BuscaTernaria<T extends Comparable<T>> extends Solucao implements I
 	 * 			valor
 	 * @return resultado
 	 */
-    public static <T> T busca(ArrayList<T> problema, Comparable valor) {
-        return busca(problema, valor, 0, problema.size() - 1);
+    public static <T> T buscaTernaria(ArrayList<T> problema, Comparable valor) {
+        return buscaTernaria(problema, valor, 0, problema.size() - 1);
     }
     
     /**
@@ -52,7 +55,7 @@ public class BuscaTernaria<T extends Comparable<T>> extends Solucao implements I
      * 
      * @return resultado
      */
-	private static <T> T busca(ArrayList<T> problema, Comparable valor, int comeco, int fim) {
+	private static <T> T buscaTernaria(ArrayList<T> problema, Comparable valor, int comeco, int fim) {
         if (comeco > fim) 
             return (T) null;       
  
@@ -69,13 +72,13 @@ public class BuscaTernaria<T extends Comparable<T>> extends Solucao implements I
         
         /** procura no primeiro pedaço **/
         else if (valor.compareTo(problema.get(metade1)) < 0) 
-            return busca (problema, valor, comeco, metade1 - 1);
+            return buscaTernaria (problema, valor, comeco, metade1 - 1);
         /** procura no terceiro pedaço **/
         else if (valor.compareTo(problema.get(metade2)) > 0) 
-            return busca (problema, valor, metade2 + 1, fim);
+            return buscaTernaria (problema, valor, metade2 + 1, fim);
         /** procura no segundo pedaço **/
         else 
-            return busca (problema, valor, metade1, metade2);        
+            return buscaTernaria (problema, valor, metade1, metade2);        
     }
     
     /*
@@ -109,7 +112,7 @@ public class BuscaTernaria<T extends Comparable<T>> extends Solucao implements I
 		
 		Date dataInicio = new Date();
 		setOcupado(true);
-		T resultado = busca(lista, valor);
+		T resultado = buscaTernaria(lista, valor);
 		setOcupado(false);
 		Date dataFim = new Date();
 		

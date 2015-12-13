@@ -6,20 +6,33 @@ import java.util.Date;
 import br.com.algoritmos.cliente.requisicao.Requisicao;
 import br.com.algoritmos.solucao.Solucao;
 
-/*
- * @author Luis Carlos Gomes e Rafael Viana
+/**
+ * Classe que implementa o Algoritmo de Ordenação Bubble.
  * 
+ * A ideia é percorrer o vector diversas vezes, a cada 
+ * passagem fazendo flutuar para o topo o maior elemento da sequência. 
+ * 
+ * Classe<code>BubbleSort</code>
+ * 
+ * @author Luis Gomes 
+ * @author Rafael Viana
+ * @author Vitor gomes
+ * @author Yasmin Farias
+ * @version 1.0 (12/12/2015)
  */
-
 public class BubbleSort<T extends Number> extends Solucao implements IOrdenavel<T> {
+	
+	/**
+	 * Instancia um novo Bubble sort
+	 */
 	public BubbleSort() {
 		super("Bubble sort");
 	}
 
-	public BubbleSort(String _nomeSolucao) {
-		super(_nomeSolucao);
-	}
-
+	/*
+	 * (non-Javadoc)
+	 * @see br.com.algoritmos.ordenacao.IOrdenavel#ordernarLista(java.util.ArrayList)
+	 */
 	@Override
 	public void ordernarLista(ArrayList<T> lista) {
 		Date dataInicial = new Date();
@@ -30,7 +43,14 @@ public class BubbleSort<T extends Number> extends Solucao implements IOrdenavel<
 		adicionarTempoDuracao(dataInicial, dataFinal);
 	}
 
-	private void bubbleSort(ArrayList<T> lista) {
+	/**
+	 * função que faz a ordenação bubble
+	 * 
+	 * @param lista
+	 * 			lista
+	 * @return resultado
+	 */
+	private ArrayList<T> bubbleSort(ArrayList<T> lista) {
 		int tamanhoLista = lista.size();
 		
 		for (int contador = 0; contador < tamanhoLista; contador++) {
@@ -42,8 +62,13 @@ public class BubbleSort<T extends Number> extends Solucao implements IOrdenavel<
 				}
 			}
 		}
+		return lista;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
 	@Override
 	public void run() {
 		while (true) {

@@ -11,6 +11,7 @@ import java.util.Collection;
  * @author Tiago
  * @author Ramon
  * @author Luis
+ * @author Gabriel 
  *
  * @version 1.0 (12/12/2015)
  */
