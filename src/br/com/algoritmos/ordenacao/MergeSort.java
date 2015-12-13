@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import br.com.algoritmos.cliente.requisicao.Requisicao;
+import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.solucao.Solucao;
 /**
  * Classe que implementa o Algoritmo de Ordenação Merge.
@@ -29,7 +30,7 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 	 * 
 	 */
 	public MergeSort() {
-		super("Merge Sort");
+		super("Merge Sort", TipoRequisicao.ORDENACAO);
 	}
 
 	/*

@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import br.com.algoritmos.cliente.requisicao.Requisicao;
+import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.ordenacao.QuickSort;
 import br.com.algoritmos.solucao.Solucao;
 
@@ -25,7 +26,7 @@ public class BuscaTernaria<T extends Comparable<T>> extends Solucao implements I
 	 * Instancia uma nova Busca Ternaria
 	 */
 	public BuscaTernaria() {
-		super("Busca Ternária");
+		super("Busca Ternária", TipoRequisicao.BUSCA);
 	}
 	
 	/**

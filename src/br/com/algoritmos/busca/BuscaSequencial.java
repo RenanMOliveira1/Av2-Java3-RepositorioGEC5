@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import br.com.algoritmos.cliente.requisicao.Requisicao;
+import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.solucao.Solucao;
 /**
  * 
@@ -26,7 +27,7 @@ public class BuscaSequencial<T extends Comparable<T>> extends Solucao implements
 	 * Instancia uma nova busca sequencial.
 	 */
 	public BuscaSequencial() {
-		super("Busca sequêncial");
+		super("Busca sequêncial", TipoRequisicao.BUSCA);
 	}
 
 	/*

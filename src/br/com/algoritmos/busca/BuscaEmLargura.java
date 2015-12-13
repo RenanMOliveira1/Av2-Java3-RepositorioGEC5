@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import br.com.algoritmos.cliente.requisicao.Requisicao;
+import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.solucao.Arvore;
 import br.com.algoritmos.solucao.No;
 import br.com.algoritmos.solucao.Solucao;
@@ -20,7 +21,7 @@ public class BuscaEmLargura<T extends Comparable<T>> extends Solucao implements 
 
 	public BuscaEmLargura() {
 
-		super("Busca em largura");
+		super("Busca em largura", TipoRequisicao.BUSCA_ARVORE);
 	}
 
 	@Override

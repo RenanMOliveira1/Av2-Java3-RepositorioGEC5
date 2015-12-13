@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import br.com.algoritmos.cliente.requisicao.Requisicao;
+import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.solucao.Solucao;
 /**
  * Classe que implementa o Algoritmo de Ordenação Insertion.
@@ -25,7 +26,7 @@ public class InsertionSort<T> extends Solucao implements IOrdenavel<T>, Runnable
 	 * Instancia um novo Insertion Sort.
 	 */
 	public InsertionSort() {
-		super("Insertion Sort", 5000);
+		super("Insertion Sort", TipoRequisicao.ORDENACAO);
 	}
 
 	/*

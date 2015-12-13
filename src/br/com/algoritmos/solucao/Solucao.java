@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import br.com.algoritmos.cliente.requisicao.Requisicao;
+import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.executavel.Main;
+import br.com.algoritmos.servidor.DadosAtualizacao;
 import br.com.algritmos.util.RedeUtil;
 
 /**
@@ -28,6 +30,9 @@ public abstract class Solucao implements Runnable {
 	
 	/** nome solucao */
 	protected String nomeSolucao;
+	
+	/** Tipo de Solição */
+	protected TipoRequisicao tipoSolucao;
 	
 	/** media geral */
 	protected Double mediaGeral;
@@ -69,11 +74,12 @@ public abstract class Solucao implements Runnable {
 	 * @param _nomeSolucao
 	 * 			nome solucao
 	 */
-	protected Solucao(String _nomeSolucao) {
+	protected Solucao(String _nomeSolucao, TipoRequisicao _tipoSolucao) {
 		mediaGeral = 0.0;
 		ocupado = false;
 		nomeSolucao = _nomeSolucao;
 		listaTempos = new ArrayList<Long>();
+		tipoSolucao = _tipoSolucao;
 	}
 	
 	/**
@@ -84,7 +90,8 @@ public abstract class Solucao implements Runnable {
 	 * @throws IOException
 	 */
 	private void atualizarServidor(Double mediaGeral) throws IOException {
-		byte[] data = RedeUtil.serializar(mediaGeral);
+
+		byte[] data = RedeUtil.serializar(new DadosAtualizacao(getTipoSolucao(), mediaGeral));
 		DatagramPacket packetAtualizacao = new DatagramPacket(data, data.length, InetAddress.getLocalHost(), Main.PORTA);
 		
 		socket.send(packetAtualizacao);
@@ -208,5 +215,25 @@ public abstract class Solucao implements Runnable {
 			e.printStackTrace();
 		}
 
+	}
+
+	public String getNomeSolucao() {
+		return nomeSolucao;
+	}
+
+	public void setNomeSolucao(String nomeSolucao) {
+		this.nomeSolucao = nomeSolucao;
+	}
+
+	public TipoRequisicao getTipoSolucao() {
+		return tipoSolucao;
+	}
+
+	public void setTipoSolucao(TipoRequisicao tipoSolucao) {
+		this.tipoSolucao = tipoSolucao;
+	}
+
+	public void setMediaGeral(Double mediaGeral) {
+		this.mediaGeral = mediaGeral;
 	}
 }

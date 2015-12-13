@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Stack;
 
 import br.com.algoritmos.cliente.requisicao.Requisicao;
+import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.solucao.Arvore;
 import br.com.algoritmos.solucao.No;
 import br.com.algoritmos.solucao.Solucao;
@@ -25,7 +26,7 @@ public class BuscaEmProfundidade<T extends Comparable<T>> extends Solucao implem
 	 * Instancia uma nome busca em profundidade
 	 */
 	public BuscaEmProfundidade() {
-		super("Busca em profundidade");
+		super("Busca em profundidade", TipoRequisicao.BUSCA_ARVORE);
 	}
 
 	/*

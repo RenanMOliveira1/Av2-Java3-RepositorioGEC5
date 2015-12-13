@@ -27,7 +27,7 @@ public class SelectionSortTest {
 	@Test
 	public void test() {
 		
-		br.com.algoritmos.ordenacao.SelectionSort<Integer> solution = new SelectionSort<Integer>("Selection", 2000);
+		br.com.algoritmos.ordenacao.SelectionSort<Integer> solution = new SelectionSort<Integer>();
 		
 		Requisicao<Integer> requisicao = new Requisicao<>(TipoRequisicao.ORDENACAO, new ArrayList<Integer>());
 		

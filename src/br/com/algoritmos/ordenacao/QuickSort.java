@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import br.com.algoritmos.cliente.requisicao.Requisicao;
+import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.solucao.Solucao;
 /**
  * Classe que implementa o Algoritmo de Ordenação Quick.
@@ -27,7 +28,7 @@ public class QuickSort<T> extends Solucao implements IOrdenavel<T> {
 	 * Instancia uma nova ordenação Quick.
 	 */
 	public QuickSort() {
-		super("QuickSort", 5000);
+		super("QuickSort", TipoRequisicao.ORDENACAO);
 	}
 
 	/*

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import br.com.algoritmos.cliente.requisicao.Requisicao;
+import br.com.algoritmos.cliente.requisicao.TipoRequisicao;
 import br.com.algoritmos.solucao.Solucao;
 
 /**
@@ -26,7 +27,7 @@ public class BubbleSort<T extends Number> extends Solucao implements IOrdenavel<
 	 * Instancia um novo Bubble sort
 	 */
 	public BubbleSort() {
-		super("Bubble sort");
+		super("Bubble sort", TipoRequisicao.ORDENACAO);
 	}
 
 	/*
