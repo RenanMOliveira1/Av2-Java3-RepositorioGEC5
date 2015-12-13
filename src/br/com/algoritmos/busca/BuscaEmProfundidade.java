@@ -26,7 +26,7 @@ public class BuscaEmProfundidade<T extends Comparable<T>> extends Solucao implem
 	 * Instancia uma nome busca em profundidade
 	 */
 	public BuscaEmProfundidade() {
-		super("Busca em profundidade", TipoRequisicao.BUSCA_ARVORE);
+		super("Busca em profundidade", TipoRequisicao.BUSCA_ARVORE, 50005);
 	}
 
 	/*

@@ -32,7 +32,7 @@ public class BuscaBinaria<T extends Comparable<T>> extends Solucao implements IB
 	 * Instancia uma nova Busca Binária
 	 */
 	public BuscaBinaria() {
-		super("Busca Binária", TipoRequisicao.BUSCA);
+		super("Busca Binária", TipoRequisicao.BUSCA, 50006);
 	}
 
 	/*

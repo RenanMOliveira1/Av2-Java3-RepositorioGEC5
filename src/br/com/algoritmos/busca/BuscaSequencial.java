@@ -27,7 +27,7 @@ public class BuscaSequencial<T extends Comparable<T>> extends Solucao implements
 	 * Instancia uma nova busca sequencial.
 	 */
 	public BuscaSequencial() {
-		super("Busca sequêncial", TipoRequisicao.BUSCA);
+		super("Busca sequêncial", TipoRequisicao.BUSCA, 50003);
 	}
 
 	/*

@@ -27,7 +27,7 @@ public class BubbleSort<T extends Number> extends Solucao implements IOrdenavel<
 	 * Instancia um novo Bubble sort
 	 */
 	public BubbleSort() {
-		super("Bubble sort", TipoRequisicao.ORDENACAO);
+		super("Bubble sort", TipoRequisicao.ORDENACAO, 50001);
 	}
 
 	/*

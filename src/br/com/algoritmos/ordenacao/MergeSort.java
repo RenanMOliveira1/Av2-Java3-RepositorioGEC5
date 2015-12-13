@@ -30,7 +30,7 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 	 *
 	 */
 	public MergeSort() {
-		super("Merge Sort", TipoRequisicao.ORDENACAO);
+		super("Merge Sort", TipoRequisicao.ORDENACAO, 50008);
 	}
 
 	/*

@@ -21,7 +21,7 @@ public class BuscaEmLargura<T extends Comparable<T>> extends Solucao implements 
 
 	public BuscaEmLargura() {
 
-		super("Busca em largura", TipoRequisicao.BUSCA_ARVORE);
+		super("Busca em largura", TipoRequisicao.BUSCA_ARVORE, 50007);
 	}
 
 	@Override

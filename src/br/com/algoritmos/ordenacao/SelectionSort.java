@@ -32,7 +32,7 @@ public class SelectionSort<T extends Comparable<T>> extends Solucao implements I
 	 * 			port
 	 */
 	public SelectionSort() {
-		super("Selection Sort", TipoRequisicao.ORDENACAO);
+		super("Selection Sort", TipoRequisicao.ORDENACAO, 50010);
 	}
 
 	/*

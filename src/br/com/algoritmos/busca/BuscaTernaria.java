@@ -26,7 +26,7 @@ public class BuscaTernaria<T extends Comparable<T>> extends Solucao implements I
 	 * Instancia uma nova Busca Ternaria
 	 */
 	public BuscaTernaria() {
-		super("Busca Ternária", TipoRequisicao.BUSCA);
+		super("Busca Ternária", TipoRequisicao.BUSCA, 50002);
 	}
 	
 	/**

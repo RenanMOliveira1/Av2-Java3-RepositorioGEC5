@@ -10,7 +10,7 @@ import java.util.Date;
 
 import br.com.cliente.requisicao.Requisicao;
 import br.com.cliente.requisicao.TipoRequisicao;
-import br.com.execultavel.Main;
+import br.com.execultavel.MainServidor;
 import br.com.servidor.DadosAtualizacao;
 import br.com.util.RedeUtil;
 
@@ -27,6 +27,7 @@ import br.com.util.RedeUtil;
  * @version 1.0 (12/12/2015)
  */
 public abstract class Solucao implements Runnable {
+	public static final int PORTA = 12345;
 	
 	/** nome solucao */
 	protected String nomeSolucao;
@@ -54,14 +55,15 @@ public abstract class Solucao implements Runnable {
 	 * @param port
 	 * 			porta
 	 */
-	protected Solucao(String _nomeSolucao, int port) {
+	protected Solucao(String _nomeSolucao, TipoRequisicao _tipoSolucao, int porta) {
 		mediaGeral = 0.0;
 		ocupado = false;
 		nomeSolucao = _nomeSolucao;
 		listaTempos = new ArrayList<Long>();
+		tipoSolucao = _tipoSolucao;
 		
 		try {
-			socket = new DatagramSocket(port);
+			socket = new DatagramSocket(porta);
 		} catch (SocketException e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -92,7 +94,7 @@ public abstract class Solucao implements Runnable {
 	private void atualizarServidor(Double mediaGeral) throws IOException {
 
 		byte[] data = RedeUtil.serializar(new DadosAtualizacao(getTipoSolucao(), mediaGeral));
-		DatagramPacket packetAtualizacao = new DatagramPacket(data, data.length, InetAddress.getLocalHost(), Main.PORTA);
+		DatagramPacket packetAtualizacao = new DatagramPacket(data, data.length, InetAddress.getLocalHost(), PORTA);
 		
 		socket.send(packetAtualizacao);
 	}
@@ -184,6 +186,7 @@ public abstract class Solucao implements Runnable {
 		DatagramPacket receivePacket = new DatagramPacket(data, data.length);
 
 		try {
+			System.out.println("Algoritmo " + getNomeSolucao() + " Esperando.");
 			socket.receive(receivePacket);
 			requisicao = (Requisicao) RedeUtil.deserialize(receivePacket.getData());
 		} catch (IOException ioException) {
@@ -216,7 +219,19 @@ public abstract class Solucao implements Runnable {
 		}
 
 	}
-
+	
+	public abstract void run();
+	
+	@Override
+	public boolean equals(Object obj) {
+		
+		if (obj instanceof Solucao) {
+			Solucao solucao = (Solucao) obj;
+			return (getNomeSolucao().equals(solucao.getNomeSolucao()));
+		}
+		return false;
+	}
+	
 	public String getNomeSolucao() {
 		return nomeSolucao;
 	}

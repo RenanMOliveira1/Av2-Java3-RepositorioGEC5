@@ -26,7 +26,7 @@ public class InsertionSort<T> extends Solucao implements IOrdenavel<T>, Runnable
 	 * Instancia um novo Insertion Sort.
 	 */
 	public InsertionSort() {
-		super("Insertion Sort", TipoRequisicao.ORDENACAO);
+		super("Insertion Sort", TipoRequisicao.ORDENACAO, 50004);
 	}
 
 	/*

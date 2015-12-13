@@ -28,7 +28,7 @@ public class QuickSort<T> extends Solucao implements IOrdenavel<T> {
 	 * Instancia uma nova ordenação Quick.
 	 */
 	public QuickSort() {
-		super("QuickSort", TipoRequisicao.ORDENACAO);
+		super("QuickSort", TipoRequisicao.ORDENACAO, 50009);
 	}
 
 	/*
