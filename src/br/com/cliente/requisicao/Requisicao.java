@@ -23,6 +23,9 @@ public class Requisicao <T> implements Serializable {
 	/** valor */
 	private T valor;
 	
+	/** arvore */
+	private Object arvore;
+	
 	/** Tipo Requisicao */
 	private TipoRequisicao tipoRequisicao;
 	
@@ -54,20 +57,21 @@ public class Requisicao <T> implements Serializable {
 	 * 			no
 	 */
 	public Requisicao(DadosClient dados, T valor, TipoRequisicao tipoRequisicao, Collection<T> listaValores,
-			Integer posicao, Object no) {
+			Integer posicao, Object no, Object arvore) {
 		this.dados = dados;
 		this.valor = valor;
 		this.tipoRequisicao = tipoRequisicao;
 		this.listaValores = listaValores;
 		this.posicao = posicao;
 		this.no = no;
+		this.arvore = arvore;
 	}
 	
 	/**
 	 * Instancia uma nova Requisicao
 	 */
 	public Requisicao() {
-		this(null, null, null, null, null, null);
+		this(null, null, null, null, null, null, null);
 	}
 	
 	/**
@@ -79,7 +83,7 @@ public class Requisicao <T> implements Serializable {
 	 * 			lista valores
 	 */
 	public Requisicao(DadosClient _dados, Collection<T> _listaValores) {
-		this(_dados, null, null, _listaValores, null, null);
+		this(_dados, null, null, _listaValores, null, null, null);
 	}
 	
 	/**
@@ -91,7 +95,7 @@ public class Requisicao <T> implements Serializable {
 	 * 			posicao
 	 */
 	public Requisicao(DadosClient _dados, Integer _posicao) {
-		this(_dados, null, null, null, _posicao, null);
+		this(_dados, null, null, null, _posicao, null, null);
 	}
 	
 	/**
@@ -103,7 +107,7 @@ public class Requisicao <T> implements Serializable {
 	 * 			no
 	 */
 	public Requisicao(DadosClient _dados, Object _no) {
-		this(_dados, null, null, null, null, _no);
+		this(_dados, null, null, null, null, _no, null);
 	}
 	
 	/**
@@ -115,7 +119,7 @@ public class Requisicao <T> implements Serializable {
 	 * 			lista valores
 	 */
 	public Requisicao(TipoRequisicao _tipoRequisicao, Collection<T> _listaValores) {
-		this(null, null, _tipoRequisicao, _listaValores, null, null);
+		this(null, null, _tipoRequisicao, _listaValores, null, null, null);
 	}
 	
 	/**
@@ -129,7 +133,21 @@ public class Requisicao <T> implements Serializable {
 	 * 			valor
 	 */
 	public Requisicao(TipoRequisicao _tipoRequisicao, Collection<T> _listaValores, T _valor) {
-		this(null, _valor, _tipoRequisicao, _listaValores, null, null);
+		this(null, _valor, _tipoRequisicao, _listaValores, null, null, null);
+	}
+	
+	/**
+	 * Requisicão de Busca
+	 * 
+	 * @param _tipoRequisicao
+	 * 			tipo requisicao
+	 * @param _valor
+	 * 			valor
+	 * @param _arvore
+	 * 			arvore
+	 */
+	public Requisicao(TipoRequisicao _tipoRequisicao, Object _arvore, T _valor) {
+		this(null, _valor, _tipoRequisicao, null, null, null, _arvore);
 	}
 	
 	/**
@@ -245,6 +263,15 @@ public class Requisicao <T> implements Serializable {
 	public void setNo(Object no) {
 		this.no = no;
 	}
+
+	public Object getArvore() {
+		return arvore;
+	}
+
+	public void setArvore(Object arvore) {
+		this.arvore = arvore;
+	}
+	
 	
 	
 }

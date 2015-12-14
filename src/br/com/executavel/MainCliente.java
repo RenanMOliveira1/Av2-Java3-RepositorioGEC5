@@ -1,4 +1,4 @@
-package br.com.execultavel;
+package br.com.executavel;
 
 import br.com.cliente.Cliente;
 

@@ -30,7 +30,7 @@ public class BuscaEmLargura<T extends Comparable<T>> extends Solucao implements 
 			Requisicao<T> requisicao = receberRequisicao();//ja faz todo processo do recebimento
 //			
 			//buscarElemento(requisicao.getListaValores(), requisicao.getValor());
-			requisicao.setNo(buscarElemento(requisicao.getListaValores(), requisicao.getValor()));// adiciona o nó encontrado 
+			requisicao.setNo(buscarElemento(requisicao.getArvore(), requisicao.getValor()));// adiciona o nó encontrado 
 			requisicao.setListaValores(null);                                                     // para enviar ao cliente
 			enviarRequisicao(requisicao);// ja faz todo processo de envio                         
 //			
@@ -61,7 +61,7 @@ public class BuscaEmLargura<T extends Comparable<T>> extends Solucao implements 
 	}
      */
 	@Override
-	public <T> T buscarElemento(T colecao, Comparable valor) {
+	public <T> T buscarElemento(Object colecao, Comparable valor) {
 		
 		Date dataInicial = new Date();
 		
@@ -77,7 +77,7 @@ public class BuscaEmLargura<T extends Comparable<T>> extends Solucao implements 
 		return resultado;
 	}
 	
-	private <T> T buscaEmLargura(T colecao, Comparable valor){
+	private <T> T buscaEmLargura(Object colecao, Comparable valor){
 		Arvore arvore = (Arvore) colecao;
 		
 		Queue<No> visitados = new LinkedList<No>();

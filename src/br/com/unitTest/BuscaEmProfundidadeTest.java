@@ -5,6 +5,8 @@ import org.junit.Test;
 import br.com.algoritmos.busca.BuscaEmProfundidade;
 import br.com.algoritmos.solucao.Arvore;
 import br.com.algoritmos.solucao.No;
+import br.com.cliente.requisicao.Requisicao;
+import br.com.cliente.requisicao.TipoRequisicao;
 /**
  * Classe que representa o tesste unitario da clase BuscaEmProfundidade
  * 
@@ -29,9 +31,11 @@ public class BuscaEmProfundidadeTest {
 		arvore.inserir(3);
 		arvore.inserir(7);
 		
-		BuscaEmProfundidade buscador = new BuscaEmProfundidade();
+		Requisicao<Integer> requisicao = new Requisicao<Integer>(TipoRequisicao.BUSCA_ARVORE, arvore, 8);
 		
-		No no = (No)buscador.buscarElemento(arvore, 7);
+		BuscaEmProfundidade<No> buscador = new BuscaEmProfundidade<No>();
+		
+		No no = (No)buscador.buscarElemento(requisicao.getListaValores(), requisicao.getValor());
 		
 		System.out.println(no.getValor());
 	}
