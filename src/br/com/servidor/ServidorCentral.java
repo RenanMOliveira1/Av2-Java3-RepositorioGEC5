@@ -70,7 +70,9 @@ public class ServidorCentral implements Runnable {
 			DatagramPacket receivePacket = new DatagramPacket(data, data.length);
 			System.out.println("Esperando.");
 			socket.receive(receivePacket);
-
+			
+			System.out.println("");
+			
 			Object object = RedeUtil.deserialize(receivePacket.getData());
 
 			if (object instanceof TipoRequisicao) {
