@@ -42,7 +42,6 @@ public class BuscaEmLarguraTest {
 		
 		No no = (No)buscador.buscarElemento(requisicao.getArvore(), requisicao.getValor());
 		
-		System.out.println(no.getValor());
 	}
 
 }

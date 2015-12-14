@@ -151,7 +151,7 @@ public class ServidorCentral implements Runnable {
 		socket.send(sendPacket);
 	}
 	
-	private void gerenciaProximoAlgoritmo(DatagramPacket receivePacket, TipoRequisicao tipoRequisicao) {
+	private void gerenciaProximoAlgoritmo(DatagramPacket receivePacket, TipoRequisicao tipoRequisicao) throws IOException {
 		int port = receivePacket.getPort();
 		switch (tipoRequisicao) {
 		case BUSCA:
@@ -165,9 +165,9 @@ public class ServidorCentral implements Runnable {
 		}
 	}
 	
-	private void enviaProximoAlgoritmo(DatagramPacket receivePacket, Hashtable<Integer, Double> tabelaTempo, int portaAlgoritmo) {
+	private void enviaProximoAlgoritmo(DatagramPacket receivePacket, Hashtable<Integer, Double> tabelaTempo, int portaAlgoritmo) throws IOException {
 		sendPacketToClient(new DatagramPacket(receivePacket.getData(), receivePacket.getLength(),
-				receivePacket.getAddress(), getProximoAlgoritmo(tabelaTempo, portaAlgoritmo);		
+				receivePacket.getAddress(), getProximoAlgoritmo(tabelaTempo, portaAlgoritmo)));		
 	}
 	
 	private int getProximoAlgoritmo(Hashtable<Integer, Double> tabelaTempo, int ultimoAlgoritmo) {

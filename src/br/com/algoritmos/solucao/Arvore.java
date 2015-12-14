@@ -11,7 +11,7 @@ import java.util.Collection;
  * @author Bruno
  * @version 1.0(12/12/2015)
  */
-public class Arvore<T extends Collection<T>> {
+public class Arvore {
 	
 	/** raiz */
 	private No raiz;

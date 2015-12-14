@@ -7,6 +7,7 @@ import java.io.Serializable;
  * Enum<Code>TipoRequisicao</code>
  * 
  * @author Tiago
+ * @author Renan Oliveira
  * @version 1.0 (12/12/2015)
  */
 public enum TipoRequisicao implements Serializable {

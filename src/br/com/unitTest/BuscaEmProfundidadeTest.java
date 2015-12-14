@@ -35,9 +35,8 @@ public class BuscaEmProfundidadeTest {
 		
 		BuscaEmProfundidade<No> buscador = new BuscaEmProfundidade<No>();
 		
-		No no = (No)buscador.buscarElemento(requisicao.getListaValores(), requisicao.getValor());
+		No no = (No)buscador.buscarElemento(requisicao.getArvore(), requisicao.getValor());
 		
-		System.out.println(no.getValor());
 	}
 
 }

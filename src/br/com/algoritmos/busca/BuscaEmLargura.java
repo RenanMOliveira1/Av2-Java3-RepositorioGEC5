@@ -29,37 +29,12 @@ public class BuscaEmLargura<T extends Comparable<T>> extends Solucao implements 
 		while (true) {
 			Requisicao<T> requisicao = receberRequisicao();//ja faz todo processo do recebimento
 //			
-			//buscarElemento(requisicao.getListaValores(), requisicao.getValor());
-			requisicao.setNo(buscarElemento(requisicao.getArvore(), requisicao.getValor()));// adiciona o nó encontrado 
-			requisicao.setListaValores(null);                                                     // para enviar ao cliente
-			enviarRequisicao(requisicao);// ja faz todo processo de envio                         
-//			
+			requisicao.setNo(buscarElemento(requisicao.getArvore(), requisicao.getValor()));
+			enviarRequisicao(requisicao);          
 		}
 
 	}
 
-
-	/*private void ReceberDado() throws IOException, ClassNotFoundException {
-		byte[] data = new byte[252];
-		Requisicao<T> requisicao = receberRequisicao();
-//		DatagramPacket receivePacket = new DatagramPacket(data, data.length);
-//		socket.receive(receivePacket);
-//		dado = (Dado) RedeUtil.deserialize(receivePacket.getData());//
-		//this.buscarElemento(dado.getDado(), );
-
-	}
-
-	private void MandarDado() throws IOException {
-		byte[] byteTopico = RedeUtil.serializar(dado);//
-		sendPacket = new DatagramPacket(byteTopico, byteTopico.length,
-				InetAddress.getLocalHost(), 5000);// new
-													// DatagramPacket(byteTopico,
-													// byteTopico.length,
-													// dados.getIp(),
-													// dados.getPorta());
-		socket.send(sendPacket);
-	}
-     */
 	@Override
 	public <T> T buscarElemento(Object colecao, Comparable valor) {
 		
