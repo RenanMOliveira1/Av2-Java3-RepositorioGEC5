@@ -61,10 +61,37 @@ public class Cliente <T> {
 		requisicao.setDados(dadosMelhorAlgoritmo);
 	}
 	
-	private void enviarParaMelhorAlgoritmo() throws IOException {
+	private void receberRespostaAlgoritmos() throws IOException, ClassNotFoundException {
+		byte[] data = new byte[ 5000 ];
+		
+		//Resposta do Servidor.
+		DatagramPacket packetResposta = new DatagramPacket(data, data.length);
+		socket.receive(packetResposta);
+		
+		//Recupera os Dados, Porta e IP, do Algoritmo mais Rápido.
+		Requisicao respostaAlgoritmo = (Requisicao) RedeUtil.deserialize(packetResposta.getData());
+		
+		switch(respostaAlgoritmo.getTipoRequisicao()){
+		case BUSCA:
+			System.out.println("OpaFion: " + respostaAlgoritmo.getPosicao().toString());
+			break;
+		case BUSCA_ARVORE:
+			System.out.println("ÉOQ??: " + respostaAlgoritmo.getNo().toString());
+		case ORDENACAO:
+			System.out.println("ÉOQ??MALUCO: " + respostaAlgoritmo.getListaValores().toString());
+			break;
+		default:
+			break;
+		}
+		
+	}
+	
+	private void enviarParaMelhorAlgoritmo() throws IOException, ClassNotFoundException {
 		
 		byte[] data = RedeUtil.serializar(requisicao);
 		enviarDados(new DatagramPacket(data, data.length, requisicao.getDados().getIp(), requisicao.getDados().getPorta()));
+		
+		receberRespostaAlgoritmos();
 	}
 	
 	private void enviarDados(DatagramPacket packet) throws IOException {

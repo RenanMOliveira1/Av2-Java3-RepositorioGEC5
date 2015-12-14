@@ -6,11 +6,8 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.util.Hashtable;
 
-import javax.sound.midi.Receiver;
-
 import br.com.cliente.requisicao.Requisicao;
 import br.com.cliente.requisicao.TipoRequisicao;
-import br.com.executavel.MainServidor;
 import br.com.util.RedeUtil;
 
 /**
