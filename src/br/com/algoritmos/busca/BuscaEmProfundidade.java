@@ -14,19 +14,20 @@ import br.com.cliente.requisicao.TipoRequisicao;
  * de árvore ou grafo. O algoritmo começa num nó raiz e explora
  *  tanto quanto possível cada um dos seus ramos, antes de retroceder.
  * 
- * Classe<code>BuscaEmProfundidade</code>
+ * Classe <code>BuscaEmProfundidade</code>
  * 
- * @author Vinicius Viana(O cara da Samantha)
- * @version(12/12/2015)
+ * @author Vinicius Viana (O cara da Samantha)
+ * @version 1.0 (12/12/2015)
  *
  */
-public class BuscaEmProfundidade<T extends Comparable<T>> extends Solucao implements Runnable, IArvoreBuscavel<T> {
+public class BuscaEmProfundidade<T> extends Solucao implements Runnable, IArvoreBuscavel<T> {
 	
 	/**
-	 * Instancia uma nome busca em profundidade
+	 * Instancia uma nova busca em profundidade
 	 */
 	public BuscaEmProfundidade() {
 		super("Busca em profundidade", TipoRequisicao.BUSCA_ARVORE, 50005);
+		setMediaGeral(4.0);
 	}
 
 	/*
@@ -36,8 +37,8 @@ public class BuscaEmProfundidade<T extends Comparable<T>> extends Solucao implem
 	@Override
 	public void run() {		
 		while(true){
-			Requisicao<T> requisicao = receberRequisicao();
-			requisicao.setNo( buscarElemento(requisicao.getListaValores(), requisicao.getValor()) );
+			Requisicao requisicao = receberRequisicao();
+			requisicao.setNo( buscarElemento(requisicao.getArvore(), (Comparable) requisicao.getValor()) );
 			requisicao.setListaValores(null);
 			enviarRequisicao(requisicao);
 		}	
@@ -48,11 +49,11 @@ public class BuscaEmProfundidade<T extends Comparable<T>> extends Solucao implem
 	 * @see br.com.algoritmos.busca.IArvoreBuscavel#buscarElemento(java.lang.Object, java.lang.Comparable)
 	 */
 	@Override
-	public <T> T buscarElemento(T colecao, Comparable valor) {
+	public <T> No buscarElemento(Arvore colecao, Comparable valor) {
 		Date dataInicial = new Date();
 		setOcupado(true);
 		Arvore arvore = (Arvore) colecao;
-		T resultado = buscaEmProfundidade(arvore.getRaiz(), valor);
+		No resultado = buscaEmProfundidade(arvore.getRaiz(), valor);
 		arvore.zerar(arvore.getRaiz());
 		setOcupado(false);
 
@@ -63,6 +64,7 @@ public class BuscaEmProfundidade<T extends Comparable<T>> extends Solucao implem
 	}
 
 	/**
+	 * Método que implementa o algoritmo de busca em profundidade.
 	 * 
 	 * @param no
 	 * 			no

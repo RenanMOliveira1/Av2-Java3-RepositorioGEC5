@@ -29,6 +29,7 @@ public class QuickSort<T> extends Solucao implements IOrdenavel<T> {
 	 */
 	public QuickSort() {
 		super("QuickSort", TipoRequisicao.ORDENACAO, 50009);
+		setMediaGeral(8.0);
 	}
 
 	/*
@@ -117,7 +118,7 @@ public class QuickSort<T> extends Solucao implements IOrdenavel<T> {
 	@Override
 	public void run() {
 		while(true) {
-			Requisicao<T> requisicao = receberRequisicao();
+			Requisicao requisicao = receberRequisicao();
 			ordernarLista((ArrayList<T>) requisicao.getListaValores());
 			enviarRequisicao(requisicao);
 		}

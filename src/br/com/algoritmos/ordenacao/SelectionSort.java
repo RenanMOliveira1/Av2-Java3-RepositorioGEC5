@@ -33,6 +33,7 @@ public class SelectionSort<T extends Comparable<T>> extends Solucao implements I
 	 */
 	public SelectionSort() {
 		super("Selection Sort", TipoRequisicao.ORDENACAO, 50010);
+		setMediaGeral(2.0);
 	}
 
 	/*
@@ -81,7 +82,7 @@ public class SelectionSort<T extends Comparable<T>> extends Solucao implements I
 	public void run() {
 		
 		while(true) {
-			Requisicao<T> requisicao = receberRequisicao();
+			Requisicao requisicao = receberRequisicao();
 			ordernarLista((ArrayList<T>) requisicao.getListaValores());
 			enviarRequisicao(requisicao);
 		}

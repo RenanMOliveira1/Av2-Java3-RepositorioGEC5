@@ -27,6 +27,7 @@ public class BuscaTernaria<T extends Comparable<T>> extends Solucao implements I
 	 */
 	public BuscaTernaria() {
 		super("Busca Ternária", TipoRequisicao.BUSCA, 50002);
+		setMediaGeral(4.0);
 	}
 	
 	/**
@@ -90,7 +91,7 @@ public class BuscaTernaria<T extends Comparable<T>> extends Solucao implements I
 	public void run() {
 		
 		while(true) {
-			Requisicao<T> requisicao = receberRequisicao(); 
+			Requisicao requisicao = receberRequisicao(); 
  			buscarElemento(requisicao.getListaValores(), (T) requisicao.getValor()); 
  			requisicao.setPosicao((Integer)buscarElemento(requisicao.getListaValores(), (T) requisicao.getValor())); 
  			enviarRequisicao(requisicao); 

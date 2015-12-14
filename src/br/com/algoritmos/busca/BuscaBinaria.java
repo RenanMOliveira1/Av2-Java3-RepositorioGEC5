@@ -33,6 +33,7 @@ public class BuscaBinaria<T extends Comparable<T>> extends Solucao implements IB
 	 */
 	public BuscaBinaria() {
 		super("Busca Binária", TipoRequisicao.BUSCA, 50006);
+		setMediaGeral(1.0);
 	}
 
 	/*
@@ -97,7 +98,7 @@ public class BuscaBinaria<T extends Comparable<T>> extends Solucao implements IB
 	@Override
 	public void run() {
 		while(true) {
-			Requisicao<T> requisicao = receberRequisicao();
+			Requisicao requisicao = receberRequisicao();
 			buscarElemento(requisicao.getListaValores(), (T) requisicao.getValor());
 			requisicao.setPosicao((Integer)buscarElemento(requisicao.getListaValores(), (T) requisicao.getValor()));
 			enviarRequisicao(requisicao);

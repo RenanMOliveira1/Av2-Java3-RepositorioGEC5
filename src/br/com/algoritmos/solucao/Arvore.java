@@ -1,6 +1,6 @@
 package br.com.algoritmos.solucao;
 
-import java.util.Collection;
+import java.io.Serializable;
 
 /**
  * Esta classe representa uma Arvore(Estrutura de dados).
@@ -11,8 +11,8 @@ import java.util.Collection;
  * @author Bruno
  * @version 1.0(12/12/2015)
  */
-public class Arvore<T extends Collection<T>> {
-	
+public class Arvore implements Serializable {
+	private static final long serialVersionUID = 1L;
 	/** raiz */
 	private No raiz;
 	

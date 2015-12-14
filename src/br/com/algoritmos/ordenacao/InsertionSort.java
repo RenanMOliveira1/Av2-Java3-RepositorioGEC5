@@ -27,6 +27,7 @@ public class InsertionSort<T> extends Solucao implements IOrdenavel<T>, Runnable
 	 */
 	public InsertionSort() {
 		super("Insertion Sort", TipoRequisicao.ORDENACAO, 50004);
+		setMediaGeral(3.0);
 	}
 
 	/*
@@ -76,7 +77,7 @@ public class InsertionSort<T> extends Solucao implements IOrdenavel<T>, Runnable
 	@Override
 	public void run() {
 		while(true) {
-			Requisicao<T> requisicao = receberRequisicao();
+			Requisicao requisicao = receberRequisicao();
 			ordernarLista((ArrayList<T>) requisicao.getListaValores());
 			enviarRequisicao(requisicao);
 		}
