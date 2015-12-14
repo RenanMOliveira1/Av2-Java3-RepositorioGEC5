@@ -5,9 +5,11 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import br.com.cliente.requisicao.DadosClient;
 import br.com.cliente.requisicao.Requisicao;
 import br.com.cliente.requisicao.TipoRequisicao;
 import br.com.executavel.MainServidor;
@@ -24,6 +26,7 @@ import br.com.util.RedeUtil;
  * @author Renan
  * @author Gabriel
  * @author Thaynara
+ * @author Luis Carlos
  * @version 1.0 (12/12/2015)
  */
 public abstract class Solucao implements Runnable {
@@ -142,7 +145,7 @@ public abstract class Solucao implements Runnable {
 	 * 
 	 * @return ocupado
 	 */
-	public boolean isOcupado() {
+	public synchronized boolean isOcupado() {
 		return ocupado;
 	}
 
@@ -152,7 +155,7 @@ public abstract class Solucao implements Runnable {
 	 * @param ocupado
 	 * 			ocupado
 	 */
-	protected void setOcupado(boolean ocupado) {
+	protected synchronized void setOcupado(boolean ocupado) {
 		this.ocupado = ocupado;
 	}
 
@@ -180,7 +183,7 @@ public abstract class Solucao implements Runnable {
 	 * 
 	 * @return requisicao
 	 */
-	public <T> Requisicao<T> receberRequisicao() {
+	public <T> Requisicao<T> receberRequisicao() {		
 		byte[] data = new byte[100];
 		Requisicao<T> requisicao = null;
 		DatagramPacket receivePacket = new DatagramPacket(data, data.length);
@@ -189,14 +192,18 @@ public abstract class Solucao implements Runnable {
 			System.out.println("Algoritmo " + getNomeSolucao() + " Esperando.");
 			socket.receive(receivePacket);
 			requisicao = (Requisicao) RedeUtil.deserialize(receivePacket.getData());
+			
+			if (!isOcupado()) {
+				enviaInformacaoOcupado();
+			}
 		} catch (IOException ioException) {
 			ioException.printStackTrace();
 			System.exit(1);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-
-		return requisicao;
+		
+		return requisicao;		
 	}
 
 	/**
@@ -218,6 +225,20 @@ public abstract class Solucao implements Runnable {
 			e.printStackTrace();
 		}
 
+	}
+	
+	/**
+	 * Envia para o servidor que o algoritmo está ocupado
+	 * 
+	 */
+	public void enviaInformacaoOcupado() {		
+		try {
+			Requisicao<Integer> requisicao = new Requisicao<Integer>(getTipoSolucao(), "O algoritmo está ocupado");
+			requisicao.setDados(new DadosClient(PORTA, InetAddress.getLocalHost(), "Solução"));
+			enviarRequisicao(requisicao);
+		} catch (UnknownHostException e) {			
+			e.printStackTrace();
+		}		
 	}
 	
 	public abstract void run();
