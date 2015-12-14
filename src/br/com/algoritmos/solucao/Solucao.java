@@ -1,6 +1,7 @@
 package br.com.algoritmos.solucao;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -67,24 +68,13 @@ public abstract class Solucao implements Runnable {
 		
 		try {
 			socket = new DatagramSocket(porta);
+			atualizarServidor(mediaGeral);
 		} catch (SocketException e) {
 			e.printStackTrace();
 			System.exit(1);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * Instancia uma nova solução a partir de um nome
-	 * 
-	 * @param _nomeSolucao
-	 * 			nome solucao
-	 */
-	protected Solucao(String _nomeSolucao, TipoRequisicao _tipoSolucao) {
-		mediaGeral = 0.0;
-		ocupado = false;
-		nomeSolucao = _nomeSolucao;
-		listaTempos = new ArrayList<Long>();
-		tipoSolucao = _tipoSolucao;
 	}
 	
 	/**
@@ -183,7 +173,7 @@ public abstract class Solucao implements Runnable {
 	 * 
 	 * @return requisicao
 	 */
-	public <T> Requisicao<T> receberRequisicao() {		
+	public <T extends Serializable> Requisicao<T> receberRequisicao() {		
 		byte[] data = new byte[100];
 		Requisicao<T> requisicao = null;
 		DatagramPacket receivePacket = new DatagramPacket(data, data.length);
@@ -191,8 +181,8 @@ public abstract class Solucao implements Runnable {
 		try {
 			System.out.println("Algoritmo " + getNomeSolucao() + " Esperando.");
 			socket.receive(receivePacket);
-			requisicao = (Requisicao) RedeUtil.deserialize(receivePacket.getData());
-			
+			requisicao = (Requisicao<T>) RedeUtil.deserialize(receivePacket.getData());
+			System.out.println("Chegou Aqui porra");
 			if (!isOcupado()) {
 				enviaInformacaoOcupado();
 			}
@@ -212,7 +202,7 @@ public abstract class Solucao implements Runnable {
 	 * @param requisicao
 	 * 			requisicao
 	 */
-	public <T> void enviarRequisicao(Requisicao<T> requisicao) {
+	public <T extends Serializable> void enviarRequisicao(Requisicao<T> requisicao) {
 		byte[] data = null;
 		DatagramPacket sendPacket = null;
 
@@ -234,7 +224,7 @@ public abstract class Solucao implements Runnable {
 	public void enviaInformacaoOcupado() {		
 		try {
 			Requisicao<Integer> requisicao = new Requisicao<Integer>(getTipoSolucao(), "O algoritmo está ocupado");
-			requisicao.setDados(new DadosClient(PORTA, InetAddress.getLocalHost(), "Solução"));
+			requisicao.setDados(new DadosClient(PORTA, InetAddress.getLocalHost()));
 			enviarRequisicao(requisicao);
 		} catch (UnknownHostException e) {			
 			e.printStackTrace();

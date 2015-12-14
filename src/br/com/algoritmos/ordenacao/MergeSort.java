@@ -31,6 +31,7 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 	 */
 	public MergeSort() {
 		super("Merge Sort", TipoRequisicao.ORDENACAO, 50008);
+		setMediaGeral(4.0);
 	}
 
 	/*
@@ -148,7 +149,7 @@ public class MergeSort<T extends Comparable<T>> extends Solucao implements IOrde
 	@Override
 	public void run() {
 		while(true) {
-			Requisicao<T> requisicao = receberRequisicao();
+			Requisicao requisicao = receberRequisicao();
 			ordernarLista((ArrayList<T>) requisicao.getListaValores());
 			enviarRequisicao(requisicao);
 		}

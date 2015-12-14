@@ -1,5 +1,6 @@
 package br.com.algoritmos.solucao;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 /**
@@ -11,8 +12,8 @@ import java.util.Collection;
  * @author Bruno
  * @version 1.0(12/12/2015)
  */
-public class Arvore {
-	
+public class Arvore implements Serializable {
+	private static final long serialVersionUID = 1L;
 	/** raiz */
 	private No raiz;
 	

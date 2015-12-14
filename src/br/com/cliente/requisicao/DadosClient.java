@@ -16,13 +16,10 @@ public class DadosClient implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	/** porta */
-	private Integer porta;
+	private int porta;
 	
 	/** IP */
 	private InetAddress ip;
-	
-	/** nome cliente */
-	private String nomeClient;
 	
 	/**
 	 * Instancia um novo DadosClient
@@ -34,10 +31,9 @@ public class DadosClient implements Serializable {
 	 * @param _nomeClient
 	 * 			nome cliente
 	 */
-	public DadosClient(Integer _porta, InetAddress _ip, String _nomeClient) {
+	public DadosClient(int _porta, InetAddress _ip) {
 		porta = _porta;
 		ip = _ip;
-		nomeClient = _nomeClient;
 	}
 	
 	/**
@@ -64,7 +60,7 @@ public class DadosClient implements Serializable {
 	 * 
 	 * @return porta
 	 */
-	public Integer getPorta() {
+	public int getPorta() {
 		return porta;
 	}
 	
@@ -74,26 +70,7 @@ public class DadosClient implements Serializable {
 	 * @param porta
 	 * 			porta
 	 */
-	public void setPorta(Integer porta) {
+	public void setPorta(int porta) {
 		this.porta = porta;
-	}
-	
-	/**
-	 * Obtem nome cliente
-	 * 
-	 * @return nome cliente
-	 */
-	public String getNomeClient() {
-		return nomeClient;
-	}
-	
-	/**
-	 * Define nome cliente
-	 * 
-	 * @param nomeClient
-	 * 			nome cliente
-	 */
-	public void setNomeClient(String nomeClient) {
-		this.nomeClient = nomeClient;
 	}
 }

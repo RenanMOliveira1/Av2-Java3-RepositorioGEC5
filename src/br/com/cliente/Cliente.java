@@ -14,25 +14,20 @@ import br.com.util.RedeUtil;
  * @author Luis Carlos
  * 
  */
-public class Cliente <T> {
-	private Requisicao<T> requisicao;
+public class Cliente <T> implements Runnable {
+	private Requisicao requisicao;
 	private DatagramSocket socket;
 	private int PORTA_SERVIDOR = 12345;
 	
-	public Cliente() {
-		
-		try {
-			socket = new DatagramSocket(5000);
-		} catch (SocketException e) {
-			e.printStackTrace();
-		}
+	public Cliente(Requisicao _requisicao) {
+		requisicao = _requisicao;
 	}
 	
-	public void enviarRequisicao(Requisicao<T> _requisicao) {
-		
-		requisicao = _requisicao;
+	@Override
+	public void run() {
 		
 		try {
+			iniciarServidor();
 			enviarParaServidor();
 			receberRespostaServidor();
 			enviarParaMelhorAlgoritmo();
@@ -41,6 +36,10 @@ public class Cliente <T> {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void iniciarServidor() throws SocketException {
+		socket = new DatagramSocket(5000);
 	}
 	
 	private void enviarParaServidor() throws IOException, ClassNotFoundException {
@@ -58,6 +57,7 @@ public class Cliente <T> {
 		
 		//Recupera os Dados, Porta e IP, do Algoritmo mais Rápido.
 		DadosClient dadosMelhorAlgoritmo = (DadosClient) RedeUtil.deserialize(packetResposta.getData());
+		System.out.println(dadosMelhorAlgoritmo.getPorta());
 		requisicao.setDados(dadosMelhorAlgoritmo);
 	}
 	
@@ -95,14 +95,14 @@ public class Cliente <T> {
 	}
 	
 	private void enviarDados(DatagramPacket packet) throws IOException {
-		socket.receive(packet);
+		socket.send(packet);
 	}
 
-	public Requisicao<T> getRequisicao() {
+	public Requisicao getRequisicao() {
 		return requisicao;
 	}
 
-	public void setRequisicao(Requisicao<T> requisicao) {
+	public void setRequisicao(Requisicao requisicao) {
 		this.requisicao = requisicao;
 	}
 }

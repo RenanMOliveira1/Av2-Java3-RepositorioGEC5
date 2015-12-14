@@ -3,9 +3,12 @@ package br.com.servidor;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.Hashtable;
 
+import br.com.cliente.requisicao.DadosClient;
 import br.com.cliente.requisicao.Requisicao;
 import br.com.cliente.requisicao.TipoRequisicao;
 import br.com.util.RedeUtil;
@@ -29,6 +32,7 @@ public class ServidorCentral implements Runnable {
 	private ServidorCentral(int _porta) {
 		tabelaTempoOrdena = new Hashtable<Integer, Double>();
 		tabelaTempoBusca = new Hashtable<Integer, Double>();
+		tabelaTempoBuscaArvore = new Hashtable<Integer, Double>();
 		porta = _porta;
 	}
 	
@@ -71,8 +75,6 @@ public class ServidorCentral implements Runnable {
 			System.out.println("Esperando.");
 			socket.receive(receivePacket);
 			
-			System.out.println("");
-			
 			Object object = RedeUtil.deserialize(receivePacket.getData());
 
 			if (object instanceof TipoRequisicao) {
@@ -87,9 +89,12 @@ public class ServidorCentral implements Runnable {
 
 	private void responderCliente(DatagramPacket receivePacket, TipoRequisicao requisicao)
 			throws ClassNotFoundException, IOException {
-
-		sendPacketToClient(new DatagramPacket(receivePacket.getData(), receivePacket.getLength(),
-				receivePacket.getAddress(), getPort(requisicao)));
+		Integer porta = getPort(requisicao);
+		DadosClient dadosClient = new DadosClient(porta, InetAddress.getLocalHost());
+		
+		byte[] data = RedeUtil.serializar(dadosClient);
+		sendPacketToClient(new DatagramPacket(data, data.length,
+				receivePacket.getAddress(), receivePacket.getPort()));
 	}
 
 	private void atualizarTabela(Integer portaAlgoritmo, DadosAtualizacao dadosAtualizacao) {
@@ -165,17 +170,21 @@ public class ServidorCentral implements Runnable {
 	}
 	
 	private void enviaProximoAlgoritmo(DatagramPacket receivePacket, Hashtable<Integer, Double> tabelaTempo, int portaAlgoritmo) throws IOException {
-		sendPacketToClient(new DatagramPacket(receivePacket.getData(), receivePacket.getLength(),
-				receivePacket.getAddress(), getProximoAlgoritmo(tabelaTempo, portaAlgoritmo)));		
+		
+		byte[] data = RedeUtil.serializar(getProximoAlgoritmo(tabelaTempo, portaAlgoritmo));
+		sendPacketToClient(new DatagramPacket(data, data.length,
+				receivePacket.getAddress(), receivePacket.getPort()));		
 	}
 	
-	private int getProximoAlgoritmo(Hashtable<Integer, Double> tabelaTempo, int ultimoAlgoritmo) {
+	private DadosClient getProximoAlgoritmo(Hashtable<Integer, Double> tabelaTempo, int ultimoAlgoritmo) throws UnknownHostException {
 		int port = tabelaTempo.entrySet().iterator().next().getKey();
 		
 		if (port == ultimoAlgoritmo) {
-			return tabelaTempo.entrySet().iterator().next().getKey();
+			port = tabelaTempo.entrySet().iterator().next().getKey();
 		}
 		
-		return port;		
+		DadosClient dadosClient = new DadosClient(port, InetAddress.getLocalHost());
+		
+		return dadosClient;		
 	}
 }

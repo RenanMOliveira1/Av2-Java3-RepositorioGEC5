@@ -28,6 +28,7 @@ public class BuscaSequencial<T extends Comparable<T>> extends Solucao implements
 	 */
 	public BuscaSequencial() {
 		super("Busca sequêncial", TipoRequisicao.BUSCA, 50003);
+		setMediaGeral(8.0);
 	}
 
 	/*
@@ -37,7 +38,7 @@ public class BuscaSequencial<T extends Comparable<T>> extends Solucao implements
 	@Override
 	public void run() {
 		while (true) {
-			Requisicao<T> requisicao = receberRequisicao();
+			Requisicao requisicao = receberRequisicao();
 			Collection<T> lista = requisicao.getListaValores();
 			Comparable<T> valor = (Comparable<T>) requisicao.getValor();
 			

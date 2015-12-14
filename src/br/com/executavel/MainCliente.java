@@ -8,10 +8,7 @@ import br.com.cliente.requisicao.TipoRequisicao;
 
 public class MainCliente {
 	public static void main(String[] args) {
-		Cliente cliente = new Cliente();
-		
-		Requisicao<Integer> requisicao = new Requisicao<>(TipoRequisicao.ORDENACAO, new ArrayList<Integer>());
-
+		Requisicao<Integer> requisicao = new Requisicao<>(TipoRequisicao.BUSCA, new ArrayList<Integer>(), 8);
 
 		requisicao.getListaValores().add(10);
 		requisicao.getListaValores().add(9);
@@ -25,7 +22,7 @@ public class MainCliente {
 		requisicao.getListaValores().add(1);
 		requisicao.getListaValores().add(0);
 		
-		cliente.enviarRequisicao(requisicao);
-		
+		Thread t = new Thread(new Cliente(requisicao));
+		t.start();
 	}
 }

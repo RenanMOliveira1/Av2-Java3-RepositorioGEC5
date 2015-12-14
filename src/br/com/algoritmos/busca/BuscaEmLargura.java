@@ -4,6 +4,7 @@
  */
 package br.com.algoritmos.busca;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -22,27 +23,28 @@ public class BuscaEmLargura<T extends Comparable<T>> extends Solucao implements 
 	public BuscaEmLargura() {
 
 		super("Busca em largura", TipoRequisicao.BUSCA_ARVORE, 50007);
+		setMediaGeral(6.0);
 	}
 
 	@Override
 	public void run() {
 		while (true) {
-			Requisicao<T> requisicao = receberRequisicao();//ja faz todo processo do recebimento
+			Requisicao requisicao = receberRequisicao();//ja faz todo processo do recebimento
 //			
-			requisicao.setNo(buscarElemento(requisicao.getArvore(), requisicao.getValor()));
+			requisicao.setNo(buscarElemento(requisicao.getArvore(), (Comparable) requisicao.getValor()));
 			enviarRequisicao(requisicao);          
 		}
 
 	}
 
 	@Override
-	public <T> T buscarElemento(Object colecao, Comparable valor) {
+	public <T> No buscarElemento(Arvore colecao, Comparable valor) {
 		
 		Date dataInicial = new Date();
 		
 		setOcupado(true);
 		
-		T resultado = buscaEmLargura(colecao, valor);
+		No resultado = buscaEmLargura(colecao, valor);
 		
 		setOcupado(false);
 		
@@ -52,8 +54,8 @@ public class BuscaEmLargura<T extends Comparable<T>> extends Solucao implements 
 		return resultado;
 	}
 	
-	private <T> T buscaEmLargura(Object colecao, Comparable valor){
-		Arvore arvore = (Arvore) colecao;
+	private <T> T buscaEmLargura(Arvore colecao, Comparable valor){
+		Arvore arvore = colecao;
 		
 		Queue<No> visitados = new LinkedList<No>();
 

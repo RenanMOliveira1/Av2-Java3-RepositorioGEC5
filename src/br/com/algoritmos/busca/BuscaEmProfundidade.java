@@ -27,6 +27,7 @@ public class BuscaEmProfundidade<T> extends Solucao implements Runnable, IArvore
 	 */
 	public BuscaEmProfundidade() {
 		super("Busca em profundidade", TipoRequisicao.BUSCA_ARVORE, 50005);
+		setMediaGeral(4.0);
 	}
 
 	/*
@@ -36,8 +37,8 @@ public class BuscaEmProfundidade<T> extends Solucao implements Runnable, IArvore
 	@Override
 	public void run() {		
 		while(true){
-			Requisicao<Comparable> requisicao = receberRequisicao();
-			requisicao.setNo( buscarElemento(requisicao.getArvore(), requisicao.getValor()) );
+			Requisicao requisicao = receberRequisicao();
+			requisicao.setNo( buscarElemento(requisicao.getArvore(), (Comparable) requisicao.getValor()) );
 			requisicao.setListaValores(null);
 			enviarRequisicao(requisicao);
 		}	
@@ -48,11 +49,11 @@ public class BuscaEmProfundidade<T> extends Solucao implements Runnable, IArvore
 	 * @see br.com.algoritmos.busca.IArvoreBuscavel#buscarElemento(java.lang.Object, java.lang.Comparable)
 	 */
 	@Override
-	public <T> T buscarElemento(Object colecao, Comparable valor) {
+	public <T> No buscarElemento(Arvore colecao, Comparable valor) {
 		Date dataInicial = new Date();
 		setOcupado(true);
 		Arvore arvore = (Arvore) colecao;
-		T resultado = buscaEmProfundidade(arvore.getRaiz(), valor);
+		No resultado = buscaEmProfundidade(arvore.getRaiz(), valor);
 		arvore.zerar(arvore.getRaiz());
 		setOcupado(false);
 

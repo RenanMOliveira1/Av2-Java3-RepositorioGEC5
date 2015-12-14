@@ -28,6 +28,7 @@ public class BubbleSort<T extends Number> extends Solucao implements IOrdenavel<
 	 */
 	public BubbleSort() {
 		super("Bubble sort", TipoRequisicao.ORDENACAO, 50001);
+		setMediaGeral(4.0);
 	}
 
 	/*

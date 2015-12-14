@@ -1,5 +1,7 @@
 package br.com.algoritmos.solucao;
 
+import java.io.Serializable;
+
 /**
  * Classe que representa o nó de uma arvore.
  * 
@@ -10,7 +12,9 @@ package br.com.algoritmos.solucao;
  * @version 1.0 (12/12/2015)
  *
  */
-public class No {
+public class No implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	/** valor */
 	private int valor;
 	

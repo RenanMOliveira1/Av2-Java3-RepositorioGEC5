@@ -1,4 +1,10 @@
 package br.com.algoritmos.busca;
+
+import java.io.Serializable;
+
+import br.com.algoritmos.solucao.Arvore;
+import br.com.algoritmos.solucao.No;
+
 /**
  * Interface que representa uma busca
  * a partir de uma Arvore.
@@ -21,6 +27,6 @@ public interface IArvoreBuscavel <T> {
 	 * 				nó valor
 	 * @return resultado
 	 */
-	public <T> T buscarElemento(Object colecao, Comparable valor);
+	public <T> No buscarElemento(Arvore colecao, Comparable valor);
 
 }
