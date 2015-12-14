@@ -18,7 +18,7 @@ import br.com.util.RedeUtil;
  * Classe que representa um algoritmo de solução,
  * seja ordenação ou busca.
  * 
- * Classe<code>Solucao</code>
+ * Classe <code>Solucao</code>
  * 
  * @author Tiago
  * @author Renan

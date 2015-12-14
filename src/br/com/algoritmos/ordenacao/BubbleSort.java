@@ -78,5 +78,4 @@ public class BubbleSort<T extends Number> extends Solucao implements IOrdenavel<
 			enviarRequisicao(requisicao);
 		}		
 	}
-
 }
