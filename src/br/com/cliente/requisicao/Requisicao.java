@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import br.com.algoritmos.solucao.Arvore;
 import br.com.algoritmos.solucao.No;
 /**
+ * Esta classe representa uma requisição de uma ordenação ou busca de um cliente.
  * 
- * Classe<code>Requisicao</code>
+ * Classe <code>Requisicao</code>
  * 
  * @author Tiago
  * @author Bruno
@@ -282,15 +283,24 @@ public class Requisicao <T extends Serializable> implements Serializable {
 		this.no = no;
 	}
 
+	/**
+	 * Obtem arvore
+	 * 
+	 * @return arvore
+	 */
 	public Arvore getArvore() {
 		return arvore;
 	}
 
+	/**
+	 * Define arvore
+	 * 
+	 * @param arvore
+	 * 			arvore
+	 */
 	public void setArvore(Arvore arvore) {
 		this.arvore = arvore;
 	}
-	
-	
 	
 	/**
 	 * Houve erro

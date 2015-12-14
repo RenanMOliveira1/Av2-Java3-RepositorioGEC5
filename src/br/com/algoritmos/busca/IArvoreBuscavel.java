@@ -9,7 +9,7 @@ import br.com.algoritmos.solucao.No;
  * Interface que representa uma busca
  * a partir de uma Arvore.
  * 
- * Interface<code>IArvoreBuscavel</code>
+ * Interface <code>IArvoreBuscavel</code>
  * 
  * @author Bruno
  * @version 1.0(12/12/2015)

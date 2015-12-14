@@ -14,16 +14,16 @@ import br.com.cliente.requisicao.TipoRequisicao;
  * de árvore ou grafo. O algoritmo começa num nó raiz e explora
  *  tanto quanto possível cada um dos seus ramos, antes de retroceder.
  * 
- * Classe<code>BuscaEmProfundidade</code>
+ * Classe <code>BuscaEmProfundidade</code>
  * 
- * @author Vinicius Viana(O cara da Samantha)
- * @version(12/12/2015)
+ * @author Vinicius Viana (O cara da Samantha)
+ * @version 1.0 (12/12/2015)
  *
  */
 public class BuscaEmProfundidade<T> extends Solucao implements Runnable, IArvoreBuscavel<T> {
 	
 	/**
-	 * Instancia uma nome busca em profundidade
+	 * Instancia uma nova busca em profundidade
 	 */
 	public BuscaEmProfundidade() {
 		super("Busca em profundidade", TipoRequisicao.BUSCA_ARVORE, 50005);
@@ -64,6 +64,7 @@ public class BuscaEmProfundidade<T> extends Solucao implements Runnable, IArvore
 	}
 
 	/**
+	 * Método que implementa o algoritmo de busca em profundidade.
 	 * 
 	 * @param no
 	 * 			no

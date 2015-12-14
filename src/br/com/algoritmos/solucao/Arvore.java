@@ -1,7 +1,6 @@
 package br.com.algoritmos.solucao;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 /**
  * Esta classe representa uma Arvore(Estrutura de dados).

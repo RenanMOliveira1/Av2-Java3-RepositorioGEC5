@@ -231,8 +231,15 @@ public abstract class Solucao implements Runnable {
 		}		
 	}
 	
+	/**
+	 * Realiza o algoritmo, de busca ou ordenacao e se comunica com a rede.
+	 */
 	public abstract void run();
 	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		
@@ -243,22 +250,50 @@ public abstract class Solucao implements Runnable {
 		return false;
 	}
 	
+	/**
+	 * Obtem nome solucao
+	 * 
+	 * @return nome solucao
+	 */
 	public String getNomeSolucao() {
 		return nomeSolucao;
 	}
 
+	/**
+	 * Define nome solucao
+	 * 
+	 * @param nomeSolucao
+	 * 			nome solucao
+	 */
 	public void setNomeSolucao(String nomeSolucao) {
 		this.nomeSolucao = nomeSolucao;
 	}
 
+	/**
+	 * Obtem tipo requisicao
+	 * 
+	 * @return tipo requisicao
+	 */
 	public TipoRequisicao getTipoSolucao() {
 		return tipoSolucao;
 	}
 
+	/**
+	 * Define tipo requisicao
+	 * 
+	 * @param tipoSolucao
+	 * 			tipo requisicao
+	 */
 	public void setTipoSolucao(TipoRequisicao tipoSolucao) {
 		this.tipoSolucao = tipoSolucao;
 	}
 
+	/**
+	 * Define media geral
+	 * 
+	 * @param mediaGeral
+	 * 			media geral
+	 */
 	public void setMediaGeral(Double mediaGeral) {
 		this.mediaGeral = mediaGeral;
 	}
