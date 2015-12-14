@@ -20,7 +20,7 @@ import br.com.cliente.requisicao.TipoRequisicao;
  * @version(12/12/2015)
  *
  */
-public class BuscaEmProfundidade<T extends Comparable<T>> extends Solucao implements Runnable, IArvoreBuscavel<T> {
+public class BuscaEmProfundidade<T> extends Solucao implements Runnable, IArvoreBuscavel<T> {
 	
 	/**
 	 * Instancia uma nome busca em profundidade
@@ -36,8 +36,8 @@ public class BuscaEmProfundidade<T extends Comparable<T>> extends Solucao implem
 	@Override
 	public void run() {		
 		while(true){
-			Requisicao<T> requisicao = receberRequisicao();
-			requisicao.setNo( buscarElemento(requisicao.getListaValores(), requisicao.getValor()) );
+			Requisicao<Comparable> requisicao = receberRequisicao();
+			requisicao.setNo( buscarElemento(requisicao.getArvore(), requisicao.getValor()) );
 			requisicao.setListaValores(null);
 			enviarRequisicao(requisicao);
 		}	
@@ -48,7 +48,7 @@ public class BuscaEmProfundidade<T extends Comparable<T>> extends Solucao implem
 	 * @see br.com.algoritmos.busca.IArvoreBuscavel#buscarElemento(java.lang.Object, java.lang.Comparable)
 	 */
 	@Override
-	public <T> T buscarElemento(T colecao, Comparable valor) {
+	public <T> T buscarElemento(Object colecao, Comparable valor) {
 		Date dataInicial = new Date();
 		setOcupado(true);
 		Arvore arvore = (Arvore) colecao;

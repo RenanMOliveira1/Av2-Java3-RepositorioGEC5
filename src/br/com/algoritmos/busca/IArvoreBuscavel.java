@@ -21,6 +21,6 @@ public interface IArvoreBuscavel <T> {
 	 * 				nó valor
 	 * @return resultado
 	 */
-	public <T> T buscarElemento(T colecao, Comparable valor);
+	public <T> T buscarElemento(Object colecao, Comparable valor);
 
 }

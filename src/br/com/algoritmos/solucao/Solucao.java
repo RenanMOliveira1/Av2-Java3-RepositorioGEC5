@@ -10,7 +10,7 @@ import java.util.Date;
 
 import br.com.cliente.requisicao.Requisicao;
 import br.com.cliente.requisicao.TipoRequisicao;
-import br.com.execultavel.MainServidor;
+import br.com.executavel.MainServidor;
 import br.com.servidor.DadosAtualizacao;
 import br.com.util.RedeUtil;
 

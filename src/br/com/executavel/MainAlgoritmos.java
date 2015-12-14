@@ -1,4 +1,4 @@
-package br.com.execultavel;
+package br.com.executavel;
 
 import br.com.algoritmos.pool.PoolAlgoritmos;
 import br.com.algoritmos.solucao.Solucao;

@@ -7,7 +7,7 @@ import java.net.SocketException;
 import java.util.Hashtable;
 
 import br.com.cliente.requisicao.TipoRequisicao;
-import br.com.execultavel.MainServidor;
+import br.com.executavel.MainServidor;
 import br.com.util.RedeUtil;
 
 /**
